@@ -66,6 +66,12 @@ const handleMidpointCalculation = (lats, lngs, dispatch) => {
 
   // Send the average latitude and longitude to the Google Maps API
   handlePlacesFetch(coordinates, dispatch)
+  dispatch({ type: 'SET_MIDPOINT_START' })
+    try{
+      dispatch({ type: 'SET_MIDPOINT_SUCCESS', midpoint: { lat: coordinates[0], lng: coordinates[1] }})
+    } catch (error) {
+      dispatch({ type: 'SET_MIDPOINT_FAILURE', error: error })
+  }
     
 }
 

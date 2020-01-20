@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import FormInput from '../../UI/FormInput/FormInput';
+import FormInput from '../../components/UI/FormInput/FormInput';
 import SearchResults from '../SearchResults/SearchResults'
 import SelectedLocation from '../../components/SelectedLocation/SelectedLocation'
-import { handleAddressSubmit } from '../../actions/searchResultsActions'
+import { handleAddressSubmit } from '../../state/actions/searchResultsActions'
 
 
 const SearchPane = (props) => {

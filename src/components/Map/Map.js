@@ -1,5 +1,6 @@
-import React from 'react'
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import React, { useState, useCallback, }from 'react'
+import { connect } from 'react-redux'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const apiKey = process.env.REACT_APP_GOOGLE_KEY
 
@@ -7,24 +8,31 @@ const containerStyle = {
   width: '400px',
   height: '400px'
 };
+
+let markerCoordinates
+let resultsMarkers
+
+const Map = (props) => {
+  console.log("Map props", props)
+  const [map, setMap] = useState(null)
+  
+  if (props.searchResults.length > 0) {
+      resultsMarkers = props.searchResults.map((result, index) => { 
+      markerCoordinates = ({ lat: result.geometry.location.lat, 
+        lng: result.geometry.location.lng })
+      return (
+      <Marker key={result.id} position={markerCoordinates} Animation={"BOUNCE"}/>
+      )})}
+    
+  //   const onLoad = useCallback(function callback(map) {
+  //   const bounds = new window.google.maps.LatLngBounds();
+  //   map.fitBounds(bounds);
+  //   setMap(map)
+  // }, [])
  
-const center = {
-  lat: -3.745,
-  lng: -38.523
-};
- 
-const Map = () => {
-  const [map, setMap] = React.useState(null)
- 
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
- 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+  // const onUnmount = useCallback(function callback(map) {
+  //   setMap(null)
+  // }, [])
  
   return (
     <LoadScript
@@ -32,16 +40,24 @@ const Map = () => {
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
+        center={props.midpoint}
+        zoom={13}
+        // onLoad={onLoad}
+        // onUnmount={onUnmount}
       >
-        { /* Child components, such as markers, info windows, etc. */ }
+        {resultsMarkers}
+        <Marker icon={"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"} position={props.midpoint} label={"Midpoint"} animation={"bounce"} zIndex={0}/>
         <></>
       </GoogleMap>
     </LoadScript>
   )
 }
- 
-export default React.memo(Map)
+
+const mapStateToProps = state => {
+  return {
+    searchResults: state.searchResults.searchResults,
+    midpoint: state.searchResults.midpoint
+  }
+}
+
+export default connect(mapStateToProps, null)(Map);

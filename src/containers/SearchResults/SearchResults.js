@@ -2,7 +2,7 @@ import React from 'react'
 import '../SearchResults/SearchResults.css'
 import { connect } from 'react-redux'
 import './SearchResults.css'
-import { handleLocationSelection } from '../../actions/searchResultsActions'
+import { handleLocationSelection } from '../../state/actions/searchResultsActions'
 
 const SearchResults = (props) => {
     let mappedResults

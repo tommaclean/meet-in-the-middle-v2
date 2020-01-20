@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './PastMeetups.css'
 import { connect } from 'react-redux'
-import { favoriteMeetup, getFavMeetups, getMeetups } from '../../actions/meetupActions'
+import { favoriteMeetup, getFavMeetups, getMeetups } from '../../state/actions/meetupActions'
 
 
 const PastMeetups = (props) => {

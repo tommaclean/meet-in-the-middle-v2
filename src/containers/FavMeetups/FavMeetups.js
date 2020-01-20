@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import '../FavMeetups/FavMeetups.css'
 import { connect } from 'react-redux'
-import { deleteFavorite, getFavMeetups, getMeetups } from '../../actions/meetupActions'
+import { deleteFavorite, getFavMeetups, getMeetups } from '../../state/actions/meetupActions'
 
 
 const FavMeetups = (props)  => {
