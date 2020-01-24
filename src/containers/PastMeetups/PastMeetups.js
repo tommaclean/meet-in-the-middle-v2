@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classes from './PastMeetups.module.css'
 import { connect } from 'react-redux'
-import { favoriteMeetup, getFavMeetups } from '../../actions/meetupActions'
+import { favoriteMeetup, getFavMeetups, getMeetups } from '../../actions/meetupActions'
 
 
-function PastMeetups(props) {
-    
+const PastMeetups = (props) => {
+    useEffect(() => {
+        props.getMeetups()
+    }, [])
     let mappedMeetups
     if (props.pastMeetups) {
         mappedMeetups = props.pastMeetups.slice(0).reverse().map((meetup, index) => {
@@ -32,7 +34,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     favoriteMeetup: favoriteMeetup,
-    getFavMeetups: getFavMeetups
+    getFavMeetups: getFavMeetups,
+    getMeetups: getMeetups
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PastMeetups)

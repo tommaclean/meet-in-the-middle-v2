@@ -6,7 +6,7 @@ import SelectedLocation from '../../components/SelectedLocation/SelectedLocation
 import { handleAddressSubmit } from '../../actions/searchResultsActions'
 
 
-function SearchPane(props){
+const SearchPane = (props) => {
         // console.log('search pane props', props)
         return (
             <div>

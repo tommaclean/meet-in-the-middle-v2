@@ -11,7 +11,7 @@ import useToggle from '../../snippets/useToggle'
 
 import './MainPage.css'
 
-function MainPage(){
+const MainPage = () => {
         const [showPastMeetups, togglePastMeeups] = useToggle();
         const [showFavMeetups, toggleFavMeetups] = useToggle();
         return (

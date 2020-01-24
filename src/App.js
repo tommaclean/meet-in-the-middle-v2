@@ -1,15 +1,14 @@
 import './App.css';
-import React, { Component } from 'react'
+import React from 'react'
 import MainPage from './containers/MainPage/MainPage'
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <div className="App">
           <MainPage />
     </div>
     );
-  }
+
 }
 
 export default App;

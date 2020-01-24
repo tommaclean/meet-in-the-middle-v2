@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import classes from '../FavMeetups/FavMeetups.module.css'
 import { connect } from 'react-redux'
 import { deleteFavorite, getFavMeetups, getMeetups } from '../../actions/meetupActions'
 
 
 function FavMeetups(props) {
+    useEffect(() => {
+        props.getFavMeetups()
+    }, [])
     let mappedFavs
     if (props.favMeetups) {
         mappedFavs = props.favMeetups.slice(0).reverse().map((favMeetup, index) => {
