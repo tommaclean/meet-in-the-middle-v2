@@ -81,7 +81,7 @@ export const handlePlacesFetch = (coordinates, dispatch) => {
         dispatch({ type: 'GET_SEARCH_RESULTS_SUCCESS', searchResults: searchResults.results });
       })
       .catch(error => {
-        console.log("THIS IS THE ERROR!", error)
+        console.log("handlePlacesFetch error", error)
         //dispatch({ type: 'GET_SEARCH_RESULTS_FAILURE', error: error });
       });
     
