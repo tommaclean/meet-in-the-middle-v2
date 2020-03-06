@@ -2,19 +2,22 @@ import './App.css';
 import React from 'react'
 import { connect } from 'react-redux'
 import MainPage from '../src/pages/MainPage/MainPage'
-import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import { Switch, Route } from 'react-router-dom'
-import ProfilePage from './pages/ProfilePage/Profile/ProfilePage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+
 
 const App = () => {
     return (
+        <div>
+            
             <Switch>
-                <Route path="/signup" component={SignupPage}/>
-                <Route path="/profile" component={ProfilePage}/>
+                <Route path="/login" component={LoginPage}/>
                 <Route path="/main" component={MainPage}/>
+                <Route path="/profile" component={ProfilePage}/>
                 <Route path="/" component={LoginPage}/>
             </Switch>
+        </div>
     );
 
 }

@@ -14,11 +14,11 @@ export const handleLogin = (userInput) => dispatch => {
                 dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: userInput.username} })
             } else {
                 alert("Login failed")
+                dispatch({ type: "USER_LOGIN_FAILURE" })
             }
         })
-        .catch(error => {
-            dispatch({ type: "USER_LOGIN_FAILURE", error: error });
-        });
+        .catch(error => {dispatch({ type: "USER_LOGIN_FAILURE", error: error });
+    });
 
 
     //     .then((json) => {

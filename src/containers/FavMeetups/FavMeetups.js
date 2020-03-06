@@ -7,8 +7,10 @@ import { deleteFavorite, getFavMeetups, getMeetups } from '../../state/actions/m
 const FavMeetups = (props)  => {
     useEffect(() => {
         props.getFavMeetups()
-    }, [])
+    }, [props.favMeetups.length])
+
     let mappedFavs
+
     if (props.favMeetups) {
         mappedFavs = props.favMeetups.slice(0).reverse().map((favMeetup, index) => {
         return (

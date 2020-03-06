@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './LoginPage.css'
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { handleLogin } from '../../state/actions/userActions'
-import Header from '../../components/UI/Header/Header';
 
 
 const LoginPage = (props) => {
     const history = useHistory();
 
+   useEffect(() => {
     if (props.loggedIn) {
         history.push('/main')
     }
+   
+   }, [history, props.loggedIn])
     
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -28,7 +30,6 @@ const LoginPage = (props) => {
 
     return (
         <div className="center">
-            <Header />
             <form onSubmit={handleLoginSubmission}>
                 <p>Log In:</p>
                 <input type="text" name="username" placeholder="User name" value={username} onChange={(e) => setUsername(e.target.value)} />
