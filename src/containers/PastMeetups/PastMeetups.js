@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import classes from './PastMeetups.module.css'
+import './PastMeetups.css'
 import { connect } from 'react-redux'
 import { favoriteMeetup, getFavMeetups, getMeetups } from '../../actions/meetupActions'
 
@@ -12,14 +12,14 @@ const PastMeetups = (props) => {
     if (props.pastMeetups) {
         mappedMeetups = props.pastMeetups.slice(0).reverse().map((meetup, index) => {
         return (
-            <div key={meetup.id} className={classes.PastMeetup} onClick={() => props.favoriteMeetup(meetup.id).then(() => props.getFavMeetups())}>
+            <div key={meetup.id} className="PastMeetup" onClick={() => props.favoriteMeetup(meetup.id).then(() => props.getFavMeetups())}>
                 <li>{meetup.id}. {meetup.location}</li>
-                <li className={classes.FavoriteMeetup}>❤️ Favorite This Meetup</li>
+                <button className="FavoriteMeetup">❤️ Favorite</button>
             </div>
         )})}
         return (  
             <div>
-                <div className={classes.MainPastMeetups}>
+                <div className="FavoriteMeetup">
                 {mappedMeetups}
                 </div>
             </div>

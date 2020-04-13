@@ -1,16 +1,4 @@
-import React, {useEffect} from 'react'
-
-// class Profile extends React.Component {
-//     render() {
-//         return (
-//             <p>
-//                 This is Profile.js.
-//             </p>
-//         )
-//     }
-// }
-
-// export default Profile
+import React from 'react'
 
 const Profile = ({height, weight}) => {
 

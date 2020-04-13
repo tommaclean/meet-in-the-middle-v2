@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from '../SelectedLocation/SelectedLocation.module.css'
+import '../SelectedLocation/SelectedLocation.css'
 import { connect } from 'react-redux'
 import { confirmSelection } from '../../actions/meetupActions'
 import { getMeetups }  from '../../actions/meetupActions'
@@ -7,11 +7,10 @@ import { getMeetups }  from '../../actions/meetupActions'
 
 const SelectedLocation = (props) => {
     const handleConfirmSelection = () => {
-      // console.log('handleConfirmSelection props', props)
       props.confirmSelection(props.selectedResult.name, "Charlie Brown").then(props.getMeetups)
     }
     return (
-      <div className={classes.selectedLocationBody}>
+      <div className="selectedLocationBody">
         <h4>Your Selected Result!</h4>
         <h1>{props.selectedResult.name}</h1>
         <h3>{props.selectedResult.vicinity}</h3>

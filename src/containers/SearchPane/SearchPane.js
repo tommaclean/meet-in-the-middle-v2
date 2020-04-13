@@ -9,7 +9,7 @@ import { handleAddressSubmit } from '../../actions/searchResultsActions'
 const SearchPane = (props) => {
         // console.log('search pane props', props)
         return (
-            <div>
+            <div className="SearchResults">
               <FormInput handleAddressSubmit={props.handleAddressSubmit}/>
               {props.showSelectedLocation ? <SelectedLocation showSelectedLocation={props.showSelectedLocation}/> : null }
               <SearchResults />

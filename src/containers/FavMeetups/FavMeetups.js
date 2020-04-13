@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
-import classes from '../FavMeetups/FavMeetups.module.css'
+import '../FavMeetups/FavMeetups.css'
 import { connect } from 'react-redux'
 import { deleteFavorite, getFavMeetups, getMeetups } from '../../actions/meetupActions'
 
 
-function FavMeetups(props) {
+const FavMeetups = (props)  => {
     useEffect(() => {
         props.getFavMeetups()
     }, [])
@@ -12,17 +12,16 @@ function FavMeetups(props) {
     if (props.favMeetups) {
         mappedFavs = props.favMeetups.slice(0).reverse().map((favMeetup, index) => {
         return (
-            <div key={favMeetup.id} className={classes.PastMeetup}>
+            <div key={favMeetup.id} className="FavMeetup">
                 <li>{favMeetup.meetup.id}. {favMeetup.meetup.location}</li>
-                <li className={classes.FavoriteMeetup} 
-                    onClick={() => props.deleteFavorite(favMeetup.id).then(() => props.getFavMeetups()).then(() => props.getMeetups())
-                    }>x Delete x</li>
+                <button onClick={() => props.deleteFavorite(favMeetup.id).then(() => props.getFavMeetups()).then(() => props.getMeetups())
+                    }>Delete</button>
                     
             </div>
         )})}
         return (  
             <div>
-                <div className={classes.MainPastMeetups}>
+                <div className="FavMeetup">
                 {mappedFavs}
                 </div>
             </div>

@@ -8,8 +8,8 @@ import FavMeetups from '../../containers/FavMeetups/FavMeetups'
 import SearchPane from '../SearchPane/SearchPane.js'
 import { setShowPastMeetups, setShowFavMeetups } from '../../actions/meetupActions'
 import useToggle from '../../snippets/useToggle'
-
 import './MainPage.css'
+
 
 const MainPage = () => {
         const [showPastMeetups, togglePastMeeups] = useToggle();

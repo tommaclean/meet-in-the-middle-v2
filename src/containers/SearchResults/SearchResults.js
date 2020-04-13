@@ -1,17 +1,18 @@
 import React from 'react'
+import '../SearchResults/SearchResults.css'
 import { connect } from 'react-redux'
-import classes from './SearchResults.module.css'
+import './SearchResults.css'
 import { handleLocationSelection } from '../../actions/searchResultsActions'
 
-function SearchResults(props) {
+const SearchResults = (props) => {
     let mappedResults
     if (props.searchResults.length > 0 ) {
         mappedResults = props.searchResults.map((result, index) => {
         return (
-            <div key={index} className={classes.header}>
-                <div key={result.id} className={classes.SearchResults}>
-                    <h3 className={classes.li}>Name: {result.name}</h3>
-                    <h2 className={classes.ul}>Address: {result.vicinity}</h2>
+            <div key={index} className="header">
+                <div key={result.id} className="SearchResult">
+                    <h3 className="li">Name: {result.name}</h3>
+                    <h2 className="ul">Address: {result.vicinity}</h2>
                     <h4>Status: {result.business_status}</h4>
                     <button onClick={() => props.handleLocationSelection(result)}>Select Location</button>
                 </div>
@@ -19,7 +20,7 @@ function SearchResults(props) {
         )})}
     return (
             
-                <div className={classes.ScrollableSearchResults}>
+                <div className="ScrollableSearchResults">
                       Your Search Results:
                         {mappedResults}   
                 </div>

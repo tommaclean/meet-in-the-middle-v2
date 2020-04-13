@@ -13,7 +13,7 @@ const center = {
   lng: -38.523
 };
  
-function Map() {
+const Map = () => {
   const [map, setMap] = React.useState(null)
  
   const onLoad = React.useCallback(function callback(map) {
