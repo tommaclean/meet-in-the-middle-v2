@@ -1,15 +1,16 @@
 import './App.css';
+import React, { Component } from 'react'
+import MainPage from './containers/MainPage/MainPage'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          This is where <code>src/LoginPage.js</code> will go.
-        </p>
-      </header>
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+          This is App.js, where the login/signup or redirect to MainPage will be.
+          <MainPage />
     </div>
-  );
+    );
+  }
 }
 
 export default App;

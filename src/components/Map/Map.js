@@ -1,14 +1,47 @@
 import React from 'react'
-import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
-const MyMapComponent = (props) =>
-  <GoogleMap
-    defaultZoom={8}
-    defaultCenter={{ lat: -34.397, lng: 150.644 }}
-  >
-    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
-  </GoogleMap>
+const apiKey = process.env.REACT_APP_GOOGLE_KEY
 
-  
-
-export default Map
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
+ 
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
+ 
+function Map() {
+  const [map, setMap] = React.useState(null)
+ 
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds();
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
+ 
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+ 
+  return (
+    <LoadScript
+      googleMapsApiKey={apiKey}
+    >
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
+      </GoogleMap>
+    </LoadScript>
+  )
+}
+ 
+export default React.memo(Map)
