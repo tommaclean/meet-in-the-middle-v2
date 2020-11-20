@@ -14,6 +14,7 @@ class SearchPane extends Component {
         lats: [],
         lngs: [],
         midpoint: [],
+        midpointAddress: "",
         input1Choice: true,
         input2Choice: true,
         input3Choice: true,
@@ -69,8 +70,7 @@ class SearchPane extends Component {
             }
           );
     
-    
-          Promise.all([promise1, promise2, promise3]).then(() => this.handleMidpointCalculation())
+        Promise.all([promise1, promise2, promise3]).then(() => this.handleMidpointCalculation())
     
     }
 
@@ -86,10 +86,25 @@ class SearchPane extends Component {
   
         this.setState({ midpoint: [...this.state.midpoint, latAvg] })
         this.setState({ midpoint: [...this.state.midpoint, lngAvg] })
+
+        Geocode.fromLatLng(latAvg, lngAvg).then(
+            response => {
+              const address = response.results[0].formatted_address;
+              console.log(address);
+              this.setState({ midpointAddress: address})
+            },
+            error => {
+              console.error(error);
+            }
+          );
   
-        this.props.handlePlacesFetch(this.state)
+        // this.props.handlePlacesFetch(this.state)
         this.handleResetState()
       }
+    }
+    
+    handleResetState = (e) => {
+        this.setState({ address1: "", address2: "", address3: "" })
     }
 
     render() {
@@ -108,8 +123,9 @@ class SearchPane extends Component {
                     Address 3:
                     <input type="text" name="address3" value={this.state.address3} onChange={this.handleAddressTypingChange} />
                     </label>
-                    <input type="submit" value="Submit" onClick={this.handleAddressSubmit}/>
+                    <input type="submit" onClick={this.handleAddressSubmit}/>
                 </form>
+                { this.state.midpointAddress !== "" ? `The mid-point is ${this.state.midpointAddress}` : null }
             </div>
         )
     }
