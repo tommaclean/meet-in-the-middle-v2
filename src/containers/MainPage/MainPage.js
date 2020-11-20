@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import App from '../../App.js'
-import Map from '../../components/Map/Map'
-import Profile from '../../components/Profile/Profile'
-import SearchPane from '../SearchPane/SearchPane'
+import Map from '../../components/Map/Map.js'
+import Profile from '../../components/Profile/Profile.js'
+import SearchPane from '../SearchPane/SearchPane.js'
+import SearchResults from '../SearchResults/SearchResults.js'
 import './MainPage.css'
 
 class MainPage extends Component {
@@ -13,6 +14,7 @@ class MainPage extends Component {
                 <SearchPane />
                 <Profile />
                 <Map />
+                <SearchResults />
             </div>
         )
     }
