@@ -1,10 +1,14 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import Geocode from 'react-geocode';
+import FormInput from '../../UI/FormInput/FormInput';
+import InputForm from '../../UI/FormInput/FormInput'
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
 
 
-class SearchPane extends Component {
-    state = {
+function SearchPane(){
+    
+    const inputState = useState({
         address1: "",
         address2: "",
         address3: "",
@@ -15,30 +19,31 @@ class SearchPane extends Component {
         lngs: [],
         midpoint: [],
         midpointAddress: "",
-        input1Choice: true,
-        input2Choice: true,
-        input3Choice: true,
+        // input1Choice: true,
+        // input2Choice: true,
+        // input3Choice: true,
         openConfirmationModal: false
-  
-    }
+    })
 
-    handleAddressTypingChange = (e) => {
+    const handleAddressTypingChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    handleAddressSubmit = (e) => {
+    const handleAddressSubmit = (e) => {
         e.preventDefault()
-        if ([this.state.address1, this.state.address2, this.state.address3] === "") {
-          alert("Have you entered valid addresses for each user?");
-          return false;
-        }
+        // ---- Need to refactor - need to figure out how to have dummy proof address forms
+
+        // if ([inputState.[0].address1, inputState.[0].address2, inputState.[0].address3] === "") {
+        //   alert("Have you entered valid addresses for each user?");
+        //   return false;
+        // }
     
-        let promise1 = Geocode.fromAddress(this.state.address1).then(
+        let promise1 = Geocode.fromAddress(inputState.[0].address1).then(
             response => {
               const { lat, lng } = response.results[0].geometry.location;
               let lat1 = lat
               let lng1 = lng
-              this.setState({ lats: [...this.state.lats, lat], lngs: [...this.state.lngs, lng], address1Coor: [...this.state.address1Coor, lat, lng]})
+              this.setState({ lats: [...inputState.[0].lats, lat], lngs: [...inputState.[0].lngs, lng], address1Coor: [...inputState.[0].address1Coor, lat, lng]})
               console.log(lat1, lng1, "address 1")
             },
             error => {
@@ -46,12 +51,12 @@ class SearchPane extends Component {
             }
           );
     
-        let promise2 = Geocode.fromAddress(this.state.address2).then(
+        let promise2 = Geocode.fromAddress(inputState.[0].address2).then(
             response => {
               const { lat, lng } = response.results[0].geometry.location;
               let lat2 = lat
               let lng2 = lng
-              this.setState({ lats: [...this.state.lats, lat2], lngs: [...this.state.lngs, lng2], address2Coor: [...this.state.address2Coor, lat, lng] })
+              this.setState({ lats: [...inputState.[0].lats, lat2], lngs: [...inputState.[0].lngs, lng2], address2Coor: [...inputState.[0].address2Coor, lat, lng] })
               console.log(lat2, lng2, "address 2");
             },
             error => {
@@ -59,10 +64,10 @@ class SearchPane extends Component {
             }
           );
     
-        let promise3 = Geocode.fromAddress(this.state.address3).then(
+        let promise3 = Geocode.fromAddress(inputState.[0].address3).then(
             response => {
               const { lat, lng } = response.results[0].geometry.location;
-              this.setState({ lats: [lat, ...this.state.lats], lngs: [lng, ...this.state.lngs], address3Coor: [...this.state.address3Coor, lat, lng] })
+              this.setState({ lats: [lat, ...inputState.[0].lats], lngs: [lng, ...inputState.[0].lngs], address3Coor: [...inputState.[0].address3Coor, lat, lng] })
               console.log(lat, lng, "address 3");
             },
             error => {
@@ -74,18 +79,18 @@ class SearchPane extends Component {
     
     }
 
-    handleMidpointCalculation = () => {
-        if (this.state.address1 === "" || this.state.address2 === "" || this.state.address3 === "") {
+    const handleMidpointCalculation = () => {
+        if (inputState.[0].address1 === "" || inputState.[0].address2 === "" || inputState.[0].address3 === "") {
           alert("Hey why don't you go back and input some REAL addresses, buddy?")
         } else {
-        let latSum = this.state.lats.reduce((previous, current) => current += previous);
+        let latSum = inputState.[0].lats.reduce((previous, current) => current += previous);
         let latAvg = latSum / 3;
   
-        let lngSum = this.state.lngs.reduce((previous, current) => current += previous);
+        let lngSum = inputState.[0].lngs.reduce((previous, current) => current += previous);
         let lngAvg = lngSum / 3;
   
-        this.setState({ midpoint: [...this.state.midpoint, latAvg] })
-        this.setState({ midpoint: [...this.state.midpoint, lngAvg] })
+        this.setState({ midpoint: [...inputState.[0].midpoint, latAvg] })
+        this.setState({ midpoint: [...inputState.[0].midpoint, lngAvg] })
 
         Geocode.fromLatLng(latAvg, lngAvg).then(
             response => {
@@ -102,33 +107,50 @@ class SearchPane extends Component {
         this.handleResetState()
       }
     }
-    
-    handleResetState = (e) => {
-        this.setState({ address1: "", address2: "", address3: "" })
-    }
 
-    render() {
+    const handlePlacesFetch = (e) => {
+      this.setState({ addresses: [...inputState.[0].addresses, e.address1Coor, e.address2Coor, e.address3Coor ], defaultCenter: { lat: e.midpoint[0], lng: e.midpoint[1] }})
+      fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${e.midpoint}&radius=1500&types=bar&key=${process.env.REACT_APP_GOOGLE_KEY}`)
+        .then(res => res.json())
+        .then(placesFetch => {(
+          this.setState({ results: placesFetch.results, defaultZoom: 14 })
+        )}
+      )
+    }
+    
+    // const handleResetState = (e) => {
+    //     this.setState({ address1: "", address2: "", address3: "" })
+    // }
+
         return (
             <div>
-                <form>
+              <FormInput handleAddressSubmit={handleAddressSubmit}/>
+                {/* <form onSubmit={handleAddressSubmit}>
                     <label>
                     Address 1:
-                    <input type="text" name="address1" value={this.state.address1} onChange={this.handleAddressTypingChange} />
+                    <input type="text" name="address1" value={inputState.[0].address1} onChange={event => inputState[1]({ address1: event.target.value})} />
                     </label>
                     <label>
                     Address 2:
-                    <input type="text" name="address2" value={this.state.address2} onChange={this.handleAddressTypingChange} />
+                    <input type="text" name="address2" value={inputState.[0].address2} onChange={event => inputState[1]({ address2: event.target.value})} />
                     </label>
                     <label>
                     Address 3:
-                    <input type="text" name="address3" value={this.state.address3} onChange={this.handleAddressTypingChange} />
+                    <input type="text" name="address3" value={inputState.[0].address3} onChange={event => inputState[1]({ address3: event.target.value})} />
                     </label>
-                    <input type="submit" onClick={this.handleAddressSubmit}/>
-                </form>
-                { this.state.midpointAddress !== "" ? `The mid-point is ${this.state.midpointAddress}` : null }
+                    <input type="submit" />
+                </form> */}
+                { inputState.[0].midpointAddress !== "" ? `The mid-point is ${inputState.[0].midpointAddress}` : null }
             </div>
         )
-    }
 }
 
-export default SearchPane
+const mapStateToProps = state => {
+  return {
+    address1: state.address1,
+    address2: state.address2,
+    address3: state.address3
+  }
+}
+
+export default connect()(SearchPane)
