@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Geocode from 'react-geocode';
 import FormInput from '../../UI/FormInput/FormInput';
-import InputForm from '../../UI/FormInput/FormInput'
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
 
 
@@ -29,8 +28,9 @@ function SearchPane(){
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    const handleAddressSubmit = (e) => {
+    const handleAddressSubmit = ({address1, address2, address3}) => {
         e.preventDefault()
+
         // ---- Need to refactor - need to figure out how to have dummy proof address forms
 
         // if ([inputState.[0].address1, inputState.[0].address2, inputState.[0].address3] === "") {
@@ -75,14 +75,14 @@ function SearchPane(){
             }
           );
     
-        Promise.all([promise1, promise2, promise3]).then(() => this.handleMidpointCalculation())
+        Promise.all([promise1, promise2, promise3]).then(() => handleMidpointCalculation())
     
     }
 
     const handleMidpointCalculation = () => {
-        if (inputState.[0].address1 === "" || inputState.[0].address2 === "" || inputState.[0].address3 === "") {
-          alert("Hey why don't you go back and input some REAL addresses, buddy?")
-        } else {
+        // if (inputState.[0].address1 === "" || inputState.[0].address2 === "" || inputState.[0].address3 === "") {
+        //   alert("Hey why don't you go back and input some REAL addresses, buddy?")
+        // } else {
         let latSum = inputState.[0].lats.reduce((previous, current) => current += previous);
         let latAvg = latSum / 3;
   
@@ -105,7 +105,7 @@ function SearchPane(){
   
         // this.props.handlePlacesFetch(this.state)
         this.handleResetState()
-      }
+      
     }
 
     const handlePlacesFetch = (e) => {
@@ -121,7 +121,7 @@ function SearchPane(){
     // const handleResetState = (e) => {
     //     this.setState({ address1: "", address2: "", address3: "" })
     // }
-
+      
         return (
             <div>
               <FormInput handleAddressSubmit={handleAddressSubmit}/>

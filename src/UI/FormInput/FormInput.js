@@ -8,7 +8,11 @@ const FormInput = ({ handleAddressSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        handleAddressSubmit(e)
+        handleAddressSubmit({
+            address1: address1,
+            address2: address2,
+            address3: address3
+        })
         setAddress1('')
         setAddress2('')
         setAddress3('')
