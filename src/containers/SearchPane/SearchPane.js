@@ -6,7 +6,12 @@ Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY);
 
 
 function SearchPane(){
+    const [address1Coor, setAddress1Coor] = useState([])
+    const [address2Coor, setAddress2Coor] = useState([])
+    const [address3Coor, setAddress3Coor] = useState([])
     
+
+
     const inputState = useState({
         address1: "",
         address2: "",
@@ -28,7 +33,8 @@ function SearchPane(){
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    const handleAddressSubmit = ({address1, address2, address3}) => {
+    const handleAddressSubmit = ({e, address1, address2, address3}) => {
+        console.log("handleAddressSubmit", e)
         e.preventDefault()
 
         // ---- Need to refactor - need to figure out how to have dummy proof address forms
