@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import App from '../../App.js'
 import Map from '../../components/Map/Map.js'
 import Profile from '../../components/Profile/Profile.js'
@@ -6,8 +6,7 @@ import SearchPane from '../SearchPane/SearchPane.js'
 import SearchResults from '../SearchResults/SearchResults.js'
 import './MainPage.css'
 
-class MainPage extends Component {
-    render() {
+function MainPage(){
         return (
             <div className="MainPage-header">
                 <p>This is MainPage.js.</p>
@@ -17,7 +16,6 @@ class MainPage extends Component {
                 <SearchResults />
             </div>
         )
-    }
 }
 
 
