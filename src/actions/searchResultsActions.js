@@ -1,4 +1,5 @@
 import Geocode from 'react-geocode';
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY)
   
 export const handleAddressSubmit = ({e, address1, address2, address3}) => {
   let lats = []
@@ -12,7 +13,6 @@ export const handleAddressSubmit = ({e, address1, address2, address3}) => {
       lats = [...lats, lat1]
       lngs = [...lngs, lng1]
       const address1Coor = [lat1, lng1]
-      console.log(lats, lngs, "address 1 lats & lngs")
     },
     error => {
       console.error(error, "address 1");
@@ -78,10 +78,10 @@ export const handlePlacesFetch = (coordinates) => {
   return fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`)
       .then(res => res.json())
       .then(searchResults => {
-        // dispatch({ type: 'GET_SEARCH_RESULTS_SUCCESS', searchResults: searchResults.results });
+        dispatch({ type: 'GET_SEARCH_RESULTS_SUCCESS', searchResults: searchResults.results });
       })
       .catch(error => {
-        // dispatch({ type: 'GET_SEARCH_RESULTS_FAILURE', error: error });
+        dispatch({ type: 'GET_SEARCH_RESULTS_FAILURE', error: error });
       });
 
 };

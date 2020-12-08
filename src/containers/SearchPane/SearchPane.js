@@ -1,13 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import FormInput from '../../UI/FormInput/FormInput';
-import { handleAddressSubmit } from '../../actions/searchResultsActions.js'
+import SearchResults from '../SearchResults/SearchResults'
+import { handleAddressSubmit } from '../../actions/searchResultsActions'
 
 
 function SearchPane(){
         return (
             <div>
               <FormInput handleAddressSubmit={handleAddressSubmit}/>
+              <SearchResults />
             </div>
         )
 }
@@ -23,5 +25,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   handleAddressSubmit: handleAddressSubmit
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPane)

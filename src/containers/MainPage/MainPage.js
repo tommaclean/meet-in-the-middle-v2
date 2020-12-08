@@ -3,7 +3,6 @@ import App from '../../App.js'
 import Map from '../../components/Map/Map.js'
 import Profile from '../../components/Profile/Profile.js'
 import SearchPane from '../SearchPane/SearchPane.js'
-import SearchResults from '../SearchResults/SearchResults.js'
 import './MainPage.css'
 
 function MainPage(){
@@ -13,7 +12,6 @@ function MainPage(){
                 <SearchPane />
                 <Profile />
                 <Map />
-                <SearchResults />
             </div>
         )
 }
