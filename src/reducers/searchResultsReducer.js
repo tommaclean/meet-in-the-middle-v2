@@ -6,7 +6,8 @@ const defaultState = {
     lngs: [],
     midpoint: [],
     midpointAddress: "",
-    openConfirmationModal: false
+    openConfirmationModal: false,
+    searchResults: {}
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -14,11 +15,9 @@ export default (state = defaultState, action) => {
 
   switch (action.type) {
     case 'GET_SEARCH_RESULTS_SUCCESS':
-        return action.searchresults;
-    case 'GET_MEETUPS_SUCCESS':
-        return action.meetups
-    case 'GET_MEETUPS_SEARCH_SUCCESS':
-        return action.meetups
+        return {...state, searchResults: action.searchResults}
+    case 'GET_SEARCH_RESULTS_FAILURE':
+        return error
     default:
         return state
   }
