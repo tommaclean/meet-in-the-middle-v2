@@ -5,7 +5,7 @@ import SearchResults from '../SearchResults/SearchResults'
 import { handleAddressSubmit } from '../../actions/searchResultsActions'
 
 
-function SearchPane(){
+function SearchPane({handleAddressSubmit}){
         return (
             <div>
               <FormInput handleAddressSubmit={handleAddressSubmit}/>
@@ -16,9 +16,10 @@ function SearchPane(){
 
 const mapStateToProps = state => {
   return {
-    address1: state.address1,
-    address2: state.address2,
-    address3: state.address3
+    // address1: state.address1,
+    // address2: state.address2,
+    // address3: state.address3,
+    // searchResults: state.searchResults
   }
 }
 
@@ -28,4 +29,4 @@ const mapDispatchToProps = {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPane)
+export default connect(null, mapDispatchToProps)(SearchPane)

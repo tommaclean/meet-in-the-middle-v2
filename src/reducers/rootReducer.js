@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
-import meetupsReducer from './meetupsReducer'
+import meetups from './meetupsReducer'
+import searchResults from './searchResultsReducer'
 
 
 export default combineReducers({
-  meetups: meetupsReducer,
+  meetups,
+  searchResults
 });
