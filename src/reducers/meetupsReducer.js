@@ -13,7 +13,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
 
   switch (action.type) {
-    case 'GET_SEARCH_RESULTS_SUCCESS':
+    case 'GET_MEETUPS_START':
         return action.searchresults;
     case 'GET_MEETUPS_SUCCESS':
         return action.meetups

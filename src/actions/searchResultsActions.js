@@ -54,7 +54,7 @@ export const handleAddressSubmit = ({e, address1, address2, address3}) => dispat
         
 }
         
-export const handleMidpointCalculation = (lats, lngs, dispatch) => {
+const handleMidpointCalculation = (lats, lngs, dispatch) => {
   // Finding the average of the latitudes 
   let latSum = lats.reduce((previous, current) => current += previous);
   let latAvg = latSum / 3;
@@ -69,14 +69,15 @@ export const handleMidpointCalculation = (lats, lngs, dispatch) => {
     
 }
 
-export const handlePlacesFetch = (coordinates, dispatch) => {
+const handlePlacesFetch = (coordinates, dispatch) => {
   const corStr = coordinates.toString()
   const apiKey = process.env.REACT_APP_GOOGLE_KEY
-  // debugger
-  console.log("coordinates", coordinates)
-  return fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`, {method: 'GET', mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }})
+  const googleURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`
+  const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
+
+  return fetch(proxyURL + googleURL)
       .then(res => res.json())
-      .then(searchResults => {
+      .then(searchResults => {  
         console.log("searchResults", searchResults)
         dispatch({ type: 'GET_SEARCH_RESULTS_SUCCESS', searchResults: searchResults.results });
       })
@@ -86,3 +87,13 @@ export const handlePlacesFetch = (coordinates, dispatch) => {
       });
     
 };
+
+export const handleLocationSelection = (result) => dispatch => {
+  console.log("handleLocationSelection", result)
+  dispatch({ type: 'SET_SELECTED_LOCATION_START' })
+  try{
+    dispatch({ type: 'SET_SELECTED_LOCATION_SUCCESS', selectedResult: result })
+  } catch (error) {
+    dispatch({ type: 'SET_SELECTED_LOCATION_FAILURE', error: error })
+  }
+}
