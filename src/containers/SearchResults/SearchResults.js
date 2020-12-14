@@ -6,9 +6,6 @@ import { handleLocationSelection } from '../../actions/searchResultsActions'
 function SearchResults(props) {
     let mappedResults
 
-    const selectLocation = (result) => {
-        props.handleLocationSelection(result)
-    }
     if (props.searchResults.length > 0 ) {
         mappedResults = props.searchResults.map((result, index) => {
         return (
@@ -16,7 +13,7 @@ function SearchResults(props) {
                 <li className={classes.li}>Name: {result.name}</li>
                 <li className={classes.ul}>Address: {result.vicinity}</li>
                 <li>Status: {result.business_status}</li>
-                <button onClick={() => selectLocation(result)}>Select Location</button>
+                <button onClick={() => props.handleLocationSelection(result)}>Select Location</button>
             </p>
         )})}
     return (

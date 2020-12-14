@@ -2,7 +2,9 @@
 const defaultState = {
     searchResults: {},
     selectedResult: {},
-    loading: false
+    loading: false,
+    showSelectedLocation: false,
+    confirmSelection: false
 }
 
 export default (state = defaultState, action) => {
@@ -17,7 +19,7 @@ export default (state = defaultState, action) => {
     case 'SET_SELECTED_LOCATION_START':
         return {...state}
     case 'SET_SELECTED_LOCATION_SUCCESS':
-        return {...state, selectedResult: action.result}
+        return {...state, selectedResult: action.selectedResult}
     case 'SET_SELECTED_LOCATION_FAILURE':
         return action.error
 

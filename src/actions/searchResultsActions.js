@@ -78,7 +78,6 @@ const handlePlacesFetch = (coordinates, dispatch) => {
   return fetch(proxyURL + googleURL)
       .then(res => res.json())
       .then(searchResults => {  
-        console.log("searchResults", searchResults)
         dispatch({ type: 'GET_SEARCH_RESULTS_SUCCESS', searchResults: searchResults.results });
       })
       .catch(error => {
@@ -88,12 +87,15 @@ const handlePlacesFetch = (coordinates, dispatch) => {
     
 };
 
-export const handleLocationSelection = (result) => dispatch => {
-  console.log("handleLocationSelection", result)
+export const handleLocationSelection = (searchResult) => dispatch => {
   dispatch({ type: 'SET_SELECTED_LOCATION_START' })
-  try{
-    dispatch({ type: 'SET_SELECTED_LOCATION_SUCCESS', selectedResult: result })
-  } catch (error) {
-    dispatch({ type: 'SET_SELECTED_LOCATION_FAILURE', error: error })
+    try{
+      dispatch({ type: 'SET_SELECTED_LOCATION_SUCCESS', selectedResult: searchResult })
+    } catch (error) {
+      dispatch({ type: 'SET_SELECTED_LOCATION_FAILURE', error: error })
   }
+}
+
+export const confirmSelection = (location) => dispatch => {
+  console.log('confirmSelection!')
 }
