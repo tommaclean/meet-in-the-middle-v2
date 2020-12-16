@@ -1,12 +1,5 @@
 const defaultState = {
-    address1Coor: [],
-    address2Coor: [],
-    address3Coor: [],
-    lats: [],
-    lngs: [],
-    midpoint: [],
-    midpointAddress: "",
-    openConfirmationModal: false
+    meetups: []
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -14,11 +7,11 @@ export default (state = defaultState, action) => {
 
   switch (action.type) {
     case 'GET_MEETUPS_START':
-        return action.searchresults;
+        return {...state};
     case 'GET_MEETUPS_SUCCESS':
-        return action.meetups
-    case 'GET_MEETUPS_SEARCH_SUCCESS':
-        return action.meetups
+        return {...state, meetups: action.meetups, loading: false}
+    case 'GET_MEETUPS_FAILURE':
+        return action.error
     default:
         return state
   }

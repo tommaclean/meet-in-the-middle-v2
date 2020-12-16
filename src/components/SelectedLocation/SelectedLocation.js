@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 
 
 const SelectedLocation = ({selectedResult}) => {
-  
     return (
       <div>
-        <h1>Your Selected Result!</h1>
+        <h4>Your Selected Result!</h4>
         {selectedResult.name} - {selectedResult.vicinity}
         <button>Confirm This Location</button>
       </div>
