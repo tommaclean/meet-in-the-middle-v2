@@ -3,19 +3,28 @@ import { connect } from 'react-redux'
 import { getMeetups } from '../../actions/meetupActions'
 
 
-function PastMeetup(props) {
-    useEffect(() => {
-        console.log('useEffect in PastMeetup', props.pastMeetups)
-    }, [props.pastMeetups])
 
+
+function PastMeetup(props) {
+    let mappedMeetups
+    if (props.pastMeetups.length > 0 ) {
+        mappedMeetups = props.pastMeetups.map((meetup, index) => {
+        return (
+            <div key={meetup.id}>
+                <li>Name: {meetup.location}</li>
+            </div>
+        )})}
     return (
-        <div>Past Meetup</div>
+        <div>
+            <button onClick={() => props.getMeetups()}>Click to Show Past Meetups</button>
+            {mappedMeetups}
+      </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        pastMeetups: state.meetups
+        pastMeetups: state.meetups.meetups
       }
 }
 
