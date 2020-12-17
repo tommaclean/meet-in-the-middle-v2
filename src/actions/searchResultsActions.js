@@ -96,6 +96,19 @@ export const handleLocationSelection = (searchResult) => dispatch => {
   }
 }
 
-export const confirmSelection = (location) => dispatch => {
+export const confirmSelection = (name, creator) => dispatch => {
   console.log('confirmSelection!')
+  dispatch({ type: 'CONFIRM_SELECTED_LOCATION_START' })
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({creator: creator, location: name})
+    };
+
+  return fetch('http://localhost:3000/meetups/', requestOptions)
+      .then(response => response.json())
+      .then((meetup) => {
+        console.log(meetup)
+        dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS', meetup })
+      })
 }

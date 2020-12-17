@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { confirmSelection } from '../../actions/searchResultsActions'
 
 
-const SelectedLocation = ({selectedResult}) => {
+const SelectedLocation = (props) => {
     return (
       <div>
         <h4>Your Selected Result!</h4>
-        {selectedResult.name} - {selectedResult.vicinity}
-        <button>Confirm This Location</button>
+        {props.selectedResult.name} - {props.selectedResult.vicinity}
+        <button onClick={() => props.confirmSelection(props.selectedResult.name, "Annieeee")}>Confirm This Location</button>
       </div>
     )
 }
@@ -18,5 +19,9 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = {
+  confirmSelection: confirmSelection
+}
 
-export default connect(mapStateToProps, null)(SelectedLocation)
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectedLocation)

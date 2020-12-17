@@ -12,6 +12,12 @@ export default (state = defaultState, action) => {
         return {...state, meetups: action.meetups, loading: false}
     case 'GET_MEETUPS_FAILURE':
         return action.error
+    case 'CONFIRM_SELECTED_LOCATION_START':
+        return {...state}
+    case 'CONFIRM_SELECTED_LOCATION_SUCCESS':
+        return {...state, meetups: action.meetup}
+    case 'CONFIRM_SELECTED_LOCATION_FAILURE':
+        return action.error
     default:
         return state
   }
