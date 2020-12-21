@@ -1,14 +1,21 @@
 import React from 'react'
+import classes from '../SelectedLocation/SelectedLocation.module.css'
 import { connect } from 'react-redux'
 import { confirmSelection } from '../../actions/searchResultsActions'
+import { getMeetups }  from '../../actions/meetupActions'
 
 
 const SelectedLocation = (props) => {
+    const handleConfirmSelection = () => {
+      // console.log('handleConfirmSelection props', props)
+      props.confirmSelection(props.selectedResult.name, "Annieeee")
+    }
     return (
-      <div>
+      <div className={classes.selectedLocationBody}>
         <h4>Your Selected Result!</h4>
-        {props.selectedResult.name} - {props.selectedResult.vicinity}
-        <button onClick={() => props.confirmSelection(props.selectedResult.name, "Annieeee")}>Confirm This Location</button>
+        <h1>{props.selectedResult.name}</h1>
+        <h3>{props.selectedResult.vicinity}</h3>
+        <button onClick={handleConfirmSelection}>Confirm This Location</button>
       </div>
     )
 }
@@ -20,7 +27,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  confirmSelection: confirmSelection
+  confirmSelection: confirmSelection,
+  getMeetups: getMeetups
 }
 
 

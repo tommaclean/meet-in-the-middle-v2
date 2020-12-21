@@ -5,7 +5,6 @@ import { handleLocationSelection } from '../../actions/searchResultsActions'
 
 function SearchResults(props) {
     let mappedResults
-
     if (props.searchResults.length > 0 ) {
         mappedResults = props.searchResults.map((result, index) => {
         return (

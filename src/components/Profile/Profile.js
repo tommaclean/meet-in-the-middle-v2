@@ -13,12 +13,6 @@ import React, {useEffect} from 'react'
 // export default Profile
 
 const Profile = ({height, weight}) => {
-    useEffect(() => {
-        // write component did mount code here
-        return () => {
-            //write any componenet did unmount here
-        }
-    },[])
 
     return (
     <p>

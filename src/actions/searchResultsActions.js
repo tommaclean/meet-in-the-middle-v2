@@ -3,6 +3,7 @@ Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY)
   
 export const handleAddressSubmit = ({e, address1, address2, address3}) => dispatch => {
   // Empty latitude and longitude arrays to later find the average (midpoint)
+  console.log('handleAddressSubmit')
   let lats = []
   let lngs = []
   
@@ -55,6 +56,7 @@ export const handleAddressSubmit = ({e, address1, address2, address3}) => dispat
 }
         
 const handleMidpointCalculation = (lats, lngs, dispatch) => {
+  console.log('handleMidpointCalculation')
   // Finding the average of the latitudes 
   let latSum = lats.reduce((previous, current) => current += previous);
   let latAvg = latSum / 3;
@@ -70,6 +72,7 @@ const handleMidpointCalculation = (lats, lngs, dispatch) => {
 }
 
 const handlePlacesFetch = (coordinates, dispatch) => {
+  console.log('handlePlacesFetch')
   const corStr = coordinates.toString()
   const apiKey = process.env.REACT_APP_GOOGLE_KEY
   const googleURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`
@@ -90,7 +93,7 @@ const handlePlacesFetch = (coordinates, dispatch) => {
 export const handleLocationSelection = (searchResult) => dispatch => {
   dispatch({ type: 'SET_SELECTED_LOCATION_START' })
     try{
-      dispatch({ type: 'SET_SELECTED_LOCATION_SUCCESS', selectedResult: searchResult })
+      dispatch({ type: 'SET_SELECTED_LOCATION_SUCCESS', selectedResult: searchResult, showSelectedLocation: true })
     } catch (error) {
       dispatch({ type: 'SET_SELECTED_LOCATION_FAILURE', error: error })
   }
@@ -109,6 +112,6 @@ export const confirmSelection = (name, creator) => dispatch => {
       .then(response => response.json())
       .then((meetup) => {
         console.log(meetup)
-        dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS', meetup })
+        dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS', selectedResult: meetup })
       })
 }

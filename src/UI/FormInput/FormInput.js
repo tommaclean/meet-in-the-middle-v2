@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import classes from './FormInput.module.css'
 
 
 const FormInput = ({ handleAddressSubmit }) => {
@@ -20,16 +21,19 @@ const FormInput = ({ handleAddressSubmit }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Address 1: </label>
-            <input type="text" value={address1} required onChange={(e) => setAddress1(e.target.value)} />
-            <label>Address 2: </label>
-            <input type="text" value={address2} required onChange={(e) => setAddress2(e.target.value)} />
-            <label>Address 3: </label>
-            <input type="text" value={address3} required onChange={(e) => setAddress3(e.target.value)} />
-            <input type="submit" value="submit addresses" />
-        </form>
+        <div className={classes.FormInput}>   
+            <form onSubmit={handleSubmit}>
+                <label>Address 1: </label>
+                <input id="autocomplete1" type="text" value={address1} required onChange={(e) => setAddress1(e.target.value)} />
+                <label>Address 2: </label>
+                <input id="autocomplete2" type="text" value={address2} required onChange={(e) => setAddress2(e.target.value)} />
+                <label>Address 3: </label>
+                <input id="autocomplete3" type="text" value={address3} required onChange={(e) => setAddress3(e.target.value)} />
+                <input type="submit" value="submit addresses" />
+            </form>
+        </div>
     )
 }
 
 export default FormInput
+
