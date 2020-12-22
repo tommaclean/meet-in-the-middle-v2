@@ -1,19 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Map from '../../components/Map/Map.js'
+import Header from '../../UI/Header/Header'
 import Profile from '../../components/Profile/Profile.js'
 import PastMeetups from '../../containers/PastMeetups/PastMeetups'
 import SearchPane from '../SearchPane/SearchPane.js'
 import { setShowPastMeetups } from '../../actions/meetupActions'
+import useToggle from '../../snippets/useToggle'
+
 import './MainPage.css'
 
 function MainPage(props){
-        // console.log('main page props', props)
+        const [showPastMeetups, togglePastMeeups] = useToggle();
         return (
             <div className="MainPage-header">
+                <Header />
                 <SearchPane />
-                <button onClick={props.setShowPastMeetups}>Click to Show/Hide Past Meetups</button>
-                {props.showPastMeetups ? <PastMeetups /> : null }
+                <div>
+                  <button onClick={togglePastMeeups}>Past Meetups - Show // Hide</button>
+                  {showPastMeetups ? <PastMeetups /> : null }
+                </div>
                 <Profile />
                 <Map />
             </div>

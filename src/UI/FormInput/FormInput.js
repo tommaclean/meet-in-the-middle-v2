@@ -23,12 +23,18 @@ const FormInput = ({ handleAddressSubmit }) => {
     return (
         <div className={classes.FormInput}>   
             <form onSubmit={handleSubmit}>
-                <label>Address 1: </label>
-                <input id="autocomplete1" type="text" value={address1} required onChange={(e) => setAddress1(e.target.value)} />
-                <label>Address 2: </label>
-                <input id="autocomplete2" type="text" value={address2} required onChange={(e) => setAddress2(e.target.value)} />
-                <label>Address 3: </label>
-                <input id="autocomplete3" type="text" value={address3} required onChange={(e) => setAddress3(e.target.value)} />
+                <p>
+                    <label>Address 1: </label>
+                    <input id="autocomplete1" type="text" value={address1} required onChange={(e) => setAddress1(e.target.value)} />
+                </p>
+                <p>
+                    <label>Address 2: </label>
+                    <input id="autocomplete2" type="text" value={address2} required onChange={(e) => setAddress2(e.target.value)} />
+                </p>
+                <p>
+                    <label>Address 3: </label>
+                    <input id="autocomplete3" type="text" value={address3} required onChange={(e) => setAddress3(e.target.value)} />
+                </p>
                 <input type="submit" value="submit addresses" />
             </form>
         </div>

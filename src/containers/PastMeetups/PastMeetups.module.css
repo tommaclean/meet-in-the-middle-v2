@@ -1,11 +1,11 @@
 .PastMeetup
 {
+    background: rgb(121,172,114);
+    background: radial-gradient(circle, rgba(121,172,114,1) 0%, rgba(148,168,233,1) 100%);
     margin-left: 100px;
     list-style-type: none;
     text-align: left;
     border: 1px solid black ;
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 25px;
     letter-spacing: 2px;
@@ -16,4 +16,8 @@
     font-style: normal;
     font-variant: normal;
     text-transform: none;
+}
+.MainPastMeetups {
+    height: 250px;
+    overflow-y: auto;
 }

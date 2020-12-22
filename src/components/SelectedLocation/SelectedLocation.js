@@ -1,14 +1,14 @@
 import React from 'react'
 import classes from '../SelectedLocation/SelectedLocation.module.css'
 import { connect } from 'react-redux'
-import { confirmSelection } from '../../actions/searchResultsActions'
+import { confirmSelection } from '../../actions/meetupActions'
 import { getMeetups }  from '../../actions/meetupActions'
 
 
 const SelectedLocation = (props) => {
     const handleConfirmSelection = () => {
       // console.log('handleConfirmSelection props', props)
-      props.confirmSelection(props.selectedResult.name, "Annieeee")
+      props.confirmSelection(props.selectedResult.name, "Annieeee").then(props.getMeetups)
     }
     return (
       <div className={classes.selectedLocationBody}>

@@ -17,8 +17,7 @@ export default (state = defaultState, action) => {
     case 'CONFIRM_SELECTED_LOCATION_START':
         return {...state}
     case 'CONFIRM_SELECTED_LOCATION_SUCCESS':
-        console.log('CONFIRM_SELECTED_LOCATION_SUCCESS', action.meetup)
-        return {...state, meetup: action.meetup, showPastMeetups: true}
+        return {...state}
     case 'CONFIRM_SELECTED_LOCATION_FAILURE':
         return action.error
 
