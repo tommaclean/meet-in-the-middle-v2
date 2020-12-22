@@ -8,7 +8,7 @@ function SearchResults(props) {
     if (props.searchResults.length > 0 ) {
         mappedResults = props.searchResults.map((result, index) => {
         return (
-            <div key={result.divlace_id} className={classes.SearchResults}>
+            <div key={result.id} className={classes.SearchResults}>
                 <li className={classes.li}>Name: {result.name}</li>
                 <li className={classes.ul}>Address: {result.vicinity}</li>
                 <li>Status: {result.business_status}</li>
