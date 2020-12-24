@@ -4,14 +4,16 @@ import Map from '../../components/Map/Map.js'
 import Header from '../../UI/Header/Header'
 import Profile from '../../components/Profile/Profile.js'
 import PastMeetups from '../../containers/PastMeetups/PastMeetups'
+import FavMeetups from '../../containers/FavMeetups/FavMeetups'
 import SearchPane from '../SearchPane/SearchPane.js'
-import { setShowPastMeetups } from '../../actions/meetupActions'
+import { setShowPastMeetups, setShowFavMeetups } from '../../actions/meetupActions'
 import useToggle from '../../snippets/useToggle'
 
 import './MainPage.css'
 
-function MainPage(props){
+function MainPage(){
         const [showPastMeetups, togglePastMeeups] = useToggle();
+        const [showFavMeetups, toggleFavMeetups] = useToggle();
         return (
             <div className="MainPage-header">
                 <Header />
@@ -20,6 +22,10 @@ function MainPage(props){
                   <button onClick={togglePastMeeups}>Past Meetups - Show // Hide</button>
                   {showPastMeetups ? <PastMeetups /> : null }
                 </div>
+                <div>
+                  <button onClick={toggleFavMeetups}>Favorite Meetups - Show // Hide</button>
+                  {showFavMeetups ? <FavMeetups /> : null }
+                </div>
                 <Profile />
                 <Map />
             </div>
@@ -27,7 +33,8 @@ function MainPage(props){
 }
 
 const mapDispatchToProps = {
-    setShowPastMeetups: setShowPastMeetups
+    setShowPastMeetups: setShowPastMeetups,
+    setShowFavMeetups: setShowFavMeetups
   }
 
 const mapStateToProps = state => {

@@ -8,7 +8,7 @@ import { getMeetups }  from '../../actions/meetupActions'
 const SelectedLocation = (props) => {
     const handleConfirmSelection = () => {
       // console.log('handleConfirmSelection props', props)
-      props.confirmSelection(props.selectedResult.name, "Annieeee").then(props.getMeetups)
+      props.confirmSelection(props.selectedResult.name, "Charlie Brown").then(props.getMeetups)
     }
     return (
       <div className={classes.selectedLocationBody}>
