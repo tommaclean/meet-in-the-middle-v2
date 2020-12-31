@@ -5,17 +5,18 @@ import { favoriteMeetup } from '../../actions/meetupActions'
 
 
 function PastMeetups(props) {
-    const handleFavMeetup = () => {
-        props.favoriteMeetup("Charlie Brown", props.meetup)
+
+    const handleFavMeetup = (meetupId) => {
+        props.favoriteMeetup(meetupId)
     }
     
     let mappedMeetups
     if (props.pastMeetups.length > 0 ) {
         mappedMeetups = props.pastMeetups.slice(0).reverse().map((meetup, index) => {
         return (
-            <div key={meetup.id} className={classes.PastMeetup}>
+            <div key={meetup.id} className={classes.PastMeetup} onClick={() => handleFavMeetup(meetup.id)}>
                 <li>{meetup.id}. {meetup.location}</li>
-                <li className={classes.FavoriteMeetup} onClick={handleFavMeetup}>❤️ Favorite This Meetup</li>
+                <li className={classes.FavoriteMeetup}>❤️ Favorite This Meetup</li>
             </div>
         )})}
         return (  

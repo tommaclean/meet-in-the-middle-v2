@@ -37,13 +37,13 @@ export const confirmSelection = (name, creator) => dispatch => {
               .then(getMeetups)
 };
 
-export const favoriteMeetup = (user, meetup) => dispatch => {
-  console.log("You favorited a meetup!")
+export const favoriteMeetup = (meetup) => dispatch => {
+  console.log("You favorited a meetup!", meetup)
   dispatch({ type: 'CONFIRM_FAV_MEETUP_START'})
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({meetup: meetup, user: user})
+    body: JSON.stringify({meetup})
 };
   return fetch('http://localhost:3000/fav_meetups', requestOptions)
                 .then(response => response.json())
