@@ -19,11 +19,11 @@ function MainPage(){
                 <Header />
                 <SearchPane />
                 <div>
-                  <button onClick={togglePastMeeups}>Past Meetups - Show // Hide</button>
+                  <button onClick={togglePastMeeups}>Past Meetups</button>
                   {showPastMeetups ? <PastMeetups /> : null }
                 </div>
                 <div>
-                  <button onClick={toggleFavMeetups}>Favorite Meetups - Show // Hide</button>
+                  <button onClick={toggleFavMeetups}>Favorite Meetups</button>
                   {showFavMeetups ? <FavMeetups /> : null }
                 </div>
                 <Profile />

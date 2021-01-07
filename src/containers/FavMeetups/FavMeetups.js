@@ -1,23 +1,25 @@
 import React from 'react'
-import classes from './FavMeetups.module.css'
+import classes from '../FavMeetups/FavMeetups.module.css'
 import { connect } from 'react-redux'
-import { deleteFavorite } from '../../actions/meetupActions'
+import { deleteFavorite, getFavMeetups } from '../../actions/meetupActions'
 
 
 function FavMeetups(props) {
-    
+    console.log("FavMeetup", props)
     let mappedFavs
-    if (props.favMeetups.length > 0 ) {
+    if (props.favMeetups) {
         mappedFavs = props.favMeetups.slice(0).reverse().map((favMeetup, index) => {
         return (
             <div key={favMeetup.id} className={classes.PastMeetup}>
-                <li>{favMeetup.id}. {favMeetup.location}</li>
-                <li className={classes.FavoriteMeetup} onClick={props.deleteFavorite}>X Delete</li>
+                <li>{favMeetup.meetup.id}. {favMeetup.meetup.location}</li>
+                <li className={classes.FavoriteMeetup} 
+                    onClick={() => props.deleteFavorite(favMeetup.id)
+                    }>x Delete x</li>
+                    
             </div>
         )})}
         return (  
             <div>
-                Favorite Meetups:
                 <div className={classes.MainPastMeetups}>
                 {mappedFavs}
                 </div>
@@ -32,7 +34,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    deleteFavorite: deleteFavorite
+    deleteFavorite: deleteFavorite,
+    getFavMeetups: getFavMeetups
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavMeetups)

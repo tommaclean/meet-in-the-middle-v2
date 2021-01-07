@@ -12,7 +12,20 @@ export const getMeetups = () => dispatch => {
         dispatch({ type: "GET_MEETUPS_FAILURE", error: error });
       });
 };
-  
+
+export const getFavMeetups = () => dispatch => {
+  dispatch({ type: "GET_FAV_MEETUPS_START" });
+  return fetch("http://localhost:3000/fav_meetups")
+    .then(res => res.json())
+    .then(favMeetups => {
+      dispatch({ type: "GET_FAV_MEETUPS_START" })
+      dispatch({ type: "GET_FAV_MEETUPS_SUCCESS", favMeetups: favMeetups });
+      })
+      .catch(error => {
+      dispatch({ type: "GET_FAV_MEETUPS_FAILURE", error: error });
+    });
+};
+
 export const setShowPastMeetups = () => dispatch => {
   dispatch({ type: 'SET_SHOW_PAST_MEETUPS_START'})
   dispatch({ type: 'SET_SHOW_PAST_MEETUPS_SUCCESS'})
@@ -37,13 +50,13 @@ export const confirmSelection = (name, creator) => dispatch => {
               .then(getMeetups)
 };
 
-export const favoriteMeetup = (meetup) => dispatch => {
-  console.log("You favorited a meetup!", meetup)
+export const favoriteMeetup = (meetupId) => dispatch => {
+  console.log("You favorited a meetup!", meetupId)
   dispatch({ type: 'CONFIRM_FAV_MEETUP_START'})
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({meetup})
+    body: JSON.stringify({meetup_id: meetupId, user_id: 1})
 };
   return fetch('http://localhost:3000/fav_meetups', requestOptions)
                 .then(response => response.json())
@@ -54,8 +67,20 @@ export const favoriteMeetup = (meetup) => dispatch => {
                 });
 };
 
-export const deleteFavorite = () => dispatch => {
-  console.log("You just tried to delete a favorite!")
+export const deleteFavorite = (favMeetupID) => dispatch => {
+  console.log("You just tried to delete a favorite!", favMeetupID)
+  dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_START'})
+  const requestOptions = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+};
+  return fetch(`http://localhost:3000/fav_meetups/${favMeetupID}`, requestOptions)
+                .then(response => response.json())
+                .then(() => {dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_SUCCESS'})
+                })
+                .catch(error => {
+                  dispatch({ type: "CONFIRM_DELETE_FAV_MEETUP_FAILURE", error: error });
+                });
 }
   
 

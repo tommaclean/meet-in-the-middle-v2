@@ -14,6 +14,13 @@ export default (state = defaultState, action) => {
         return {...state, meetups: action.meetups}
     case 'GET_MEETUPS_FAILURE':
         return action.error
+
+    case 'GET_FAV_MEETUPS_START':
+        return {...state};
+    case 'GET_FAV_MEETUPS_SUCCESS':
+        return {...state, favMeetups: action.favMeetups}
+        case 'GET_FAV_MEETUPS_FAILURE':
+    return action.error
         
     case 'CONFIRM_SELECTED_LOCATION_START':
         return {...state}
@@ -49,6 +56,14 @@ export default (state = defaultState, action) => {
         return {...state, showPastMeetups: !state.showPastMeetups}
     case 'FAVORITE_MEETUP_FAILURE':
         return action.error
+
+    case 'CONFIRM_DELETE_FAV_MEETUP_START':
+        return {...state}
+    case 'CONFIRM_DELETE_FAV_MEETUP_SUCCESS':
+        return {...state}
+    case 'CONFIRM_DELETE_FAV_MEETUP_FAILURE':
+        return action.error
+
     default:
         return state
   }
