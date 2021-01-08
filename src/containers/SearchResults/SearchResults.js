@@ -8,20 +8,22 @@ function SearchResults(props) {
     if (props.searchResults.length > 0 ) {
         mappedResults = props.searchResults.map((result, index) => {
         return (
-            <div key={result.id} className={classes.SearchResults}>
-                <li className={classes.li}>Name: {result.name}</li>
-                <li className={classes.ul}>Address: {result.vicinity}</li>
-                <li>Status: {result.business_status}</li>
-                <button onClick={() => props.handleLocationSelection(result)}>Select Location</button>
+            <div key={index} className={classes.header}>
+                <div key={result.id} className={classes.SearchResults}>
+                    <h3 className={classes.li}>Name: {result.name}</h3>
+                    <h2 className={classes.ul}>Address: {result.vicinity}</h2>
+                    <h4>Status: {result.business_status}</h4>
+                    <button onClick={() => props.handleLocationSelection(result)}>Select Location</button>
+                </div>
             </div>
         )})}
     return (
-            <div className={classes.header}>
-                    Your Search Results:
+            
                 <div className={classes.ScrollableSearchResults}>
+                      Your Search Results:
                         {mappedResults}   
                 </div>
-            </div>
+            
     )
 }
 

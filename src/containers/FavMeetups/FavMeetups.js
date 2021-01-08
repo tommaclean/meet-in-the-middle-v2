@@ -1,11 +1,10 @@
 import React from 'react'
 import classes from '../FavMeetups/FavMeetups.module.css'
 import { connect } from 'react-redux'
-import { deleteFavorite, getFavMeetups } from '../../actions/meetupActions'
+import { deleteFavorite, getFavMeetups, getMeetups } from '../../actions/meetupActions'
 
 
 function FavMeetups(props) {
-    console.log("FavMeetup", props)
     let mappedFavs
     if (props.favMeetups) {
         mappedFavs = props.favMeetups.slice(0).reverse().map((favMeetup, index) => {
@@ -13,7 +12,7 @@ function FavMeetups(props) {
             <div key={favMeetup.id} className={classes.PastMeetup}>
                 <li>{favMeetup.meetup.id}. {favMeetup.meetup.location}</li>
                 <li className={classes.FavoriteMeetup} 
-                    onClick={() => props.deleteFavorite(favMeetup.id)
+                    onClick={() => props.deleteFavorite(favMeetup.id).then(() => props.getFavMeetups()).then(() => props.getMeetups())
                     }>x Delete x</li>
                     
             </div>
@@ -35,7 +34,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     deleteFavorite: deleteFavorite,
-    getFavMeetups: getFavMeetups
+    getFavMeetups: getFavMeetups,
+    getMeetups: getMeetups
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavMeetups)

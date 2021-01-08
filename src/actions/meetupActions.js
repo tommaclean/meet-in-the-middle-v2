@@ -51,7 +51,6 @@ export const confirmSelection = (name, creator) => dispatch => {
 };
 
 export const favoriteMeetup = (meetupId) => dispatch => {
-  console.log("You favorited a meetup!", meetupId)
   dispatch({ type: 'CONFIRM_FAV_MEETUP_START'})
   const requestOptions = {
     method: 'POST',
@@ -68,14 +67,12 @@ export const favoriteMeetup = (meetupId) => dispatch => {
 };
 
 export const deleteFavorite = (favMeetupID) => dispatch => {
-  console.log("You just tried to delete a favorite!", favMeetupID)
   dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_START'})
   const requestOptions = {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' }
 };
   return fetch(`http://localhost:3000/fav_meetups/${favMeetupID}`, requestOptions)
-                .then(response => response.json())
                 .then(() => {dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_SUCCESS'})
                 })
                 .catch(error => {
