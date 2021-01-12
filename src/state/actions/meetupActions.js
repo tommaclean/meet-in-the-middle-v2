@@ -5,7 +5,6 @@ export const getMeetups = () => dispatch => {
     return fetch("http://localhost:3000/meetups")
       .then(res => res.json())
       .then(meetups => {
-        dispatch({ type: "GET_MEETUPS_START" })
         dispatch({ type: "GET_MEETUPS_SUCCESS", meetups: meetups });
         })
         .catch(error => {
@@ -18,7 +17,6 @@ export const getFavMeetups = () => dispatch => {
   return fetch("http://localhost:3000/fav_meetups")
     .then(res => res.json())
     .then(favMeetups => {
-      dispatch({ type: "GET_FAV_MEETUPS_START" })
       dispatch({ type: "GET_FAV_MEETUPS_SUCCESS", favMeetups: favMeetups });
       })
       .catch(error => {
@@ -48,6 +46,9 @@ export const confirmSelection = (name, creator) => dispatch => {
               .then(response => response.json())
               .then((meetup) => {dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS'})})
               .then(getMeetups)
+              .catch(error => {
+                dispatch({ type: "CONFIRM_SELECTED_LOCATION_FAILURE", error: error });
+              });
 };
 
 export const favoriteMeetup = (meetupId) => dispatch => {

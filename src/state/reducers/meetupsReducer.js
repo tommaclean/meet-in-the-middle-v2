@@ -19,8 +19,8 @@ export default (state = defaultState, action) => {
         return {...state};
     case 'GET_FAV_MEETUPS_SUCCESS':
         return {...state, favMeetups: action.favMeetups}
-        case 'GET_FAV_MEETUPS_FAILURE':
-    return action.error
+    case 'GET_FAV_MEETUPS_FAILURE':
+        return action.error
         
     case 'CONFIRM_SELECTED_LOCATION_START':
         return {...state}

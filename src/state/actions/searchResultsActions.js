@@ -76,6 +76,7 @@ const handleMidpointCalculation = (lats, lngs, dispatch) => {
 }
 
 const handlePlacesFetch = (coordinates, dispatch) => {
+  dispatch({ type: 'GET_SEARCH_RESULTS_START'});
   const corStr = coordinates.toString()
   const apiKey = process.env.REACT_APP_GOOGLE_KEY
   const googleURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`

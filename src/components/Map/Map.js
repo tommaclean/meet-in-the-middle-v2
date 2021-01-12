@@ -1,4 +1,4 @@
-import React, { useState, useCallback, }from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
@@ -13,8 +13,7 @@ let markerCoordinates
 let resultsMarkers
 
 const Map = (props) => {
-  console.log("Map props", props)
-  const [map, setMap] = useState(null)
+  // const [map, setMap] = useState(null)
   
   if (props.searchResults.length > 0) {
       resultsMarkers = props.searchResults.map((result, index) => { 

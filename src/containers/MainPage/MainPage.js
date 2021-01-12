@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import SignupPage from '../../pages/SignupPage/SignupPage'
+import LoginPage from '../../pages/LoginPage/LoginPage'
 import Map from '../../components/Map/Map.js'
 import Header from '../../components/UI/Header/Header'
-import Profile from '../../pages/Profile/Profile/Profile.js'
+import Profile from '../../pages/ProfilePage/Profile/ProfilePage.js'
 import PastMeetups from '../../containers/PastMeetups/PastMeetups'
 import FavMeetups from '../../containers/FavMeetups/FavMeetups'
 import SearchPane from '../SearchPane/SearchPane.js'
@@ -17,6 +19,9 @@ const MainPage = () => {
         return (
             <div className="MainPage-header">
                 <Header />
+                <LoginPage />
+                <SignupPage />
+                <Profile />
                 <SearchPane />
                 <div>
                   <button onClick={togglePastMeeups}>Past Meetups</button>
@@ -26,7 +31,6 @@ const MainPage = () => {
                   <button onClick={toggleFavMeetups}>Favorite Meetups</button>
                   {showFavMeetups ? <FavMeetups /> : null }
                 </div>
-                <Profile />
                 <Map />
             </div>
         )
