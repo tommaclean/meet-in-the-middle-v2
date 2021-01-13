@@ -19,6 +19,7 @@ const LoginPage = ({ handleLogin }) => {
 
     return (
         <form onSubmit={handleLoginSubmission}>
+            Log In:
             <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
             <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <input type="submit" />

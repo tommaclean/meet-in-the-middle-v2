@@ -1,11 +1,54 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { getProfile } from '../../../state/actions/userActions'
+import PastMeetups from '../../../containers/PastMeetups/PastMeetups'
+import FavMeetups from '../../../containers/FavMeetups/FavMeetups'
+import useToggle from '../../../snippets/useToggle'
+import { setShowPastMeetups, setShowFavMeetups } from '../../../state/actions/meetupActions'
 
-const Profile = ({height, weight}) => {
-
+const ProfilePage = (props) => {
+    // useEffect(() => {
+    //     props.getProfile()
+    // })
+    const [showPastMeetups, togglePastMeeups] = useToggle();
+    const [showFavMeetups, toggleFavMeetups] = useToggle();
+    const greeting = (`Welcome!, ${props.currentUsername}`)
     return (
-    <p>
-        This is Profile.js.
-    </p>
+    <div>
+        {
+            props.currentUsername !== '' ?
+            greeting :
+            ("Getting your information...")
+        }
+        <div>
+            <button onClick={togglePastMeeups}>Past Meetups</button>
+            {showPastMeetups ? <PastMeetups /> : null }
+        </div>
+        <div>
+            <button onClick={toggleFavMeetups}>Favorite Meetups</button>
+            {showFavMeetups ? <FavMeetups /> : null }
+        </div>
+    </div>
     )
 }
-export default Profile
+
+const mapStateToProps = state => {
+    return {
+        currentUsername: state.user.currentUser.username,
+        loggedIn: state.user.loggedIn,
+        showPastMeetups: state.meetups.showPastMeetups
+    }
+}
+
+const mapDispatchToProps = {
+    getProfile: getProfile,
+    setShowPastMeetups: setShowPastMeetups,
+    setShowFavMeetups: setShowFavMeetups
+}
+
+
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)

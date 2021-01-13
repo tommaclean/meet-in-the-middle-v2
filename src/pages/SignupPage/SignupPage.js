@@ -1,23 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { handleSignup } from '../../state/actions/userActions'
 
 
-const SignupPage = () => {
+const LoginPage = ({ handleSignup }) => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleSignupSubmission = (e) => {
+        e.preventDefault()
+        handleSignup({
+            "username": username,
+            "password": password
+        })
+        setUsername('')
+        setPassword('')
+    }
+
     return (
-        <div>
-            Hi, I'm the Signup Page
-        </div>
-    )
+        <form onSubmit={handleSignupSubmission}>
+            Sign Up:
+            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="submit" />
+        </form>
+        )
 }
 
-const mapStateToProps = state => {
-    return {
-        pastMeetups: state.meetups.meetups
-      }
-}
+
 
 const mapDispatchToProps = {
-
+    handleSignup: handleSignup
+ 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupPage)
+export default connect(null, mapDispatchToProps)(LoginPage)

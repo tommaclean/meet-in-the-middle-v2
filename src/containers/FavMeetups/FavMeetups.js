@@ -15,8 +15,7 @@ const FavMeetups = (props)  => {
             <div key={favMeetup.id} className="FavMeetup">
                 <li>{favMeetup.meetup.id}. {favMeetup.meetup.location}</li>
                 <button onClick={() => props.deleteFavorite(favMeetup.id).then(() => props.getFavMeetups()).then(() => props.getMeetups())
-                    }>Delete</button>
-                    
+                    }>Delete</button>  
             </div>
         )})}
         return (  
