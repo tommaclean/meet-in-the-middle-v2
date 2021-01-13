@@ -1,6 +1,5 @@
 const defaultState = {
     meetups: [],
-    showPastMeetups: false,
     favMeetups: []
 }
 

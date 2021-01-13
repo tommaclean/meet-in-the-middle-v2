@@ -1,15 +1,24 @@
 import React, { useState } from 'react'
+import './LoginPage.css'
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { handleLogin } from '../../state/actions/userActions'
+import Header from '../../components/UI/Header/Header';
 
 
-const LoginPage = ({ handleLogin }) => {
+const LoginPage = (props) => {
+    const history = useHistory();
+
+    if (props.loggedIn) {
+        history.push('/main')
+    }
+    
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const handleLoginSubmission = (e) => {
         e.preventDefault()
-        handleLogin({
+        props.handleLogin({
             "username": username,
             "password": password
         })
@@ -18,12 +27,15 @@ const LoginPage = ({ handleLogin }) => {
     }
 
     return (
-        <form onSubmit={handleLoginSubmission}>
-            Log In:
-            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <input type="submit" />
-        </form>
+        <div className="center">
+            <Header />
+            <form onSubmit={handleLoginSubmission}>
+                <p>Log In:</p>
+                <input type="text" name="username" placeholder="User name" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="submit" />
+            </form>
+        </div>
         )
 }
 
@@ -34,4 +46,10 @@ const mapDispatchToProps = {
  
 }
 
-export default connect(null, mapDispatchToProps)(LoginPage)
+const mapStateToProps = state => {
+    return {
+        loggedIn: state.user.loggedIn
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

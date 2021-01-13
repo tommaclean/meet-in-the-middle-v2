@@ -11,12 +11,27 @@ export const handleLogin = (userInput) => dispatch => {
         .then(data => {
             if (data.token) {
                 localStorage.token = data.token
+                dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: userInput.username} })
+            } else {
+                alert("Login failed")
             }
         })
-        .then(() => {dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: userInput.username} })})
         .catch(error => {
             dispatch({ type: "USER_LOGIN_FAILURE", error: error });
         });
+
+
+    //     .then((json) => {
+    //     if (json.msg === 'success') { // response success checking logic could differ
+    //       dispatch(setLoginState({ ...json, userId: username })); // our action is called here
+    //     } else {
+    //       Alert.alert('Login Failed', 'Username or Password is incorrect');
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     Alert.alert('Login Failed', 'Some error occured, please retry');
+    //     console.log(err);
+    //   });
      
 };
 
@@ -45,12 +60,12 @@ export const handleSignup = (userInput) => dispatch => {
 export const getProfile = () => dispatch => {
     dispatch({ type: 'GET_PROFILE_START' })
     let requestOptions = {
-        headers: { 'Authorization': `Bearer ${localStorage.token}` }
+        headers: { 'Authorization': localStorage.token } 
     };
 
     return fetch("http://localhost:3000/profile", requestOptions)
         .then(response => response.json())
-        .then(data => {dispatch({ type: 'GET_PROFILE_SUCCESS', userData: data })})
+        .then(data => {dispatch({ type: 'GET_PROFILE_SUCCESS', username: data.username })})
         .catch(error => {dispatch({ type: "GET_PROFILE_FAILURE", error: error });});
 }
 

@@ -7,16 +7,24 @@ import useToggle from '../../../snippets/useToggle'
 import { setShowPastMeetups, setShowFavMeetups } from '../../../state/actions/meetupActions'
 
 const ProfilePage = (props) => {
-    // useEffect(() => {
-    //     props.getProfile()
-    // })
+      useEffect(() => {
+        if (!localStorage.token) {
+            props.history.push('/login')
+            return
+        } else {
+            props.getProfile()
+        }
+    }, [props])
+
+
     const [showPastMeetups, togglePastMeeups] = useToggle();
     const [showFavMeetups, toggleFavMeetups] = useToggle();
+
     const greeting = (`Welcome!, ${props.currentUsername}`)
     return (
     <div>
         {
-            props.currentUsername !== '' ?
+            props.currentUsername ?
             greeting :
             ("Getting your information...")
         }
@@ -35,8 +43,7 @@ const ProfilePage = (props) => {
 const mapStateToProps = state => {
     return {
         currentUsername: state.user.currentUser.username,
-        loggedIn: state.user.loggedIn,
-        showPastMeetups: state.meetups.showPastMeetups
+        loggedIn: state.user.loggedIn
     }
 }
 

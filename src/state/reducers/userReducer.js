@@ -1,10 +1,9 @@
 /* eslint-disable import/no-anonymous-default-export */
 const defaultState = {
     currentUser: {
-        username: ''
+        username: null
     },
-    loggedIn: false,
-    page: 'main'
+    loggedIn: false
 }
 
 export default (state = defaultState, action) => {
@@ -19,7 +18,7 @@ export default (state = defaultState, action) => {
     case 'GET_PROFILE_START':
         return {...state}
     case 'GET_PROFILE_SUCCESS':
-        return {...state, currentUser: action.currentUser}
+        return {...state, currentUser: {username: action.username} }
     case 'GET_PROFILE_FAILURE':
         return action.error
 
