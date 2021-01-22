@@ -3,15 +3,23 @@ const defaultState = {
     currentUser: {
         username: null
     },
-    loggedIn: false
+    loggedIn: false,
+    token: ''
 }
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case 'USER_SIGNUP_START':
+        return {...state}
+    case 'USER_SIGNUP_SUCCESS':
+        return {...state, currentUser: action.currentUser, loggedIn: true, token: action.token }
+    case 'USER_SIGNUP_FAILURE':
+        return action.error
+
     case 'USER_LOGIN_START':
         return {...state}
     case 'USER_LOGIN_SUCCESS':
-        return {...state, currentUser: action.currentUser, loggedIn: true }
+        return {...state, currentUser: action.currentUser, loggedIn: true, token: action.token }
     case 'USER_LOGIN_FAILURE':
         return action.error
 
@@ -25,7 +33,7 @@ export default (state = defaultState, action) => {
     case 'USER_LOGOUT_START':
         return {...state}
     case 'USER_LOGOUT_SUCCESS':
-        return {...state, currentUser: null, loggedIn: false }
+        return {...state, currentUser: '', loggedIn: false }
     case 'USER_LOGOUT_FAILURE':
         return action.error
 

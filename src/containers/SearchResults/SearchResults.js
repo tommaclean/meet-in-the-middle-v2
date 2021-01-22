@@ -11,9 +11,9 @@ const SearchResults = (props) => {
         return (
             <div key={index} className="header">
                 <div key={result.id} className="SearchResult">
-                    <h3 className="li">Name: {result.name}</h3>
-                    <h2 className="ul">Address: {result.vicinity}</h2>
-                    <h4>Status: {result.business_status}</h4>
+                    <li className="li">Name: {result.name}</li>
+                    <li className="ul">Address: {result.vicinity}</li>
+                    <li>Status: {result.business_status}</li>
                     <button onClick={() => props.handleLocationSelection(result)}>Select Location</button>
                 </div>
             </div>

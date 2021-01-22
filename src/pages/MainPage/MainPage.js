@@ -1,27 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import Map from '../../components/Map/Map'
 import Header from '../../components/UI/Header/Header';
 import SearchPane from '../../containers/SearchPane/SearchPane'
-import { handleLogOut } from '../../state/actions/userActions'
+import { handleLogOut, getProfile } from '../../state/actions/usersActions'
 import './MainPage.css'
 
 
 const MainPage = (props) => {
         const history = useHistory();
-        
-        if (!props.loggedIn) {
-          history.push('/login')
-        }
+
+        useEffect(() => {
+            if (localStorage.token) {
+              props.getProfile()
+            } else {
+              history.push('/login')
+            }
+          }, [localStorage.token])
         
 
         return (
-            <div className="MainPage-header">
-              <Header />
-              <SearchPane />
-              <Map />
-            </div>
+          <div>
+            { localStorage.token ? 
+              <div className="MainPage-header">
+                <Header />
+                <div className="MainPage-container">
+                  <SearchPane />
+                  <Map />
+                </div>
+              </div> : null 
+          }
+        </div>
+            
         )
 }
 
@@ -32,7 +43,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  handleLogOut: handleLogOut
+  handleLogOut: handleLogOut,
+  getProfile: getProfile
 }
 
 

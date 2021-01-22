@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory, Link } from 'react-router-dom'
 import './LoginPage.css'
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { handleLogin } from '../../state/actions/userActions'
+import { handleLogin } from '../../state/actions/usersActions'
 
 
 const LoginPage = (props) => {
-    const history = useHistory();
-
-   useEffect(() => {
-    if (props.loggedIn) {
-        history.push('/main')
-    }
-   
-   }, [history, props.loggedIn])
-    
+    let history = useHistory()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
+    useEffect(() => {
+        if (localStorage.token) {
+            history.push('/main')
+        }
+    }, [localStorage.token])
+    
+
 
     const handleLoginSubmission = (e) => {
         e.preventDefault()
@@ -29,14 +29,17 @@ const LoginPage = (props) => {
     }
 
     return (
-        <div className="center">
+         <div className="center">
             <form onSubmit={handleLoginSubmission}>
                 <p>Log In:</p>
                 <input type="text" name="username" placeholder="User name" value={username} onChange={(e) => setUsername(e.target.value)} />
                 <input type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <input type="submit" />
             </form>
+            Need to sign up? Click <Link to="/signup">here.</Link>
         </div>
+     
+        
         )
 }
 
@@ -44,12 +47,12 @@ const LoginPage = (props) => {
 
 const mapDispatchToProps = {
     handleLogin: handleLogin
- 
 }
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.user.loggedIn
+        loggedIn: state.user.loggedIn,
+        token: state.user.token
     }
 }
 

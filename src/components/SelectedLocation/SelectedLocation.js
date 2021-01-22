@@ -1,8 +1,7 @@
 import React from 'react'
 import '../SelectedLocation/SelectedLocation.css'
 import { connect } from 'react-redux'
-import { confirmSelection } from '../../state/actions/meetupActions'
-import { getMeetups }  from '../../state/actions/meetupActions'
+import { confirmSelection, getMeetups } from '../../state/actions/meetupsActions'
 
 
 const SelectedLocation = (props) => {

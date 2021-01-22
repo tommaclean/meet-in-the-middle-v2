@@ -1,0 +1,16 @@
+.header {
+    font-size: 50px;
+    text-shadow: rgb(125, 134, 137) 4px 3px 0px;
+    background-color: rgb(56, 59, 67);
+    color: rgb(255, 255, 255);
+    width: fit-content;
+}
+
+.header-buttons {
+    text-align: center;
+    font-size: 20px;
+    text-shadow: rgb(125, 134, 137) 4px 3px 0px;
+    background-color: rgb(56, 59, 67);
+    color: rgb(255, 255, 255);
+    width: fit-content;
+}

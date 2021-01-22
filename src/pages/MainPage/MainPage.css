@@ -36,4 +36,13 @@
       transform: rotate(360deg);
     }
   }
+
+  .MainPage-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
+  .MainPage-container > div {
+    margin: 6px;
+  }
   

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from 'react-router-dom'
 import { Tabs } from "@feuer/react-tabs";
 import PastMeetups from "../../containers/PastMeetups/PastMeetups";
 import FavMeetups from "../../containers/FavMeetups/FavMeetups";
@@ -9,14 +10,21 @@ const styles = {
   textAlign: "center"
 };
  
-const ProfilePage = () => (
-  <div style={styles}>
+const ProfilePage = () => {
+  let history = useHistory()
+  let activeTab = {id: "tab1"}
+  useEffect(() => {
+    if (!localStorage.token) {
+        history.push('/login')
+    }
+  }, [localStorage.token])
+  
+  return (
+    <div style={styles}>
     <Header />
     <Tabs
-      activeTab={{
-        id: "tab1"
-      }}
-    >
+      activeTab={activeTab}
+      >
       <Tabs.Tab id="tab1" title="Past Meetups">
         <div style={{ padding: 10 }}>
           <PastMeetups />
@@ -29,6 +37,7 @@ const ProfilePage = () => (
       </Tabs.Tab>
     </Tabs>
   </div>
-);
+        )
+}
 
 export default ProfilePage

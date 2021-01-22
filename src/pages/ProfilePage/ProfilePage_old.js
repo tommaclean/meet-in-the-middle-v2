@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { getProfile } from '../../state/actions/userActions'
+import { getProfile } from '../../state/actions/usersActions'
 import PastMeetups from '../../containers/PastMeetups/PastMeetups'
 import FavMeetups from '../../containers/FavMeetups/FavMeetups'
 import useToggle from '../../snippets/useToggle'
-import { setShowPastMeetups, setShowFavMeetups } from '../../state/actions/meetupActions'
+import { setShowPastMeetups, setShowFavMeetups } from '../../state/actions/meetupsActions'
 
 const ProfilePage = (props) => {
       useEffect(() => {
@@ -14,7 +14,7 @@ const ProfilePage = (props) => {
         } else {
             props.getProfile()
         }
-    }, [props])
+    })
 
 
     const [showPastMeetups, togglePastMeeups] = useToggle();

@@ -5,17 +5,28 @@ import MainPage from '../src/pages/MainPage/MainPage'
 import LoginPage from './pages/LoginPage/LoginPage';
 import { Switch, Route } from 'react-router-dom'
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import SignupPage from './pages/SignupPage/SignupPage';
 
 
 const App = () => {
     return (
         <div>
-            
             <Switch>
-                <Route path="/login" component={LoginPage}/>
-                <Route path="/main" component={MainPage}/>
-                <Route path="/profile" component={ProfilePage}/>
-                <Route path="/" component={LoginPage}/>
+                <Route path="/login">
+                    <LoginPage />
+                </Route>
+                <Route path="/profile">
+                    <ProfilePage />
+                </Route>
+                <Route path="/main">
+                    <MainPage />
+                </Route>
+                <Route path="/signup">
+                    <SignupPage />
+                </Route>
+                <Route path="/" >
+                    <MainPage />
+                </Route>
             </Switch>
         </div>
     );
@@ -24,8 +35,8 @@ const App = () => {
 
 const mapStateToProps = state => {
     return {
-        page: state.user.page,
-        loggedIn: state.user.loggedIn
+        loggedIn: state.user.loggedIn,
+        token: state.user.token
       }
 }
 

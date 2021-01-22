@@ -15,8 +15,8 @@ let resultsMarkers
 const Map = (props) => {
   // const [map, setMap] = useState(null)
   
-  if (props.searchResults.length > 0) {
-      resultsMarkers = props.searchResults.map((result, index) => { 
+  if (props.markers.length > 0) {
+      resultsMarkers = props.markers.map((result, index) => { 
       markerCoordinates = ({ lat: result.geometry.location.lat, 
         lng: result.geometry.location.lng })
       return (
@@ -46,7 +46,7 @@ const Map = (props) => {
 
 const mapStateToProps = state => {
   return {
-    searchResults: state.searchResults.searchResults,
+    markers: state.maps.markers,
     midpoint: state.searchResults.midpoint
   }
 }

@@ -1,4 +1,4 @@
-export const handleLogin = (userInput) => dispatch => {
+export const handleLogin = (userInput, props) => dispatch => {
     dispatch({ type: 'USER_LOGIN_START' })
         let requestOptions = {
         method: 'POST',
@@ -11,47 +11,41 @@ export const handleLogin = (userInput) => dispatch => {
         .then(data => {
             if (data.token) {
                 localStorage.token = data.token
-                dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: userInput.username} })
+                dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: userInput.username }, token: localStorage.token })  
             } else {
-                alert("Login failed")
-                dispatch({ type: "USER_LOGIN_FAILURE" })
-            }
+                alert('Login Failed', 'Username or Password is incorrect');
+              }
         })
-        .catch(error => {dispatch({ type: "USER_LOGIN_FAILURE", error: error });
-    });
-
-
-    //     .then((json) => {
-    //     if (json.msg === 'success') { // response success checking logic could differ
-    //       dispatch(setLoginState({ ...json, userId: username })); // our action is called here
-    //     } else {
-    //       Alert.alert('Login Failed', 'Username or Password is incorrect');
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     Alert.alert('Login Failed', 'Some error occured, please retry');
-    //     console.log(err);
-    //   });
+        .catch(error => {
+            alert("Login failed. Username or password incorrect.")
+            dispatch({ type: "USER_LOGIN_FAILURE", error: error });
+        });
      
 };
 
 export const handleSignup = (userInput) => dispatch => {
+    console.log(userInput)
     dispatch({ type: 'USER_SIGNUP_START' })
         let requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({"username": userInput.username, "password": userInput.password})
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json', 
+        },
+        body: JSON.stringify({
+            username: userInput.username, password: userInput.password})
         };
 
-        return fetch("http://localhost:3000/login", requestOptions)
+        return fetch("http://localhost:3000/signup", requestOptions)
         .then(response => response.json())
-        .then(data => {
+        .then(data => { 
             if (data.token) {
                 localStorage.token = data.token
+                dispatch({ type: 'USER_SIGNUP_SUCCESS', currentUser: {username: userInput.username} })
             }
         })
-        .then(() => {dispatch({ type: 'USER_SIGNUP_SUCCESS', currentUser: {username: userInput.username} })})
         .catch(error => {
+            alert("Signup failed.")
             dispatch({ type: "USER_SIGNUP_FAILURE", error: error });
         });
      
@@ -62,7 +56,6 @@ export const getProfile = () => dispatch => {
     let requestOptions = {
         headers: { 'Authorization': localStorage.token } 
     };
-
     return fetch("http://localhost:3000/profile", requestOptions)
         .then(response => response.json())
         .then(data => {dispatch({ type: 'GET_PROFILE_SUCCESS', username: data.username })})
@@ -74,7 +67,6 @@ export const handleLogOut = () => dispatch => {
     localStorage.clear()
     dispatch({ type: 'USER_LOGOUT_SUCCESS', loggedIn: false })
 }
-    
     
 
    
