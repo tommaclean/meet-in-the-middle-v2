@@ -9,9 +9,10 @@ export const handleLogin = (userInput, props) => dispatch => {
         return fetch("http://localhost:3000/login", requestOptions)
         .then(response => response.json())
         .then(data => {
+            console.log("Login data", data)
             if (data.token) {
                 localStorage.token = data.token
-                dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: userInput.username }, token: localStorage.token })  
+                dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: data.username, id: data.user_id }, token: localStorage.token })  
             } else {
                 alert('Login Failed', 'Username or Password is incorrect');
               }
@@ -52,13 +53,18 @@ export const handleSignup = (userInput) => dispatch => {
 };
 
 export const getProfile = () => dispatch => {
+    
     dispatch({ type: 'GET_PROFILE_START' })
     let requestOptions = {
         headers: { 'Authorization': localStorage.token } 
     };
     return fetch("http://localhost:3000/profile", requestOptions)
         .then(response => response.json())
-        .then(data => {dispatch({ type: 'GET_PROFILE_SUCCESS', username: data.username })})
+        .then(data => {
+                console.log("getProfile:", data)
+                dispatch({ type: 'GET_PROFILE_SUCCESS', currentUser: {username: data.username, id: data.id }, token: localStorage.token })  
+            } 
+        )
         .catch(error => {dispatch({ type: "GET_PROFILE_FAILURE", error: error });});
 }
 

@@ -5,10 +5,18 @@ import { confirmSelection, getMeetups } from '../../state/actions/meetupsActions
 
 
 const SelectedLocation = (props) => {
+    let locationInfo
     console.log("SelectedLocation props", props)
     const handleConfirmSelection = () => {
-      props.confirmSelection(
-        console.log("confirmSelection props:", props)
+      props.confirmSelection({locationInfo: {
+        user: props.currentUser, 
+        place_coor: props.selectedResult.place_coor,
+        address: props.selectedResult.address, 
+        name: props.selectedResult.name, 
+        status: props.selectedResult.status,
+        place_id: props.selectedResult.place_id,
+        price_level: props.selectedResult.price_level
+      }}
       ).then(props.getMeetups)
     }
     return (
@@ -23,7 +31,8 @@ const SelectedLocation = (props) => {
 
 const mapStateToProps = state => {
   return {
-    selectedResult: state.searchResults.selectedResult
+    selectedResult: state.searchResults.selectedResult,
+    currentUser: state.users.currentUser.id
   }
 }
 

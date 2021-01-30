@@ -23,7 +23,7 @@ const Map = (props) => {
   //     <Marker key={result.id} position={markerCoordinates} Animation={"BOUNCE"}/>
   //     )})}
     
-console.log(props)
+// console.log(props)
  
   return (
     <LoadScript
