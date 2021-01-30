@@ -27,7 +27,7 @@ const MainPage = (props) => {
                 <Header />
                 <div className="MainPage-container">
                   <SearchPane />
-                  <Map />
+                  <Map markers={props.searchResults} midpoint={props.midpoint} />
                 </div>
               </div> : null 
           }
@@ -38,7 +38,9 @@ const MainPage = (props) => {
 
 const mapStateToProps = state => {
   return {
-      loggedIn: state.user.loggedIn
+      loggedIn: state.user.loggedIn,
+      searchResults: state.searchResults.searchResults,
+      midpoint: state.searchResults.midpoint
   }
 }
 

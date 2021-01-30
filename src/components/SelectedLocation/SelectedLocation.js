@@ -5,8 +5,11 @@ import { confirmSelection, getMeetups } from '../../state/actions/meetupsActions
 
 
 const SelectedLocation = (props) => {
+    console.log("SelectedLocation props", props)
     const handleConfirmSelection = () => {
-      props.confirmSelection(props.selectedResult.name, "Charlie Brown").then(props.getMeetups)
+      props.confirmSelection(
+        console.log("confirmSelection props:", props)
+      ).then(props.getMeetups)
     }
     return (
       <div className="selectedLocationBody">

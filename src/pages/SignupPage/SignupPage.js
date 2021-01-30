@@ -27,6 +27,11 @@ const SignupPage = (props) => {
     }
 
     return (
+
+        <div>
+            <div className="header">
+                MeetInTheMiddle 
+            </div>
         <div className="center">
             <form onSubmit={handleSignupSubmission}>
                 Sign Up:
@@ -35,6 +40,7 @@ const SignupPage = (props) => {
                 <input type="submit" />
             </form>
             Log in instead? Click <Link to="/login">here.</Link>
+        </div>
         </div>
         )
 }

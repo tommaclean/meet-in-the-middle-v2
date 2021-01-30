@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const apiKey = process.env.REACT_APP_GOOGLE_KEY
@@ -15,15 +15,15 @@ let resultsMarkers
 const Map = (props) => {
   // const [map, setMap] = useState(null)
   
-  if (props.markers.length > 0) {
-      resultsMarkers = props.markers.map((result, index) => { 
-      markerCoordinates = ({ lat: result.geometry.location.lat, 
-        lng: result.geometry.location.lng })
-      return (
-      <Marker key={result.id} position={markerCoordinates} Animation={"BOUNCE"}/>
-      )})}
+  // if (props.markers.length > 0) {
+  //     resultsMarkers = props.markers.map((result, index) => { 
+  //     markerCoordinates = ({ lat: result.geometry.location.lat, 
+  //       lng: result.geometry.location.lng })
+  //     return (
+  //     <Marker key={result.id} position={markerCoordinates} Animation={"BOUNCE"}/>
+  //     )})}
     
-
+console.log(props)
  
   return (
     <LoadScript
@@ -44,11 +44,12 @@ const Map = (props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    markers: state.maps.markers,
-    midpoint: state.searchResults.midpoint
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     markers: state.searchResults.searchResults,
+//     midpoint: state.searchResults.midpoint
+//   }
+// }
 
-export default connect(mapStateToProps, null)(Map);
+// export default connect(mapStateToProps, null)(Map);
+export default Map

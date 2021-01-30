@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import './PastMeetups.css'
 import { connect } from 'react-redux'
+import Map from '../../components/Map/Map'
 import { favoriteMeetup, getFavMeetups, getMeetups } from '../../state/actions/meetupsActions'
 
 
@@ -26,13 +27,16 @@ const PastMeetups = (props) => {
                 <div className="FavoriteMeetup">
                 {mappedMeetups}
                 </div>
+                <Map markers={props.pastMeetups} midpot={props.midpoint} />
             </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        pastMeetups: state.meetups.meetups
+        pastMeetups: state.meetups.meetups,
+        markers: state.meetups.pastMeetups,
+        midpoint: state.searchResults.midpoint
       }
 }
 
