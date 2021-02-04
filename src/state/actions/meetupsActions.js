@@ -35,30 +35,27 @@ export const setShowFavMeetups = () => dispatch => {
 };
 
 export const confirmSelection = (locationInfo) => dispatch => {
-  console.log(locationInfo)
-  // dispatch({ type: 'CONFIRM_SELECTED_LOCATION_START' })
-  //     const requestOptions = {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         user: locationInfo.user, 
-  //         place_coor: locationInfo.place_coor,
-  //         address: locationInfo.address, 
-  //         name: locationInfo.name, 
-  //         status: locationInfo.status,
-  //         place_id: locationInfo.place_id,
-  //         price_level: locationInfo.price_level
+  console.log("locationInfo: ", locationInfo)
+  dispatch({ type: 'CONFIRM_SELECTED_LOCATION_START' })
+      const requestOptions = {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.token
+       },
+       body: 
+       JSON.stringify(locationInfo)
+    };
+    console.log(requestOptions)
 
-  //       })
-  //   };
-
-  // return fetch('http://localhost:3000/meetups/', requestOptions)
-  //             .then(response => response.json())
-  //             .then((meetup) => {dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS'})})
-  //             .then(getMeetups)
-  //             .catch(error => {
-  //               dispatch({ type: "CONFIRM_SELECTED_LOCATION_FAILURE", error: error });
-  //             });
+  return fetch('http://localhost:3000/meetups/', requestOptions)
+              .then(response => response.json())
+              .then(() => {dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS'})})
+              .then(getMeetups)
+              .catch(error => {
+                dispatch({ type: "CONFIRM_SELECTED_LOCATION_FAILURE", error: error });
+              });
 };
 
 export const favoriteMeetup = (meetupId) => dispatch => {

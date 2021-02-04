@@ -38,7 +38,7 @@ const MainPage = (props) => {
 
 const mapStateToProps = state => {
   return {
-      loggedIn: state.user.loggedIn,
+      loggedIn: state.users.loggedIn,
       searchResults: state.searchResults.searchResults,
       midpoint: state.searchResults.midpoint
   }

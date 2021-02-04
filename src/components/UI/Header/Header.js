@@ -33,7 +33,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => {
   return {
-    currentUsername: state.user.currentUser.username
+    currentUsername: state.users.currentUser.username
   }
   
 }

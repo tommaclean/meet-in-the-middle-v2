@@ -1,4 +1,4 @@
-export const handleLogin = (userInput, props) => dispatch => {
+export const handleLogin = (userInput) => dispatch => {
     dispatch({ type: 'USER_LOGIN_START' })
         let requestOptions = {
         method: 'POST',

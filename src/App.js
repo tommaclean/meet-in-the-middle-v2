@@ -35,8 +35,8 @@ const App = () => {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.user.loggedIn,
-        token: state.user.token
+        loggedIn: state.users.loggedIn,
+        token: state.users.token
       }
 }
 
