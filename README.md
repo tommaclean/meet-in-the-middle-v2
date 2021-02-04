@@ -6,7 +6,7 @@
 Welcome to MeetInTheMiddle! Using this app, users can receive restaurant or bar locations based upon the midpoint of three addresses submitted.
 
 This repository contains only the frontend of MeetInTheMiddle. For the backend, please see:
-https://github.com/tommaclean/meet-in-the-middle-back-end 
+https://github.com/tommaclean/meet-in-the-middle-api-v2
 
 ## To Begin
 
