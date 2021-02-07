@@ -33,7 +33,7 @@ const FormInput = ({ handleAddressSubmit }) => {
                 </p>
                 <p>
                     <label>Address 3: </label>
-                    <input id="autocomplete3" type="text" value={address3} required onChange={(e) => setAddress3(e.target.value)} />
+                    <input id="autocomplete3" type="text" value={address3} onChange={(e) => setAddress3(e.target.value)} />
                 </p>
                 <input type="submit" value="submit addresses" />
             </form>

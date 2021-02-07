@@ -13,6 +13,7 @@ let markerCoordinates
 let resultsMarkers
 
 const Map = (props) => {
+  console.log("Map props:", props)
   // const [map, setMap] = useState(null)
   
   // if (props.markers.length > 0) {
@@ -23,7 +24,7 @@ const Map = (props) => {
   //     <Marker key={result.id} position={markerCoordinates} Animation={"BOUNCE"}/>
   //     )})}
     
-// console.log(props)
+
  
   return (
     <LoadScript

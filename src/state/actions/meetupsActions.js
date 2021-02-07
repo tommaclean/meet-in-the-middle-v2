@@ -44,8 +44,7 @@ export const confirmSelection = (locationInfo) => dispatch => {
           'Accept': 'application/json',
           'Authorization': localStorage.token
        },
-       body: 
-       JSON.stringify(locationInfo)
+       body: JSON.stringify(locationInfo)
     };
     console.log(requestOptions)
 

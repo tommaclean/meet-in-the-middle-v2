@@ -6,7 +6,6 @@ import { favoriteMeetup, getFavMeetups, getMeetups } from '../../state/actions/m
 
 
 const PastMeetups = (props) => {
-    
 
     useEffect(() => {
         props.getMeetups()
@@ -18,7 +17,7 @@ const PastMeetups = (props) => {
         mappedMeetups = props.pastMeetups.slice(0).reverse().map((meetup, index) => {
         return (
             <div key={meetup.id} className="PastMeetup" >
-                <li>{meetup.id}. {meetup.location}</li>
+                <li>{meetup.id}. {meetup.name}</li>
                 <button onClick={() => props.favoriteMeetup(meetup.id).then(() => props.getFavMeetups())}>❤️ Favorite</button>
             </div>
         )})}
@@ -27,7 +26,7 @@ const PastMeetups = (props) => {
                 <div className="FavoriteMeetup">
                 {mappedMeetups}
                 </div>
-                <Map markers={props.pastMeetups} midpot={props.midpoint} />
+                <Map  />
             </div>
     )
 }
