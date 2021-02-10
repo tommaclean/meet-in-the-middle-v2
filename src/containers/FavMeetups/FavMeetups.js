@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import '../FavMeetups/FavMeetups.css'
 import { connect } from 'react-redux'
+import Map from '../../components/Map/Map'
 import { deleteFavorite, getFavMeetups, getMeetups } from '../../state/actions/meetupsActions'
 
 
@@ -24,6 +25,7 @@ const FavMeetups = (props)  => {
             <div>
                 <div className="FavMeetup">
                 {mappedFavs}
+                <Map />
                 </div>
             </div>
     )
