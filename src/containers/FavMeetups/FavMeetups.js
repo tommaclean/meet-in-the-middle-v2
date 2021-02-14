@@ -25,7 +25,7 @@ const FavMeetups = (props)  => {
             <div>
                 <div className="FavMeetup">
                 {mappedFavs}
-                <Map />
+                <Map markers={props.favMeetups}/>
                 </div>
             </div>
     )
@@ -33,7 +33,9 @@ const FavMeetups = (props)  => {
 
 const mapStateToProps = state => {
     return {
-        favMeetups: state.meetups.favMeetups
+        favMeetups: state.meetups.favMeetups,
+        markers: state.meetups.pastMeetups,
+        midpoint: state.searchResults.midpoint
       }
 }
 

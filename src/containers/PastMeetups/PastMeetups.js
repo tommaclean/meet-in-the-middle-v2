@@ -6,7 +6,6 @@ import { favoriteMeetup, getFavMeetups, getMeetups } from '../../state/actions/m
 
 
 const PastMeetups = (props) => {
-    console.log("Past Meetup props:", props)
     useEffect(() => {
         props.getMeetups()
     }, [props.pastMeetups.length])

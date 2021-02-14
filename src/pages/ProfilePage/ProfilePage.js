@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-
-import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Tabs } from "@feuer/react-tabs";
 import PastMeetups from "../../containers/PastMeetups/PastMeetups";
@@ -42,12 +40,6 @@ const ProfilePage = () => {
         )
 }
 
-const mapStateToProps = state => {
-  return {
-    markers: state.searchResults.searchResults,
-    midpoint: state.searchResults.midpoint
-  }
-}
 
-// export default connect(mapStateToProps, null)(ProfilePage)
+
 export default ProfilePage

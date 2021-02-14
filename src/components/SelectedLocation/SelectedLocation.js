@@ -5,8 +5,6 @@ import { confirmSelection, getMeetups } from '../../state/actions/meetupsActions
 
 
 const SelectedLocation = (props) => {
-  
-    console.log("SelectedLocation props", props)
     const handleConfirmSelection = () => {
       props.confirmSelection({
         user_id: props.currentUser, 
@@ -19,7 +17,7 @@ const SelectedLocation = (props) => {
       }
       )
     }
-    console.log(props.selectedResult)
+ 
     return (
       <div className="selectedLocationBody">
         <h4>Your Selected Result!</h4>
