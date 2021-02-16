@@ -73,6 +73,20 @@ export const favoriteMeetup = (meetupId) => dispatch => {
                 });
 };
 
+export const deleteMeetup = (meetupId) => dispatch => {
+  dispatch({ type: 'CONFIRM_DELETE_MEETUP_START'})
+  const requestOptions = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+};
+  return fetch(`http://localhost:3000/meetups/${meetupId}`, requestOptions)
+                .then(() => {dispatch({ type: 'CONFIRM_DELETE_MEETUP_SUCCESS'})
+                })
+                .catch(error => {
+                  dispatch({ type: "CONFIRM_DELETE_MEETUP_FAILURE", error: error });
+                });
+}
+
 export const deleteFavorite = (favMeetupID) => dispatch => {
   dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_START'})
   const requestOptions = {

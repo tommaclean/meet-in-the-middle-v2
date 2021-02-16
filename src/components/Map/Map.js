@@ -25,23 +25,19 @@ const Map = (props) => {
       // console.log("showMarker: ", showMarker)
       
       const infoWindowHandler = (result) => {
-        // console.log("result", result)
         setshowMarker(true)
         handleLocationSet(result)
       }
 
       const handleLocationSet = (result) => {
-        // console.log("handleLocationSet: ", result)
         setLocationToShow(result)
         setCoorToShow(result.geometry.location)
         console.log("locationToShow", locationToShow)
       }
 
       const handleToggleClose = () => {
-        // console.log("coorToShow 1:", locationToShow)
         setshowMarker(false)
         setLocationToShow(null)
-        // console.log("coorToShow 2:", locationToShow)
 
       }
 

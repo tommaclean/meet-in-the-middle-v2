@@ -56,6 +56,13 @@ export default (state = defaultState, action) => {
     case 'FAVORITE_MEETUP_FAILURE':
         return action.error
 
+    case 'CONFIRM_DELETE_MEETUP_START':
+        return {...state}
+    case 'CONFIRM_DELETE_MEETUP_SUCCESS':
+        return {...state}
+    case 'CONFIRM_DELETE_MEETUP_FAILURE':
+        return action.error
+
     case 'CONFIRM_DELETE_FAV_MEETUP_START':
         return {...state}
     case 'CONFIRM_DELETE_FAV_MEETUP_SUCCESS':

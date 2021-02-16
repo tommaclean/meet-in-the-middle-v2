@@ -14,3 +14,48 @@
     color: rgb(255, 255, 255);
     width: fit-content;
 } */
+
+.header-links {
+    visibility: hidden;
+}
+
+.circle {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: #A5CC6B;
+    margin: 10px;
+}
+
+.circle.blue {
+    background-color: #92BDA3;
+    
+}
+
+.circle.green {
+    background-color: #A1BA89;
+}
+
+/* unvisited link */
+a:link {
+    color: black;
+    text-decoration: none;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: black;
+    text-decoration: none;
+  }
+  
+  /* selected link */
+  a:active {
+    color: black;
+    text-decoration: none;
+  }

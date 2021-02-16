@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './PastMeetups.css'
 import { connect } from 'react-redux'
 import Map from '../../components/Map/Map'
-import { favoriteMeetup, getFavMeetups, getMeetups } from '../../state/actions/meetupsActions'
+import { favoriteMeetup, deleteMeetup, getFavMeetups, getMeetups } from '../../state/actions/meetupsActions'
 
 
 const PastMeetups = (props) => {
@@ -18,6 +18,8 @@ const PastMeetups = (props) => {
             <div key={meetup.id} className="PastMeetup" >
                 <li>{meetup.id}. {meetup.name}</li>
                 <button onClick={() => props.favoriteMeetup(meetup.id).then(() => props.getFavMeetups())}>❤️ Favorite</button>
+                <button onClick={() => props.deleteMeetup(meetup.id).then(() => props.getMeetups())
+                    }>Delete</button>
             </div>
         )})}
         return (  
@@ -40,6 +42,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     favoriteMeetup: favoriteMeetup,
+    deleteMeetup: deleteMeetup, 
     getFavMeetups: getFavMeetups,
     getMeetups: getMeetups
 }
