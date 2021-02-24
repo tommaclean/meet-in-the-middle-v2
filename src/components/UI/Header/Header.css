@@ -1,61 +1,35 @@
-/* .header {
-    font-size: 50px;
-    text-shadow: rgb(125, 134, 137) 4px 3px 0px;
-    background-color: rgb(56, 59, 67);
-    color: rgb(255, 255, 255);
-    width: fit-content;
+.header-main {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-family: Poppins;
+  height: 100px;
+ 
 }
 
-.header-buttons {
-    text-align: center;
-    font-size: 20px;
-    text-shadow: rgb(125, 134, 137) 4px 3px 0px;
-    background-color: rgb(56, 59, 67);
-    color: rgb(255, 255, 255);
-    width: fit-content;
-} */
-
-.header-links {
-    visibility: hidden;
+.title {
+  top: 30px;
+  font-weight: 400;
+  border: 5px white;
 }
 
-.circle {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    background-color: #A5CC6B;
-    margin: 10px;
+.greeting {
+  font-size: 14px;
 }
 
-.circle.blue {
-    background-color: #92BDA3;
-    
+.p {
+  font-weight: 700;
 }
 
-.circle.green {
-    background-color: #A1BA89;
+.buttons {
+  display: flex;
 }
 
-/* unvisited link */
-a:link {
-    color: black;
-    text-decoration: none;
-  }
-  
-  /* visited link */
-  a:visited {
-    color: black;
-    text-decoration: none;
-  }
-  
-  /* mouse over link */
-  a:hover {
-    color: black;
-    text-decoration: none;
-  }
-  
-  /* selected link */
-  a:active {
-    color: black;
-    text-decoration: none;
-  }
+.divider{
+  width: 100px;
+  height:auto;
+  display:inline-block;
+}
+
+

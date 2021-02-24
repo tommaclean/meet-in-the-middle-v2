@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
-import classes from './FormInput.module.css'
+import Button from '../Button/Button'
+import './FormInput.css'
 
 
-const FormInput = ({ handleAddressSubmit }) => {
+
+const FormInput = (props) => {
+  
     const [address1, setAddress1] = useState('')
     const [address2, setAddress2] = useState('')
     const [address3, setAddress3] = useState('')
+    
+    
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        handleAddressSubmit({
+        props.handleAddressSubmit({
             e,
             address1,
             address2,
@@ -18,10 +23,12 @@ const FormInput = ({ handleAddressSubmit }) => {
         setAddress1('')
         setAddress2('')
         setAddress3('')
+        props.handleFormInputTransition()
+        
     }
 
     return (
-        <div className={classes.FormInput}>   
+        <div className="formInputMain">   
             <form onSubmit={handleSubmit}>
                 <p>
                     <label>Address 1: </label>
@@ -35,8 +42,15 @@ const FormInput = ({ handleAddressSubmit }) => {
                     <label>Address 3: </label>
                     <input id="autocomplete3" type="text" value={address3} onChange={(e) => setAddress3(e.target.value)} />
                 </p>
-                <input type="submit" value="submit addresses" />
+                
             </form>
+            <div className="divider"></div>
+            <div className="divider"></div>
+            <div className="divider"></div>
+            <div className="divider"></div>
+            <div onClick={handleSubmit}>
+                <Button>Submit</Button>
+            </div>
         </div>
     )
 }

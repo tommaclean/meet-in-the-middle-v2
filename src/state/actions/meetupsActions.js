@@ -35,7 +35,6 @@ export const setShowFavMeetups = () => dispatch => {
 };
 
 export const confirmSelection = (locationInfo) => dispatch => {
-  console.log("locationInfo: ", locationInfo)
   dispatch({ type: 'CONFIRM_SELECTED_LOCATION_START' })
       const requestOptions = {
         method: 'POST',
@@ -46,7 +45,7 @@ export const confirmSelection = (locationInfo) => dispatch => {
        },
        body: JSON.stringify(locationInfo)
     };
-    console.log(requestOptions)
+   
 
   return fetch('http://localhost:3000/meetups/', requestOptions)
               .then(response => response.json())

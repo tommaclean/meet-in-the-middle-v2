@@ -3,3 +3,30 @@
     overflow-y: scroll;
     border: 1px solid black;
 } */
+
+.searchResultsMain {
+    height: 800px;
+    width: 600px;
+    position: relative; 
+    opacity: 1;
+}
+
+.formInputDiv {
+    height: 600px;
+    width: 400px;
+    position: absolute;
+    left: 100px;
+    top: 150px;
+}
+.selectedLocationDiv {
+    width: 600px;
+    position: absolute;
+    display: none;
+}
+
+.searchResultsDiv {
+    height: 800px;
+    width: 600px;
+    position: absolute;
+    display: none;
+}

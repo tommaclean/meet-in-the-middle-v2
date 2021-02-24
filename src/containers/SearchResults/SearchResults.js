@@ -1,27 +1,46 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import './SearchResults.css'
-import { handleLocationSelection } from '../../state/actions/searchResultsActions'
+import Button from '../../components/UI/Button/Button'
+import './SearchResults.css'
+import { handleLocationSelection, clearSearchResults } from '../../state/actions/searchResultsActions'
+
+
+
+
 
 const SearchResults = (props) => {
     let mappedResults
-    if (props.searchResults.length > 0 ) {
+
+    if (props.searchResults.length > 0) {
         mappedResults = props.searchResults.map((result, index) => {
         return (
-            <div key={index} className="header">
+            <div key={index} className="individualResult">
                 <div key={result.id} className="SearchResult">
-                    <li className="li">Name: {result.name}</li>
-                    <li className="ul">Address: {result.vicinity}</li>
-                    <li>Status: {result.business_status}</li>
-                    <button onClick={() => props.handleLocationSelection(result)}>Select Location</button>
+                    <li className="resultName">{result.name}</li>
+                    <li className="resultAddress">{result.vicinity}</li>
+                    <li className="resultStatus">Status: {result.business_status}</li>
+                    <div onClick={() => props.handleLocationSelection(result)}>
+                    <Button className="resultButton">Select Location</Button>
+                    </div>
                 </div>
             </div>
         )})}
+    
     return (
             
-                <div className="ScrollableSearchResults">
-                      Your Search Results:
-                        {mappedResults}   
+                <div>
+                    <div className="toggleFormInput" onClick={() => props.handleBackToAddresses()}>
+                        <Button>Back to Addresses</Button>
+                    </div>
+                   
+                    <br />
+                    <div className="clearSearchResults" onClick={props.clearSearchResults}>
+                        <Button>Clear Search Results</Button>
+                    </div>
+                        <div className="ScrollableSearchResults">
+                            Your Search Results:
+                                {mappedResults}   
+                        </div>
                 </div>
             
     )
@@ -35,7 +54,9 @@ const mapStateToProps = state => {
   }
 
 const mapDispatchToProps = {
-    handleLocationSelection: handleLocationSelection
+    handleLocationSelection: handleLocationSelection,
+    clearSearchResults: clearSearchResults
+    
 }
 
 

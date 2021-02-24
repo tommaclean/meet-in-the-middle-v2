@@ -85,7 +85,7 @@ const handlePlacesFetch = (coordinates, dispatch) => {
   return fetch(proxyURL + googleURL)
       .then(res => res.json())
       .then(searchResults => {  
-        dispatch({ type: 'GET_SEARCH_RESULTS_SUCCESS', searchResults: searchResults.results });
+        dispatch({ type: 'GET_SEARCH_RESULTS_SUCCESS', searchResults: searchResults.results, showSearchResults: true });
       })
       .catch(error => {
         console.log("handlePlacesFetch error", error)
@@ -100,6 +100,16 @@ export const handleLocationSelection = (searchResult) => dispatch => {
       dispatch({ type: 'SET_SELECTED_LOCATION_SUCCESS', selectedResult: searchResult, showSelectedLocation: true })
     } catch (error) {
       dispatch({ type: 'SET_SELECTED_LOCATION_FAILURE', error: error })
+  }
+}
+
+export const clearSearchResults = () => dispatch => {
+
+  dispatch({ type: 'CLEAR_SEARCH_RESULTS_START' })
+    try{
+      dispatch({ type: 'CLEAR_SEARCH_RESULTS_SUCCESS', searchResults: {}, showSearchResults: false })
+    } catch (error) {
+      dispatch({ type: 'CLEAR_SEARCH_RESULTS_FAILURE', error: error })
   }
 }
 

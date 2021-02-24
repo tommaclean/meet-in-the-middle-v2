@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react'
+import useToggle from '../../snippets/useToggle'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import Map from '../../components/Map/Map'
 import Header from '../../components/UI/Header/Header';
+import FormInput from '../../components/UI/FormInput/FormInput'
 import SearchPane from '../../containers/SearchPane/SearchPane'
 import { handleLogOut, getProfile } from '../../state/actions/usersActions'
+import { handleAddressSubmit } from '../../state/actions/searchResultsActions'
 import './MainPage.css'
 
 
 const MainPage = (props) => {
         const history = useHistory();
+      
 
         useEffect(() => {
             if (localStorage.token) {
@@ -21,16 +25,18 @@ const MainPage = (props) => {
         
 
         return (
-          <div>
-            { localStorage.token ? 
+          <div className="MainPage">
               <div className="MainPage-header">
                 <Header />
+              </div>
                 <div className="MainPage-container">
-                  <SearchPane />
-                  <Map markers={props.searchResults} midpoint={props.midpoint} />
-                </div>
-              </div> : null 
-          }
+                    <div className="Search-pane">
+                      <SearchPane />
+                    </div>
+                    <div className="Map">
+                     <Map markers={props.searchResults} midpoint={props.midpoint} />
+                    </div>
+              </div> 
         </div>
             
         )
@@ -40,13 +46,15 @@ const mapStateToProps = state => {
   return {
       loggedIn: state.users.loggedIn,
       searchResults: state.searchResults.searchResults,
-      midpoint: state.searchResults.midpoint
+      midpoint: state.searchResults.midpoint,
+      showFormInput: state.searchResults.showFormInput
   }
 }
 
 const mapDispatchToProps = {
   handleLogOut: handleLogOut,
-  getProfile: getProfile
+  getProfile: getProfile,
+  handleAddressSubmit: handleAddressSubmit
 }
 
 

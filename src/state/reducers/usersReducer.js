@@ -34,7 +34,7 @@ export default (state = defaultState, action) => {
     case 'USER_LOGOUT_START':
         return {...state}
     case 'USER_LOGOUT_SUCCESS':
-        return {...state, currentUser: '', loggedIn: false }
+        return {...state, state: defaultState  }
     case 'USER_LOGOUT_FAILURE':
         return action.error
 

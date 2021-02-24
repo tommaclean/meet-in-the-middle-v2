@@ -9,7 +9,6 @@ export const handleLogin = (userInput) => dispatch => {
         return fetch("http://localhost:3000/login", requestOptions)
         .then(response => response.json())
         .then(data => {
-            console.log("Login data", data)
             if (data.token) {
                 localStorage.token = data.token
                 dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: data.username, id: data.user_id }, token: localStorage.token })  
@@ -25,7 +24,7 @@ export const handleLogin = (userInput) => dispatch => {
 };
 
 export const handleSignup = (userInput) => dispatch => {
-    console.log(userInput)
+
     dispatch({ type: 'USER_SIGNUP_START' })
         let requestOptions = {
         method: 'POST',
@@ -61,7 +60,6 @@ export const getProfile = () => dispatch => {
     return fetch("http://localhost:3000/profile", requestOptions)
         .then(response => response.json())
         .then(data => {
-                console.log("getProfile:", data)
                 dispatch({ type: 'GET_PROFILE_SUCCESS', currentUser: {username: data.username, id: data.id }, token: localStorage.token })  
             } 
         )

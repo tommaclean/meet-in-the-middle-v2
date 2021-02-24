@@ -1,12 +1,14 @@
 /* eslint-disable import/no-anonymous-default-export */
 const defaultState = {
     searchResults: {},
+    showSearchResults: false,
     midpoint: { lat: 40.7019763,
                 lng: -73.9972181},
     selectedResult: {},
     loading: false,
     showSelectedLocation: false,
-    confirmSelection: false
+    confirmSelection: false,
+    showFormInput: true
 }
 
 export default (state = defaultState, action) => {
@@ -14,8 +16,15 @@ export default (state = defaultState, action) => {
     case 'GET_SEARCH_RESULTS_START':
         return {...state, loading: true}
     case 'GET_SEARCH_RESULTS_SUCCESS':
-        return {...state, searchResults: action.searchResults, loading: true}
+        return {...state, searchResults: action.searchResults, showSearchResults: true }
     case 'GET_SEARCH_RESULTS_FAILURE':
+        return action.error
+
+    case 'SHOW_FORM_INPUT_START':
+        return {...state}
+    case 'SHOW_FORM_INPUT_SUCCESS':
+        return {...state, showFormInput: false }
+    case 'SHOW_FORM_INPUT_FAILURE':
         return action.error
 
     case 'SET_SELECTED_LOCATION_START':
@@ -25,13 +34,26 @@ export default (state = defaultState, action) => {
     case 'SET_SELECTED_LOCATION_FAILURE':
         return action.error
 
+    case 'SHOW_SEARCH_RESULTS_START':
+        return {...state}
+    case 'SHOW_SEARCH_RESULTS_SUCCESS':
+        return {...state, showSearchResults: true }
+    case 'SHOW_SEARCH_RESULTS_FAILURE':
+        return action.error
+
     case 'SET_MIDPOINT_START':
         return {...state}
     case 'SET_MIDPOINT_SUCCESS':
-        console.log(action)
         return {...state, midpoint: action.midpoint }
     case 'SET_MIDPOINT_FAILURE':
         return action.error
+
+    case 'CLEAR_SEARCH_RESULTS_START':
+        return {...state}
+    case 'CLEAR_SEARCH_RESULTS_SUCCESS':
+        return {...state, searchResults: {} }
+    case 'CLEAR_SEARCH_RESULTS_FAILURE':
+            return action.error
 
     default:
         return state

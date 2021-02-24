@@ -1,48 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
 .MainPage {
-    text-align: center;
-  }
-  
-  .MainPage-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .MainPage-logo {
-      animation: MainPage-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .MainPage-header {
+    /* text-align: center; */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
   }
-  
-  .MainPage-link {
-    color: #61dafb;
-  }
-  
-  @keyframes MainPage-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
 
   .MainPage-container {
-    display: inline-flex;
-    flex-wrap: wrap;
+    margin-left: 30px;
+    width: 90%;
+    display: flex;
+    overflow: hidden;
+    /* border: 1px solid black; */
   }
 
-  .MainPage-container > div {
-    margin: 6px;
+  .MainPage-header {
+    margin-left: 30px;
+    height: 150px;
+    top: 10px;
+    position: relative;
   }
-   
+
+  .Search-pane {
+    position: relative;
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 40%;
+    height: 700px;
+  }
+
+  .Map {
+    width: 60%;
+    margin: 10px;
+    overflow: hidden;
+  }
+  
+
+  :root {
+    --backgroundColor: rgba(246, 241, 209);
+    --colorShadeA: rgb(106, 163, 137);
+    --colorShadeB: rgb(121, 186, 156);
+    --colorShadeC: rgb(150, 232, 195);
+    --colorShadeD: rgb(187, 232, 211);
+    --colorShadeE: rgb(205, 255, 232);
+  }
+  
+  
+  * {
+    box-sizing: border-box;
+  }
+  *::before, *::after {
+    box-sizing: border-box;
+  }
+    
+  

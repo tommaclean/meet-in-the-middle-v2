@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import './Map.css'
 // import useToggle from '../../snippets/useToggle'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
 const apiKey = process.env.REACT_APP_GOOGLE_KEY
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '765px',
+  height: '700px'
 };
 
 let markerCoordinates
@@ -22,7 +23,7 @@ const Map = (props) => {
       // const [showMarker, setshowMarker] = useToggle(false);
       const [showMarker, setshowMarker] = useState(false)
 
-      // console.log("showMarker: ", showMarker)
+
       
       const infoWindowHandler = (result) => {
         setshowMarker(true)
@@ -32,7 +33,6 @@ const Map = (props) => {
       const handleLocationSet = (result) => {
         setLocationToShow(result)
         setCoorToShow(result.geometry.location)
-        console.log("locationToShow", locationToShow)
       }
 
       const handleToggleClose = () => {
@@ -65,14 +65,16 @@ const Map = (props) => {
       )})}
 
   return (
+    <div className="mainMap">
     <LoadScript
       googleMapsApiKey={apiKey}
     >
+
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={midpoint}
         zoom={13}
-      >
+        >
         {resultsMarkers}
         <Marker key={"midpoint"} icon={"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"} position={midpoint} label={"Midpoint"} animation={"bounce"} zIndex={0}/>
         {showMarker ? 
@@ -86,6 +88,7 @@ const Map = (props) => {
         <></>
       </GoogleMap>
     </LoadScript>
+  </div>
   )
 }
 

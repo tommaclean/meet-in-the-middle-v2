@@ -1,35 +1,49 @@
  
-.SearchResult
-{
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-    margin-left: 100px;
+.SearchResult {
+    border: 2px solid white;
+}
+
+ul {
+    background-color: tomato;
     list-style-type: none;
-    text-align: left;
-    border: 1px solid black ;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 25px;
-    letter-spacing: 2px;
-    word-spacing: 2px;
-    color: white;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
+    margin: 0;
+    padding: 0;
+}
+
+.resultName {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.resultAddress {
+    font-size: 18px;
+    font-weight: 200;
+}
+
+.resultStatus {
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.resultButton {
 
 }
 
-.header {
-    font-size: 35px;
+.individualResult {
+    list-style-type: none;
+    border: 1px solid white;
+    font-size: 16px;
     text-align: left;
-    text-shadow: rgb(125, 134, 137) 4px 3px 0px;
-    background-color: rgb(56, 59, 67);
-    color: rgb(255, 255, 255);
+    
+}
+
+.individualResult:hover {
+    background-color: rgb(154, 154, 151);
 }
 
 .ScrollableSearchResults {
-    height: 400px;
+    list-style-type: none;
+    border: 2px solid white;
     overflow-y: auto;
 } 
 

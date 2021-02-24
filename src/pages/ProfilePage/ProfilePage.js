@@ -22,20 +22,20 @@ const ProfilePage = () => {
   return (
     <div style={styles}>
     <Header />
-    <Tabs
-      activeTab={activeTab}
-      >
-      <Tabs.Tab id="tab1" title="Past Meetups">
-        <div style={{ padding: 10 }}>
-          <PastMeetups />
-        </div>
-      </Tabs.Tab>
-      <Tabs.Tab id="tab2" title="Favorite Meetups">
-        <div style={{ padding: 10 }}>
-          <FavMeetups />
-        </div>
-      </Tabs.Tab>
-    </Tabs>
+      <Tabs
+        activeTab={activeTab}
+        >
+        <Tabs.Tab id="tab1" title="Past Meetups">
+          <div style={{ padding: 10 }}>
+            <PastMeetups />
+          </div>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab2" title="Favorite Meetups">
+          <div style={{ padding: 10 }}>
+            <FavMeetups />
+          </div>
+        </Tabs.Tab>
+      </Tabs>
   </div>
         )
 }

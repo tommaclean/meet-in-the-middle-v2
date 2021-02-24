@@ -1,0 +1,6 @@
+.mainMap {
+    overflow: hidden;
+    position: absolute;
+    height: 75%;
+    width: 100%;
+}

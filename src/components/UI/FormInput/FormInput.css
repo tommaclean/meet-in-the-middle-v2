@@ -1,0 +1,16 @@
+.formInputMain {
+    font-weight: 200;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.hidden { opacity: 0; }
+.visible { opacity: 1; transition: opacity 1s linear;}
