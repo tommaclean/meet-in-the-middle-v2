@@ -11,7 +11,7 @@ const PastMeetups = (props) => {
     useEffect(() => {
         // dispatch(actionLog('GET_MEETUPS_START'))
         // dispatch(props.getMeetups())
-        dispatch(props.getMeetups())
+        dispatch(getMeetups())
         
     }, [])
 
@@ -46,11 +46,4 @@ const mapStateToProps = state => {
       }
 }
 
-const mapDispatchToProps = {
-    favoriteMeetup: favoriteMeetup,
-    deleteMeetup: deleteMeetup, 
-    getFavMeetups: getFavMeetups,
-    getMeetups: getMeetups
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PastMeetups)
+export default connect(mapStateToProps)(PastMeetups)

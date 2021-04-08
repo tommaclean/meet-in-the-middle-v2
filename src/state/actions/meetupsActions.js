@@ -26,7 +26,7 @@ export const actions = {
 export const actionLog = action => ({
   type: action
 })
-const setMeetups = (meetups) => ({ type: actions.GET_MEETUPS_SUCCESS, payload: meetups })
+export const setMeetups = (meetups) => ({ type: actions.GET_MEETUPS_SUCCESS, meetups })
 
 export const getMeetups = () => async (dispatch) => {
    const requestOptions = {
