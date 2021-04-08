@@ -19,7 +19,7 @@ const Header = (props) => {
       history.push('/login')
     }
     return (
-      <div className="header-main">
+      <header className="header-main">
           <div className="title">
               MeetInTheMiddle
               <div className="greeting">Welcome, {props.currentUsername}!  </div>
@@ -47,7 +47,7 @@ const Header = (props) => {
               <Button>Log Out</Button>
             </div>
           </div>
-      </div>
+      </header>
     )
 }
 

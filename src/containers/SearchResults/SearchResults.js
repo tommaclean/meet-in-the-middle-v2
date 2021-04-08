@@ -34,9 +34,6 @@ const SearchResults = (props) => {
                     </div>
                    
                     <br />
-                    <div className="clearSearchResults" onClick={props.clearSearchResults}>
-                        <Button>Clear Search Results</Button>
-                    </div>
                         <div className="ScrollableSearchResults">
                             Your Search Results:
                                 {mappedResults}   

@@ -1,29 +1,22 @@
-/* .selectedLocationBody {
-    background: rgb(34,193,195);
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-    margin-left: 100px;
-    list-style-type: none;
-    text-align: left;
-    border: 1px solid black;
-    font-size: 25px;
-    letter-spacing: 2px;
-    word-spacing: 2px;
-    color: white;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
+.selectedLocationBody {
+    border: 10px solid white;
+    border-radius: 10px;
 }
 
-h2, h3, h4, h5, h6, p {
-    text-shadow: 2px 2px black;
-    margin: 0;
-    padding: 0;
- }
+.selectedLocationDetail {
+    margin: 20px;
+}
 
- h1 {
-    text-shadow: 2px 2px black;
-     margin: 1px;
-     padding: 1px;
- } */
+.headline {
+    font-weight: lighter;
+    font-size: 1.2rem;
+}
+
+.name {
+    font-weight: bolder;
+}
+
+.vicinity {
+    font-weight: lighter;
+    font-size: 1.1rem;
+}

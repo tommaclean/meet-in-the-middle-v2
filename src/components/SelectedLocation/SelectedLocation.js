@@ -1,10 +1,12 @@
 import React from 'react'
 import '../SelectedLocation/SelectedLocation.css'
+import Button from '../UI/Button/Button'
 import { connect } from 'react-redux'
 import { confirmSelection, getMeetups } from '../../state/actions/meetupsActions'
 
 
 const SelectedLocation = (props) => {
+    
     const handleConfirmSelection = () => {
       props.confirmSelection({
         user_id: props.currentUser, 
@@ -20,11 +22,16 @@ const SelectedLocation = (props) => {
  
     return (
       <div className="selectedLocationBody">
-        <h4>Your Selected Result!</h4>
-        <h1>{props.selectedResult.name}</h1>
-        <h3>{props.selectedResult.vicinity}</h3>
-        <button onClick={handleConfirmSelection}>Confirm This Location</button>
+        <div className="selectedLocationDetail">
+          <div className="headline">Your Selected Result!</div>
+          <div className="name">{props.selectedResult.name}</div>
+          <div className="vicinity">{props.selectedResult.vicinity}</div>
+        </div>
+        <div className="selectedLocationDetail" onClick={handleConfirmSelection}>
+          <Button>Confirm This Location</Button>
+        </div>
       </div>
+      
     )
 }
 

@@ -6,7 +6,6 @@ import maps from './mapsReducer'
 
 
 const appReducer = combineReducers({
-  /* your app’s top-level reducers */
   meetups,
   searchResults,
   users,
@@ -14,7 +13,7 @@ const appReducer = combineReducers({
 });
 
 const rootReducer = (state, action) => {
-  // when a logout action is dispatched it will reset redux state
+
   if (action.type === 'USER_LOGOUT_START') {
     state = undefined;
   }

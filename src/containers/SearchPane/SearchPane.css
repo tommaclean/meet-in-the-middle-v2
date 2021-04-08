@@ -5,23 +5,27 @@
 } */
 
 .searchResultsMain {
-    height: 800px;
-    width: 600px;
+    height: auto;
+    width: auto;
     position: relative; 
     opacity: 1;
 }
 
-.formInputDiv {
-    height: 600px;
+div.formInputDiv {
+    margin: auto;
+    border: 5px solid white;
+    height: 150px;
     width: 400px;
-    position: absolute;
-    left: 100px;
-    top: 150px;
+    position: relative;
+    /* left: 100px; */
+    top: 150px; 
 }
 .selectedLocationDiv {
     width: 600px;
-    position: absolute;
-    display: none;
+    display: inline;
+    /* position: fixed; */
+    /* left: 50px;
+    top: 100px; */
 }
 
 .searchResultsDiv {

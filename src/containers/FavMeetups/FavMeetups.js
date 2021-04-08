@@ -8,15 +8,15 @@ import { deleteFavorite, getFavMeetups, getMeetups } from '../../state/actions/m
 const FavMeetups = (props)  => {
     useEffect(() => {
         props.getFavMeetups()
-    }, [props.favMeetups.length])
-
-    let mappedFavs
+    }, [])
+    console.log("FavMeetups", props)
+    let mappedFavs  
 
     if (props.favMeetups) {
         mappedFavs = props.favMeetups.slice(0).reverse().map((favMeetup, index) => {
         return (
             <div key={favMeetup.id} className="FavMeetup">
-                <li>{favMeetup.meetup.id}. {favMeetup.meetup.name}</li>
+                <li>{favMeetup.id}. {favMeetup.name}</li>
                 <button onClick={() => props.deleteFavorite(favMeetup.id).then(() => props.getFavMeetups()).then(() => props.getMeetups())
                     }>Delete</button>  
             </div>

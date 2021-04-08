@@ -17,7 +17,7 @@ const LoginPage = (props) => {
     useEffect(() => {
         TweenMax.to(center, 0, {css: {visibility: 'visible'}})
         TweenMax.to(loginDiv, .8, { opacity: 1, y: -50, ease: Power1.easeIn })
-        TweenMax.to(signupText, .8, { opacity: 1, y: 20, ease: Power1.easeIn })
+        TweenMax.to(signupText, .8, { opacity: 1, y: 0, ease: Power1.easeIn })
         if (localStorage.token) {
             history.push('/main')
         }

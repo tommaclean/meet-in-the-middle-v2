@@ -1,27 +1,8 @@
-/* .PastMeetup
-{
-    background: rgb(121,172,114);
-    background: radial-gradient(circle, rgba(121,172,114,1) 0%, rgba(148,168,233,1) 100%);
-    margin-left: 100px;
-    list-style-type: none;
-    text-align: left;
-    border: 1px solid black ;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 25px;
-    letter-spacing: 1px;
-    color: white;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-}
-.MainPastMeetups {
-    height: 250px;
-    overflow-y: auto;
-}
+.PastMeetups-container {
+    display: flex;
+    position: relative;
+  }
 
-.FavoriteMeetup {
-    font-size: 20px;
-    letter-spacing: 0px;
-} */
+.Map {
+    border: 5px solid blue;
+  }

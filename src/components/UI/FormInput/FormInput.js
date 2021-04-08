@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from '../Button/Button'
+// import Button from '../Button/Button'
 import './FormInput.css'
 
 
@@ -32,25 +32,21 @@ const FormInput = (props) => {
             <form onSubmit={handleSubmit}>
                 <p>
                     <label>Address 1: </label>
-                    <input id="autocomplete1" type="text" value={address1} required onChange={(e) => setAddress1(e.target.value)} />
+                    
+                    <input id="autocomplete1" placeholder={address1} type="text" value={address1} required onChange={(e) => setAddress1(e.target.value)} />
                 </p>
                 <p>
                     <label>Address 2: </label>
-                    <input id="autocomplete2" type="text" value={address2} required onChange={(e) => setAddress2(e.target.value)} />
+                    <input id="autocomplete2" placeholder={address2} type="text" value={address2} required onChange={(e) => setAddress2(e.target.value)} />
                 </p>
                 <p>
                     <label>Address 3: </label>
-                    <input id="autocomplete3" type="text" value={address3} onChange={(e) => setAddress3(e.target.value)} />
+                    <input id="autocomplete3" type="text" placeholder={address3} value={address3} onChange={(e) => setAddress3(e.target.value)} />
+                    <input type="submit" value="Submit" onClick={handleSubmit} />
                 </p>
+            
                 
             </form>
-            <div className="divider"></div>
-            <div className="divider"></div>
-            <div className="divider"></div>
-            <div className="divider"></div>
-            <div onClick={handleSubmit}>
-                <Button>Submit</Button>
-            </div>
         </div>
     )
 }

@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
-import useToggle from '../../snippets/useToggle'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import Map from '../../components/Map/Map'
 import Header from '../../components/UI/Header/Header';
-import FormInput from '../../components/UI/FormInput/FormInput'
 import SearchPane from '../../containers/SearchPane/SearchPane'
 import { handleLogOut, getProfile } from '../../state/actions/usersActions'
 import { handleAddressSubmit } from '../../state/actions/searchResultsActions'
@@ -29,14 +27,15 @@ const MainPage = (props) => {
               <div className="MainPage-header">
                 <Header />
               </div>
-                <div className="MainPage-container">
-                    <div className="Search-pane">
-                      <SearchPane />
-                    </div>
-                    <div className="Map">
-                     <Map markers={props.searchResults} midpoint={props.midpoint} />
-                    </div>
-              </div> 
+            <div className="MainPage-container">
+                  <div className="Search-pane">
+                    <SearchPane />
+                  </div>
+                  <div className="Map">
+                    <Map markers={props.searchResults} midpoint={props.midpoint} />
+                  </div>
+              </div>
+               
         </div>
             
         )

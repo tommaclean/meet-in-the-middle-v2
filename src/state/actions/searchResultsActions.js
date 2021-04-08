@@ -107,7 +107,7 @@ export const clearSearchResults = () => dispatch => {
 
   dispatch({ type: 'CLEAR_SEARCH_RESULTS_START' })
     try{
-      dispatch({ type: 'CLEAR_SEARCH_RESULTS_SUCCESS', searchResults: {}, showSearchResults: false })
+      dispatch({ type: 'CLEAR_SEARCH_RESULTS_SUCCESS', searchResults: {}, selectedResult: {}, showSearchResults: false, showSelectedLocation: false, midpoint: null })
     } catch (error) {
       dispatch({ type: 'CLEAR_SEARCH_RESULTS_FAILURE', error: error })
   }

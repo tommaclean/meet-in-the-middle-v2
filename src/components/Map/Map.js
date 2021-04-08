@@ -10,17 +10,15 @@ const containerStyle = {
   height: '700px'
 };
 
-let markerCoordinates
 let resultsMarkers
 
 const Map = (props) => {
-
-  
+      let markerCoordinates
       let midpoint = props.midpoint || {lat:40.7019763, lng:-73.9972181}
       const [coorToShow, setCoorToShow] = useState(midpoint)
       const [locationToShow, setLocationToShow] = useState({})
   
-      // const [showMarker, setshowMarker] = useToggle(false);
+   
       const [showMarker, setshowMarker] = useState(false)
 
 
@@ -51,18 +49,16 @@ const Map = (props) => {
             lng: result.geometry.location.lng })
         }
       return (
-        <div>
-
-      <Marker 
-        key={result.id} 
-        position={markerCoordinates} 
-        animation={"BOUNCE"}
-        onClick={() => infoWindowHandler(result)}
-        />
-      
+        <div className="map">
+          <Marker 
+            key={result.id} 
+            position={markerCoordinates} 
+            animation={"BOUNCE"}
+            onClick={() => infoWindowHandler(result)}
+            />
         </div>
 
-      )})}
+      )})} 
 
   return (
     <div className="mainMap">
@@ -83,7 +79,7 @@ const Map = (props) => {
             <div><h4>{locationToShow.name}</h4>
             <p>{locationToShow.vicinity}</p>
             </div> : 
-            <div>InfoWindow</div>}
+            null }
         </InfoWindow>: null }
         <></>
       </GoogleMap>

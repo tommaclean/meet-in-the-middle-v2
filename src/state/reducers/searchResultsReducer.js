@@ -7,8 +7,7 @@ const defaultState = {
     selectedResult: {},
     loading: false,
     showSelectedLocation: false,
-    confirmSelection: false,
-    showFormInput: true
+    confirmSelection: false
 }
 
 export default (state = defaultState, action) => {
@@ -51,7 +50,7 @@ export default (state = defaultState, action) => {
     case 'CLEAR_SEARCH_RESULTS_START':
         return {...state}
     case 'CLEAR_SEARCH_RESULTS_SUCCESS':
-        return {...state, searchResults: {} }
+        return {...state, searchResults: {}, selectedResult: {}, showSearchResults: false, showSelectedLocation: false, midpoint: null }
     case 'CLEAR_SEARCH_RESULTS_FAILURE':
             return action.error
 
