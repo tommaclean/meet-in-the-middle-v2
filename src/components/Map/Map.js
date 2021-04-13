@@ -24,8 +24,8 @@ const Map = (props) => {
 
       
       const infoWindowHandler = (result) => {
-        setshowMarker(true)
-        handleLocationSet(result)
+        // setshowMarker(true)
+        // handleLocationSet(result)
       }
 
       const handleLocationSet = (result) => {
@@ -62,9 +62,9 @@ const Map = (props) => {
 
   return (
     <div className="mainMap">
-    <LoadScript
+    {/* <LoadScript
       googleMapsApiKey={apiKey}
-    >
+    > */}
 
       <GoogleMap
         mapContainerStyle={containerStyle}
@@ -76,14 +76,14 @@ const Map = (props) => {
         {showMarker ? 
         <InfoWindow position={coorToShow} onCloseClick={() => handleToggleClose()}>
           {locationToShow ? 
-            <div><h4>{locationToShow.name}</h4>
+            <div key={locationToShow.id}><h4>{locationToShow.name}</h4>
             <p>{locationToShow.vicinity}</p>
             </div> : 
             null }
         </InfoWindow>: null }
         <></>
       </GoogleMap>
-    </LoadScript>
+    {/* </LoadScript> */}
   </div>
   )
 }

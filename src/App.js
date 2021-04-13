@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react'
 import { connect } from 'react-redux'
+import Header from '../src/components/UI/Header/Header';
 import MainPage from '../src/pages/MainPage/MainPage'
 import LoginPage from './pages/LoginPage/LoginPage';
 import { Switch, Route } from 'react-router-dom'
@@ -16,15 +17,22 @@ const App = () => {
                     <LoginPage />
                 </Route>
                 <Route path="/profile">
+                    <Header />
                     <ProfilePage />
                 </Route>
                 <Route path="/main">
+                    <Header />
                     <MainPage />
                 </Route>
                 <Route path="/signup">
                     <SignupPage />
                 </Route>
+                <Route path="/search">
+                    <Header />
+                    <MainPage />
+                </Route>
                 <Route path="/" >
+                    <Header />
                     <MainPage />
                 </Route>
             </Switch>

@@ -103,6 +103,14 @@ export const handleLocationSelection = (searchResult) => dispatch => {
   }
 }
 
+export const closeSelectedLocation = () => dispatch => {
+    try{
+      dispatch({ type: 'CLOSE_SELECTED_LOCATION_SUCCESS' })
+    } catch (error) {
+      dispatch({ type: 'CLOSE_SELECTED_LOCATION_FAILURE', error: error })
+  }
+}
+
 export const clearSearchResults = () => dispatch => {
 
   dispatch({ type: 'CLEAR_SEARCH_RESULTS_START' })
@@ -110,6 +118,14 @@ export const clearSearchResults = () => dispatch => {
       dispatch({ type: 'CLEAR_SEARCH_RESULTS_SUCCESS', searchResults: {}, selectedResult: {}, showSearchResults: false, showSelectedLocation: false, midpoint: null })
     } catch (error) {
       dispatch({ type: 'CLEAR_SEARCH_RESULTS_FAILURE', error: error })
+  }
+}
+
+export const showSearchResults = () => dispatch => {
+    try{
+      dispatch({ type: 'SHOW_SEARCH_RESULTS_SUCCESS'})
+    } catch (error) {
+      dispatch({ type: 'SHOW_SEARCH_RESULTS_FAILURE', error: error })
   }
 }
 

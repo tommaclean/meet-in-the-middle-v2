@@ -1,31 +1,48 @@
 import React, {useEffect} from 'react'
 import '../FavMeetups/FavMeetups.css'
-import { connect } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import Map from '../../components/Map/Map'
 import { deleteFavorite, getFavMeetups, getMeetups } from '../../state/actions/meetupsActions'
 
 
 const FavMeetups = (props)  => {
+
+    const dispatch = useDispatch();
+    const favMeetups = useSelector(state => state.meetups.favMeetups)
+    let mappedFavs  
+    // let filteredFavs = favMeetups.filter(v => v !== null)
+
     useEffect(() => {
         props.getFavMeetups()
     }, [])
-    console.log("FavMeetups", props)
-    let mappedFavs  
+    
+    console.log("favMeetups", favMeetups)
 
-    if (props.favMeetups) {
-        mappedFavs = props.favMeetups.slice(0).reverse().map((favMeetup, index) => {
-        return (
-            <div key={favMeetup.id} className="FavMeetup">
-                <li>{favMeetup.id}. {favMeetup.name}</li>
-                <button onClick={() => props.deleteFavorite(favMeetup.id).then(() => props.getFavMeetups()).then(() => props.getMeetups())
-                    }>Delete</button>  
-            </div>
-        )})}
+   
+
+    // if (filteredFavs) {
+    //     mappedFavs = filteredFavs.slice(0).reverse().map((favMeetup, index) => {
+    //     return (
+    //         <div key={index} className="individualFavMeetup" >
+    //         <div key={favMeetup.id} className="FavMeetup">
+                
+    //             <li className="favMeetupName">{favMeetup.name}</li>
+    //             <li className="favMeetupAddress">{favMeetup.vicinity}</li>
+    //                 <div className="favMeetupButtons">
+    //                     <button className="resultButton" onClick={() => dispatch(deleteFavorite(favMeetup.id)).then(() => dispatch(getFavMeetups())).then(() => props.getMeetups())}>Delete Favorite</button>
+                        
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     )})}
+
         return (  
-            <div>
-                <div className="FavMeetup">
+            <div className="FavMeetups-container">
+                <div className="ScrollableFavMeetups">
                 {mappedFavs}
-                <Map markers={props.favMeetups}/>
+                </div>
+                <div className="Map">
+                    {/* <Map markers={props.favMeetups}/> */}
                 </div>
             </div>
     )

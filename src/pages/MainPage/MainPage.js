@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import Map from '../../components/Map/Map'
-import Header from '../../components/UI/Header/Header';
 import SearchPane from '../../containers/SearchPane/SearchPane'
 import { handleLogOut, getProfile } from '../../state/actions/usersActions'
 import { handleAddressSubmit } from '../../state/actions/searchResultsActions'
@@ -23,10 +22,7 @@ const MainPage = (props) => {
         
 
         return (
-          <div className="MainPage">
-              <div className="MainPage-header">
-                <Header />
-              </div>
+          <div>
             <div className="MainPage-container">
                   <div className="Search-pane">
                     <SearchPane />

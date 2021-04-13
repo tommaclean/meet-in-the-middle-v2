@@ -26,7 +26,8 @@ export const actions = {
 export const actionLog = action => ({
   type: action
 })
-const setMeetups = (meetups) => ({ type: actions.GET_MEETUPS_SUCCESS, payload: meetups })
+
+const setMeetups = (meetups) => ({ type: actions.GET_MEETUPS_SUCCESS, meetups })
 
 export const getMeetups = () => async (dispatch) => {
    const requestOptions = {
@@ -35,9 +36,9 @@ export const getMeetups = () => async (dispatch) => {
           }
    }
    try {
-    const meetups = await fetch("http://localhost:3000/meetups", requestOptions).then(res => res.json())
-    dispatch(setMeetups(meetups))
-   } catch (e) {
+     const meetups = await fetch("http://localhost:3000/meetups", requestOptions).then(res => res.json())
+     dispatch(setMeetups(meetups))
+  } catch (e) {
      dispatch(actionLog(actions.SET_ERROR))
    }
 };
@@ -52,7 +53,7 @@ export const getFavMeetups = () => dispatch => {
       'Accept': 'application/json',
       'Authorization': localStorage.token
     }
-};
+  };
   return fetch("http://localhost:3000/fav_meetups", requestOptions)
     .then(res => res.json())
     .then(favMeetups => {
@@ -74,7 +75,7 @@ export const setShowFavMeetups = () => dispatch => {
 };
 
 export const confirmSelection = (locationInfo) => dispatch => {
-  console.log("meetupsActions")
+  
   dispatch({ type: 'CONFIRM_SELECTED_LOCATION_START' })
       const requestOptions = {
         method: 'POST',
@@ -97,7 +98,7 @@ export const confirmSelection = (locationInfo) => dispatch => {
 };
 
 export const favoriteMeetup = (meetupId) => dispatch => {
-
+  console.log("favoriteMeetup")
   const requestOptions = {
     method: 'POST',
     headers: { 
@@ -134,7 +135,10 @@ export const deleteFavorite = (favMeetupID) => dispatch => {
   dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_START'})
   const requestOptions = {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization': localStorage.token
+    }
 };
   return fetch(`http://localhost:3000/fav_meetups/${favMeetupID}`, requestOptions)
                 .then(() => {dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_SUCCESS'})

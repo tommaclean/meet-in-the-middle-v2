@@ -1,36 +1,34 @@
-/* .SearchResults {
-    height: 300px;
-    overflow-y: scroll;
-    border: 1px solid black;
-} */
-
 .searchResultsMain {
-    height: auto;
-    width: auto;
+    /* height: auto;
     position: relative; 
     opacity: 1;
+    margin: 10px; */
+    width: 100%;
 }
 
-div.formInputDiv {
-    margin: auto;
+.formInputDiv {
+    margin-top: 20%;
+    padding: 20px;
     border: 5px solid white;
-    height: 150px;
-    width: 400px;
+    border-radius: 5%;
+    height: auto;
     position: relative;
-    /* left: 100px; */
-    top: 150px; 
+    width: 100%;
 }
 .selectedLocationDiv {
-    width: 600px;
+    top: 110px;
     display: inline;
     /* position: fixed; */
+    background: #383B3C;
+    z-index: 1;
+    width: inherit;
     /* left: 50px;
     top: 100px; */
 }
 
 .searchResultsDiv {
     height: 800px;
-    width: 600px;
+    width: inherit;
     position: absolute;
     display: none;
 }

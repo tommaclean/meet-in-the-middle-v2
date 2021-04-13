@@ -20,3 +20,13 @@
     font-weight: lighter;
     font-size: 1.1rem;
 }
+
+.closeButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.closeButton:hover {
+    cursor: pointer;
+}

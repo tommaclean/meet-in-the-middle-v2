@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import './Header.css'
 import Button from '../Button/Button'
 import { Link, useHistory } from 'react-router-dom';
 import { handleLogOut } from '../../../state/actions/usersActions'
+import { closeSelectedLocation, showSearchResults } from '../../../state/actions/searchResultsActions'
 
 const Header = (props) => { 
     const history = useHistory()
-
+    const dispatch = useDispatch()
   
     useEffect(() => {
      
@@ -33,16 +34,21 @@ const Header = (props) => {
           <div className="divider"></div>
           <div className="divider"></div>
           <div className="buttons">
+            
+            <Link to="/" onClick={() => dispatch(closeSelectedLocation())}>
+              <Button>
+                Home
+              </Button>
+            </Link>
+            <div className="divider"></div>
+            <div className="divider"></div>
             <Link to="/profile">
               <Button>
                 Profile
               </Button>
             </Link>
-            <Link to="/">
-              <Button>
-                Home
-              </Button>
-            </Link>
+            <div className="divider"></div>
+            <div className="divider"></div>
             <div onClick={clearToken}>
               <Button>Log Out</Button>
             </div>

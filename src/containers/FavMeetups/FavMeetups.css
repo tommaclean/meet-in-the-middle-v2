@@ -1,27 +1,93 @@
-/* .FavMeetup
-{
-    background: rgb(121,172,114);
-    background: radial-gradient(circle, rgba(121,172,114,1) 0%, rgba(148,168,233,1) 100%);
-    margin-left: 100px;
+.FavMeetups-container {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+    }
+  
+  .Map {
+    width: inherit;
+    }
+  
+  
+     
+  .FavMeetup {
+    border: 1px solid rgba(255, 255, 255, 0.632);
+    padding: 5px;
+  }
+  
+  ul {
+    background-color: #4d57c1;
     list-style-type: none;
-    text-align: left;
-    border: 1px solid black ;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 25px;
-    letter-spacing: 1px;
-    color: white;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-}
-.MainPastMeetups {
-    height: 250px;
-    overflow-y: auto;
-}
-
-.FavoriteMeetup {
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  .favMeetupName {
     font-size: 20px;
-    letter-spacing: 0px;
-} */
+    font-weight: 400;
+  }
+  
+  .favMeetupAddress {
+    font-size: 18px;
+    font-weight: 200;
+  }
+  
+  .favMeetupButtons {
+    display: flex;
+    cursor: pointer;
+  }
+  
+  
+  .individualFavMeetup {
+    list-style-type: none;
+    margin: 10px;
+    font-size: 16px;
+    text-align: left;
+    
+  }
+  
+  .individualFavMeetup:hover {
+    background-color: rgb(154, 154, 151);
+    
+  }
+  
+  .ScrollableFavMeetups {
+    margin: 30px;
+    list-style-type: none;
+    overflow-y: auto;
+  } 
+  
+  .resultButton {
+    color: #fff !important;
+    text-decoration: none;
+    background: #4d57c1;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    font-size: 16px;
+  }
+  .resultButton:hover {
+    background: #434343;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+  }
+  
+  .divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+  }
+  
+  
+  
+  
+  
+  

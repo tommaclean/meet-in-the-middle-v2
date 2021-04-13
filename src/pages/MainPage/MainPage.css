@@ -9,52 +9,39 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
 .MainPage {
-    /* text-align: center; */
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     background-color: #282c34;
-    /* min-height: 100vh; */
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white; */
-  }
-  .MainPage-header {
-    display: inline;
-    width: 100%;
-    height: auto;
-    top: 0;
-    position: fixed;
-    border: 5px solid yellow;
-    z-index: 1;
+    margin: 0;
+    
   }
 
+
   .MainPage-container {
-    /* width: 90%; */
+    background-color: #383B3C;
+    color: #ffffff;
     display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     position: relative;
-    
-    /* border: 1px solid black; */
+    margin: 0;
   }
 
   
 
   .Search-pane {
     position: relative;
-    border: 5px solid red;
     height: 700px;
-    margin-top: 110px;
+    /* margin-top: 110px; */
     overflow-y: auto;
     overflow-x: hidden;
+    margin: 10px;
+    width: 40%;
   }
 
   .Map {
     width: 60%;
-    margin-top: 110px;
-    border: 5px solid blue;
     overflow: hidden;
   }
   

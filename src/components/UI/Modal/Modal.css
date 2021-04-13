@@ -1,0 +1,19 @@
+.pure-modal .panel-heading {
+    background: #4d57c1;
+    font-family: Poppins;
+}
+.pure-modal-backdrop .pure-modal {
+    width: 450px;
+}
+
+.pure-modal .panel-body {
+    word-break: break-all;
+    background: #282c34;
+}
+
+.pure-modal .panel-footer {
+    background: #282c34;
+}
+
+
+

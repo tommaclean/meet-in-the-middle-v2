@@ -8,7 +8,7 @@ const Button = (props) => {
             <div className="button">
                 {props.children}
             </div>
-            <div className="divider"></div>
+          
         </div>
     
     )

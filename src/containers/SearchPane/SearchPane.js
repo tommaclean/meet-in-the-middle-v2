@@ -18,13 +18,16 @@ const SearchPane = (props) => {
   const [showFormInput, toggleFormInput] = useToggle(true)
   
     useEffect(() => {
-        if (!showFormInput || props.showSelectedLocation) {
+        if (!props.showFormInput || !showFormInput || props.showSelectedLocation) {
           TweenLite.to(selectedLocationDiv, {
             autoAlpha: 1
           })
         } else {
           TweenLite.to(selectedLocationDiv, {
             autoAlpha: 0
+          })
+          TweenLite.to(formInputDiv, {
+            autoAlpha: 1, display: "block"
           })
         } 
   
@@ -64,27 +67,28 @@ const SearchPane = (props) => {
             })
           }
         }
+
         const slideInputLeft = () => {
-          console.log("slideInputLeft")
-          TweenLite.to(formInputDiv, .5, {
-            autoAlpha: 0
+          
+          TweenLite.to(formInputDiv, 1, {
+            display: "none"
           })
         }
 
         const slideInputRight = () => {
-          console.log("slideInputRight")
+         
           TweenLite.to(formInputDiv, 1, {
             autoAlpha: 1
           })
         }
 
     
-        // console.log("SearchPane props: ", props)
+    
         
         return (
           <div className="searchResultsMain">
             <div className="formInputDiv" ref={el => (formInputDiv = el)}>
-              {showFormInput ? 
+              {props.showFormInput ? 
               <FormInput handleAddressSubmit={props.handleAddressSubmit} handleFormInputTransition={() => handleFormInputTransition()}/> : null }
               
             </div>
