@@ -24,6 +24,7 @@ const PastMeetups = (props) => {
     }, [])
 
     let mappedMeetups
+    console.log(pastMeetups)
    
 
     if (pastMeetups.length) {
@@ -32,12 +33,12 @@ const PastMeetups = (props) => {
             <div key={index} className="individualMeetup" >
                 <div key={meetup.id} className="PastMeetup">
                 <li className="meetupName">{meetup.name}</li>
-                <li className="meetupAddress">{meetup.vicinity}</li>
-                    <div className="pastMeetupButtons">
-                     
-                        <button className="resultButton" onClick={() => dispatch(favoriteMeetup(meetup.id)).then(() => dispatch(getFavMeetups()))}>Favorite</button>
+                <li className="meetupAddress">{meetup.address}
                         <div className="divider"></div>
                         <button className="resultButton" onClick={() => dispatch(deleteMeetup(meetup.id)).then(() => dispatch(getMeetups()))}>Delete</button>
+                
+                </li>
+                    <div className="pastMeetupButtons">
                         
                     </div>
                 </div>
@@ -46,6 +47,7 @@ const PastMeetups = (props) => {
         return (  
             <div className="PastMeetups-container">
                 <div className="ScrollablePastMeetups">
+                <h2 className="pastMeetupsHeader">Past Meetups</h2>
                     {mappedMeetups}
                 </div>
                 <div className="Map">

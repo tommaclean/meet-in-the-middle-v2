@@ -43,40 +43,53 @@ export const getMeetups = () => async (dispatch) => {
    }
 };
 
+// ********************LUIS CODE ABOVE HERE****************************** //
 
+// export const getFavMeetups = () => dispatch => {
+//   const requestOptions = {
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Accept': 'application/json',
+//       'Authorization': localStorage.token
+//     }
+//   };
+//   return fetch("http://localhost:3000/fav_meetups", requestOptions)
+//     .then(res => res.json())
+//     .then(favMeetups => {
+//       dispatch({ type: "GET_FAV_MEETUPS_SUCCESS", favMeetups: favMeetups });
+//       })
+//       .catch(error => {
+//       dispatch({ type: "GET_FAV_MEETUPS_FAILURE", error: error });
+//     });
+// };
 
-export const getFavMeetups = () => dispatch => {
-  dispatch({ type: "GET_FAV_MEETUPS_START" });
-  const requestOptions = {
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': localStorage.token
+const setFavMeetups = (favMeetups) => ({ type: actions.GET_FAV_MEETUPS_SUCCESS, favMeetups})
+
+export const getFavMeetups = () => async (dispatch) => {
+    const requestOptions = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': localStorage.token
+      }
+    };
+    try {
+        const favMeetups = await fetch("http://localhost:3000/fav_meetups", requestOptions).then(res => res.json())
+        dispatch(setFavMeetups(favMeetups))
+    } catch (e) {
+        dispatch(actionLog(actions.SET_ERROR))
     }
   };
-  return fetch("http://localhost:3000/fav_meetups", requestOptions)
-    .then(res => res.json())
-    .then(favMeetups => {
-      dispatch({ type: "GET_FAV_MEETUPS_SUCCESS", favMeetups: favMeetups });
-      })
-      .catch(error => {
-      dispatch({ type: "GET_FAV_MEETUPS_FAILURE", error: error });
-    });
-};
 
 export const setShowPastMeetups = () => dispatch => {
-  dispatch({ type: 'SET_SHOW_PAST_MEETUPS_START'})
   dispatch({ type: 'SET_SHOW_PAST_MEETUPS_SUCCESS'})
 };
 
 export const setShowFavMeetups = () => dispatch => {
-  dispatch({ type: 'SET_SHOW_FAV_MEETUPS_START'})
   dispatch({ type: 'SET_SHOW_FAV_MEETUPS_SUCCESS'})
 };
 
-export const confirmSelection = (locationInfo) => dispatch => {
-  
-  dispatch({ type: 'CONFIRM_SELECTED_LOCATION_START' })
+export const confirmSelection = (locationInfo) => async (dispatch) => {
       const requestOptions = {
         method: 'POST',
         headers: { 
@@ -87,18 +100,15 @@ export const confirmSelection = (locationInfo) => dispatch => {
        body: JSON.stringify(locationInfo)
     };
    
-
-  return fetch('http://localhost:3000/meetups/', requestOptions)
-              .then(response => response.json())
-              .then(() => {dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS'})})
-              .then(getMeetups)
-              .catch(error => {
-                dispatch({ type: "CONFIRM_SELECTED_LOCATION_FAILURE", error: error });
-              });
+    try {
+      await fetch('http://localhost:3000/meetups/', requestOptions).then(response => response.json())
+      dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS'})
+    } catch (e) {
+      dispatch(actionLog(actions.SET_ERROR))
+    }
 };
 
-export const favoriteMeetup = (meetupId) => dispatch => {
-  console.log("favoriteMeetup")
+export const favoriteMeetup = (meetupId) => async (dispatch) => {
   const requestOptions = {
     method: 'POST',
     headers: { 
@@ -106,33 +116,34 @@ export const favoriteMeetup = (meetupId) => dispatch => {
       'Authorization': localStorage.token
     },
 
-    body: JSON.stringify({meetup_id: meetupId, user_id: 1})
-};
-  return fetch('http://localhost:3000/fav_meetups', requestOptions)
-                .then(response => response.json())
-                .then(() => {dispatch({ type: 'CONFIRM_FAV_MEETUP_SUCCESS'})
-                })
-                .catch(error => {
-                  dispatch({ type: "CONFIRM_FAV_MEETUP_FAILURE", error: error });
-                });
+    body: JSON.stringify({meetup_id: meetupId})
+  };
+  try {
+    fetch('http://localhost:3000/fav_meetups', requestOptions).then(response => response.json())
+    dispatch({ type: 'CONFIRM_FAV_MEETUP_SUCCESS'})
+  } catch (e) {
+    dispatch(actionLog(actions.SET_ERROR))
+  }
 };
 
-export const deleteMeetup = (meetupId) => dispatch => {
-  dispatch({ type: 'CONFIRM_DELETE_MEETUP_START'})
+export const deleteMeetup = (meetupId) => async (dispatch) => {
   const requestOptions = {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.token
+    }
 };
-  return fetch(`http://localhost:3000/meetups/${meetupId}`, requestOptions)
-                .then(() => {dispatch({ type: 'CONFIRM_DELETE_MEETUP_SUCCESS'})
-                })
-                .catch(error => {
-                  dispatch({ type: "CONFIRM_DELETE_MEETUP_FAILURE", error: error });
-                });
+
+  try {
+    await fetch(`http://localhost:3000/meetups/${meetupId}`, requestOptions)
+    dispatch({ type: 'CONFIRM_DELETE_MEETUP_SUCCESS'})
+  } catch (e) {
+    dispatch(actionLog(actions.SET_ERROR))
+  }
 }
 
-export const deleteFavorite = (favMeetupID) => dispatch => {
-  dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_START'})
+export const deleteFavorite = (favMeetupID) => async (dispatch) => {
   const requestOptions = {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json',
@@ -140,12 +151,14 @@ export const deleteFavorite = (favMeetupID) => dispatch => {
     'Authorization': localStorage.token
     }
 };
-  return fetch(`http://localhost:3000/fav_meetups/${favMeetupID}`, requestOptions)
-                .then(() => {dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_SUCCESS'})
-                })
-                .catch(error => {
-                  dispatch({ type: "CONFIRM_DELETE_FAV_MEETUP_FAILURE", error: error });
-                });
+
+  try {
+    await fetch(`http://localhost:3000/fav_meetups/${favMeetupID}`, requestOptions)
+    dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_SUCCESS'})
+  } catch (e) {
+    dispatch(actionLog(actions.SET_ERROR))
+  }
+  
 }
   
 
