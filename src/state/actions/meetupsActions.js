@@ -14,7 +14,7 @@ export const actions = {
 //         "Authorization": localStorage.token
 //       }
 //   };
-//     return fetch("http://localhost:3000/meetups", requestOptions)
+//     return fetch("https://meet-in-the-middle-back-end.herokuapp.com/meetups", requestOptions)
 //       .then(res => res.json())
 //       .then(meetups => {
 //         dispatch({ type: "GET_MEETUPS_SUCCESS", meetups: meetups });
@@ -36,7 +36,7 @@ export const getMeetups = () => async (dispatch) => {
           }
    }
    try {
-     const meetups = await fetch("http://localhost:3000/meetups", requestOptions).then(res => res.json())
+     const meetups = await fetch("https://meet-in-the-middle-back-end.herokuapp.com/meetups", requestOptions).then(res => res.json())
      dispatch(setMeetups(meetups))
   } catch (e) {
      dispatch(actionLog(actions.SET_ERROR))
@@ -53,7 +53,7 @@ export const getMeetups = () => async (dispatch) => {
 //       'Authorization': localStorage.token
 //     }
 //   };
-//   return fetch("http://localhost:3000/fav_meetups", requestOptions)
+//   return fetch("https://meet-in-the-middle-back-end.herokuapp.com/fav_meetups", requestOptions)
 //     .then(res => res.json())
 //     .then(favMeetups => {
 //       dispatch({ type: "GET_FAV_MEETUPS_SUCCESS", favMeetups: favMeetups });
@@ -74,7 +74,7 @@ export const getFavMeetups = () => async (dispatch) => {
       }
     };
     try {
-        const favMeetups = await fetch("http://localhost:3000/fav_meetups", requestOptions).then(res => res.json())
+        const favMeetups = await fetch("https://meet-in-the-middle-back-end.herokuapp.com/fav_meetups", requestOptions).then(res => res.json())
         dispatch(setFavMeetups(favMeetups))
     } catch (e) {
         dispatch(actionLog(actions.SET_ERROR))
@@ -101,7 +101,7 @@ export const confirmSelection = (locationInfo) => async (dispatch) => {
     };
    
     try {
-      await fetch('http://localhost:3000/meetups/', requestOptions).then(response => response.json())
+      await fetch('https://meet-in-the-middle-back-end.herokuapp.com/meetups/', requestOptions).then(response => response.json())
       dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS'})
     } catch (e) {
       dispatch(actionLog(actions.SET_ERROR))
@@ -119,7 +119,7 @@ export const favoriteMeetup = (meetupId) => async (dispatch) => {
     body: JSON.stringify({meetup_id: meetupId})
   };
   try {
-    fetch('http://localhost:3000/fav_meetups', requestOptions).then(response => response.json())
+    fetch('https://meet-in-the-middle-back-end.herokuapp.com/fav_meetups', requestOptions).then(response => response.json())
     dispatch({ type: 'CONFIRM_FAV_MEETUP_SUCCESS'})
   } catch (e) {
     dispatch(actionLog(actions.SET_ERROR))
@@ -136,7 +136,7 @@ export const deleteMeetup = (meetupId) => async (dispatch) => {
 };
 
   try {
-    await fetch(`http://localhost:3000/meetups/${meetupId}`, requestOptions)
+    await fetch(`https://meet-in-the-middle-back-end.herokuapp.com/meetups/${meetupId}`, requestOptions)
     dispatch({ type: 'CONFIRM_DELETE_MEETUP_SUCCESS'})
   } catch (e) {
     dispatch(actionLog(actions.SET_ERROR))
@@ -153,7 +153,7 @@ export const deleteFavorite = (favMeetupID) => async (dispatch) => {
 };
 
   try {
-    await fetch(`http://localhost:3000/fav_meetups/${favMeetupID}`, requestOptions)
+    await fetch(`https://meet-in-the-middle-back-end.herokuapp.com/fav_meetups/${favMeetupID}`, requestOptions)
     dispatch({ type: 'CONFIRM_DELETE_FAV_MEETUP_SUCCESS'})
   } catch (e) {
     dispatch(actionLog(actions.SET_ERROR))

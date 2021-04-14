@@ -6,7 +6,7 @@ export const handleLogin = (userInput) => dispatch => {
         body: JSON.stringify({"username": userInput.username, "password": userInput.password})
         };
 
-        return fetch("http://localhost:3000/login", requestOptions)
+        return fetch("https://meet-in-the-middle-back-end.herokuapp.com/login", requestOptions)
         .then(response => response.json())
         .then(data => {
             if (data.token) {
@@ -36,7 +36,7 @@ export const handleSignup = (userInput) => dispatch => {
             username: userInput.username, password: userInput.password})
         };
 
-        return fetch("http://localhost:3000/signup", requestOptions)
+        return fetch("https://meet-in-the-middle-back-end.herokuapp.com/signup", requestOptions)
         .then(response => response.json())
         .then(data => { 
             if (data.token) {
@@ -57,7 +57,7 @@ export const getProfile = () => dispatch => {
     let requestOptions = {
         headers: { 'Authorization': localStorage.token } 
     };
-    return fetch("http://localhost:3000/profile", requestOptions)
+    return fetch("https://meet-in-the-middle-back-end.herokuapp.com/profile", requestOptions)
         .then(response => response.json())
         .then(data => {
                 dispatch({ type: 'GET_PROFILE_SUCCESS', currentUser: {username: data.username, id: data.id }, token: localStorage.token })  
