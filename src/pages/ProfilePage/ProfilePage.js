@@ -1,14 +1,9 @@
-import { useState } from "react";
 import "./ProfilePage.css";
 import PastMeetups from "../../containers/PastMeetups/PastMeetups";
-import FavMeetups from "../../containers/FavMeetups/FavMeetups";
 
-function Tabs() {
-  const [toggleState, setToggleState] = useState(1);
 
-  const toggleTab = (index) => {
-    setToggleState(index);
-  };
+function ProfilePage() {
+ 
 
   return (
     <div className="container">
@@ -17,4 +12,4 @@ function Tabs() {
   );
 }
 
-export default Tabs;
+export default ProfilePage;

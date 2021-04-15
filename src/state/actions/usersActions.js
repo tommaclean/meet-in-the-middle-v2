@@ -5,8 +5,9 @@ export const handleLogin = (userInput) => dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({"username": userInput.username, "password": userInput.password})
         };
-
-        return fetch("https://meet-in-the-middle-back-end.herokuapp.com/login", requestOptions)
+        const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
+        const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/login'
+        return fetch(proxyURL + fetchURL, requestOptions)
         .then(response => response.json())
         .then(data => {
             if (data.token) {
@@ -36,7 +37,7 @@ export const handleSignup = (userInput) => dispatch => {
             username: userInput.username, password: userInput.password})
         };
 
-        return fetch("https://meet-in-the-middle-back-end.herokuapp.com/signup", requestOptions)
+        return fetch("https://cors-anywhere.herokuapp.com/https://meet-in-the-middle-back-end.herokuapp.com/signup", requestOptions)
         .then(response => response.json())
         .then(data => { 
             if (data.token) {
@@ -55,10 +56,16 @@ export const getProfile = () => dispatch => {
     
     dispatch({ type: 'GET_PROFILE_START' })
     let requestOptions = {
-        headers: { 'Authorization': localStorage.token } 
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json', 
+            'Authorization': localStorage.token 
+        }
     };
-    return fetch("https://meet-in-the-middle-back-end.herokuapp.com/profile", requestOptions)
-        .then(response => response.json())
+    const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
+        const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/profile'
+        return fetch(proxyURL + fetchURL, requestOptions)
+        .then(response => console.log("getProfile res: ", response))
         .then(data => {
                 dispatch({ type: 'GET_PROFILE_SUCCESS', currentUser: {username: data.username, id: data.id }, token: localStorage.token })  
             } 
