@@ -1,26 +1,37 @@
-export const handleLogin = (userInput) => dispatch => {
+export const handleLogin = (userInput) => async (dispatch) => {
     dispatch({ type: 'USER_LOGIN_START' })
         let requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({"username": userInput.username, "password": userInput.password})
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json' 
+        },
+        body: JSON.stringify({ "username": userInput.username, "password": userInput.password })
         };
         const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
-        const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/login'
-        return fetch(proxyURL + fetchURL, requestOptions)
-        .then(response => response.json())
-        .then(data => {
-            if (data.token) {
-                localStorage.token = data.token
-                dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: data.username, id: data.user_id }, token: localStorage.token })  
-            } else {
-                alert('Login Failed', 'Username or Password is incorrect');
-              }
-        })
-        .catch(error => {
+        const fetchURL = 'http://alloworigin.com/get?url=https://meet-in-the-middle-back-end.herokuapp.com/login'
+
+        try {
+            fetch(fetchURL, requestOptions).then(response => response.text()).then(text => console.log("text: ", text))
+        } catch (e) {
             alert("Login failed. Username or password incorrect.")
-            dispatch({ type: "USER_LOGIN_FAILURE", error: error });
-        });
+        }
+
+        
+        
+        //     data => {
+        //     if (data.token) {
+        //         localStorage.token = data.token
+        //         dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: data.username, id: data.user_id }, token: localStorage.token })  
+        //     } else {
+        //         alert('Login Failed', 'Username or Password is incorrect');
+        //       }
+        // }
+        // )
+        // .catch(error => {
+        //     alert("Login failed. Username or password incorrect.")
+        //     dispatch({ type: "USER_LOGIN_FAILURE", error: error });
+        // });
      
 };
 
