@@ -1,3 +1,15 @@
+export const actions = {
+    USER_LOGIN_SUCCESS: 'USER_LOGIN_SUCCESS'
+}
+
+
+
+
+
+const setLoggedInUser = dispatch({ type: actions.USER_LOGIN_SUCCESS,  })
+
+
+
 export const handleLogin = (userInput) => async (dispatch) => {
     dispatch({ type: 'USER_LOGIN_START' })
         let requestOptions = {
@@ -12,7 +24,9 @@ export const handleLogin = (userInput) => async (dispatch) => {
         const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/login'
 
         try {
-            fetch(fetchURL, requestOptions).then(response => response.text()).then(text => console.log("text: ", text))
+            const loggedInData = await fetch(fetchURL, requestOptions).then(res => res.json())
+            console.log(loggedInData)
+            
         } catch (e) {
             alert("Login failed. Username or password incorrect.")
         }
