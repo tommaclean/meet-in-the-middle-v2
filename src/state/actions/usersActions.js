@@ -26,6 +26,7 @@ export const handleLogin = (userInput) => async (dispatch) => {
             const loggedInData = await fetch(fetchURL, requestOptions).then(res => res.json())
             .then(data => {
                 if (data.token) {
+                    console.log("LoggedIn Data: ", data)
                     localStorage.token = data.token
                     dispatch(setLoggedInUser(loggedInData))
                 }
