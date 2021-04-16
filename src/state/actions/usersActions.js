@@ -6,12 +6,11 @@ export const actions = {
 
 
 
-const setLoggedInUser = dispatch({ type: actions.USER_LOGIN_SUCCESS,  })
+const setLoggedInUser = (data) => ({ type: actions.USER_LOGIN_SUCCESS, currentUser: {username: data.username, id: data.user_id }, token: localStorage.token })
 
 
 
 export const handleLogin = (userInput) => async (dispatch) => {
-    dispatch({ type: 'USER_LOGIN_START' })
         let requestOptions = {
         method: 'POST',
         headers: { 
@@ -20,12 +19,17 @@ export const handleLogin = (userInput) => async (dispatch) => {
         },
         body: JSON.stringify({ "username": userInput.username, "password": userInput.password })
         };
-        const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
+        // const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
         const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/login'
 
         try {
             const loggedInData = await fetch(fetchURL, requestOptions).then(res => res.json())
-            console.log(loggedInData)
+            .then(data => {
+                if (data.token) {
+                    localStorage.token = data.token
+                    dispatch(setLoggedInUser(loggedInData))
+                }
+            })
             
         } catch (e) {
             alert("Login failed. Username or password incorrect.")
