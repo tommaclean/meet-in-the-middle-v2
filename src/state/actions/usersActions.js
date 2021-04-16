@@ -12,7 +12,7 @@ export const handleLogin = (userInput) => async (dispatch) => {
         const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/login'
 
         try {
-            fetch(proxyURL + fetchURL, requestOptions).then(response => response.text()).then(text => console.log("text: ", text))
+            fetch(fetchURL, requestOptions).then(response => response.text()).then(text => console.log("text: ", text))
         } catch (e) {
             alert("Login failed. Username or password incorrect.")
         }
