@@ -2,7 +2,6 @@ export const handleLogin = (userInput) => async (dispatch) => {
     dispatch({ type: 'USER_LOGIN_START' })
         let requestOptions = {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 
             'Content-Type': 'application/json',
             'Accept': 'application/json' 
