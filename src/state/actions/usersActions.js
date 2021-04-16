@@ -8,7 +8,7 @@ export const handleLogin = (userInput) => async (dispatch) => {
         },
         body: JSON.stringify({ "username": userInput.username, "password": userInput.password })
         };
-        const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
+        const proxyURL = 'https://cors-anywhere.herokuapp.com/'
         const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/login'
 
         try {
