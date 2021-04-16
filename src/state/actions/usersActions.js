@@ -9,10 +9,10 @@ export const handleLogin = (userInput) => async (dispatch) => {
         body: JSON.stringify({ "username": userInput.username, "password": userInput.password })
         };
         const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
-        const fetchURL = 'http://alloworigin.com/get?url=https://meet-in-the-middle-back-end.herokuapp.com/login'
+        const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/login'
 
         try {
-            fetch(fetchURL, requestOptions).then(response => response.text()).then(text => console.log("text: ", text))
+            fetch(proxyURL + fetchURL, requestOptions).then(response => response.text()).then(text => console.log("text: ", text))
         } catch (e) {
             alert("Login failed. Username or password incorrect.")
         }
