@@ -6,7 +6,7 @@ export const actions = {
 
 
 
-const setLoggedInUser = (data) => ({ type: actions.USER_LOGIN_SUCCESS, currentUser: {username: data.username, id: data.user_id }, token: localStorage.token })
+const setLoggedInUser = () => ({ type: actions.USER_LOGIN_SUCCESS, token: localStorage.token })
 
 
 
@@ -35,22 +35,6 @@ export const handleLogin = (userInput) => async (dispatch) => {
         } catch (e) {
             alert("Login failed. Username or password incorrect.")
         }
-
-        
-        
-        //     data => {
-        //     if (data.token) {
-        //         localStorage.token = data.token
-        //         dispatch({ type: 'USER_LOGIN_SUCCESS', currentUser: {username: data.username, id: data.user_id }, token: localStorage.token })  
-        //     } else {
-        //         alert('Login Failed', 'Username or Password is incorrect');
-        //       }
-        // }
-        // )
-        // .catch(error => {
-        //     alert("Login failed. Username or password incorrect.")
-        //     dispatch({ type: "USER_LOGIN_FAILURE", error: error });
-        // });
      
 };
 
@@ -82,9 +66,7 @@ export const handleSignup = (userInput) => dispatch => {
      
 };
 
-export const getProfile = () => dispatch => {
-    
-    dispatch({ type: 'GET_PROFILE_START' })
+export const getProfile = () => async (dispatch) => {
     let requestOptions = {
         headers: { 
             'Content-Type': 'application/json',
@@ -92,15 +74,19 @@ export const getProfile = () => dispatch => {
             'Authorization': localStorage.token 
         }
     };
-    const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
         const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/profile'
-        return fetch(proxyURL + fetchURL, requestOptions)
-        .then(response => console.log("getProfile res: ", response))
-        .then(data => {
-                dispatch({ type: 'GET_PROFILE_SUCCESS', currentUser: {username: data.username, id: data.id }, token: localStorage.token })  
-            } 
-        )
-        .catch(error => {dispatch({ type: "GET_PROFILE_FAILURE", error: error });});
+        try {
+            const userInfo = await fetch(fetchURL, requestOptions).then(res => res.json())
+            console.log("userInfo: ", userInfo)
+        } catch (e) {
+            console.log("getProile error: ", e)
+        }
+        // fetch(fetchURL, requestOptions).then(response => console.log("getProfile res: ", response))
+        // .then(data => {
+        //         dispatch({ type: 'GET_PROFILE_SUCCESS', currentUser: {username: data.username, id: data.id }, token: localStorage.token })  
+        //     } 
+        // )
+        // .catch(error => {dispatch({ type: "GET_PROFILE_FAILURE", error: error });});
 }
 
 export const handleLogOut = () => dispatch => {

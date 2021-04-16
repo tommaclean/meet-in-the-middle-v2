@@ -20,7 +20,7 @@ export default (state = defaultState, action) => {
     case 'USER_LOGIN_START':
         return {...state}
     case 'USER_LOGIN_SUCCESS':
-        return {...state, currentUser: action.currentUser, loggedIn: true, token: action.token }
+        return {...state, loggedIn: true, token: action.token }
     case 'USER_LOGIN_FAILURE':
         return action.error
 
