@@ -1,6 +1,6 @@
 import Geocode from 'react-geocode';
-// Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY)
-Geocode.setApiKey("AIzaSyAeYFpR72Le6fMSUeRbDQ4rce0_mAvjlTs")
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY)
+
   
 export const handleAddressSubmit = ({address1, address2, address3}) => dispatch => {
   // Empty latitude and longitude arrays to later find the average (midpoint)
@@ -80,10 +80,10 @@ const handlePlacesFetch = (coordinates, dispatch) => {
   dispatch({ type: 'GET_SEARCH_RESULTS_START'});
   const corStr = coordinates.toString()
   const apiKey = process.env.REACT_APP_GOOGLE_KEY
-  const googleURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`
+  const googleURL = `https://thingproxy.freeboard.io/fetch/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`
   const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
 
-  return fetch(proxyURL + googleURL)
+  return fetch(googleURL)
       .then(res => res.json())
       .then(searchResults => {  
         dispatch({ type: 'GET_SEARCH_RESULTS_SUCCESS', searchResults: searchResults.results, showSearchResults: true });
