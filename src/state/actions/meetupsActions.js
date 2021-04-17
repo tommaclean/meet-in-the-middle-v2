@@ -28,6 +28,7 @@ export const getMeetups = () => async (dispatch) => {
      console.log("getMeetups res: ", meetups)
      
   } catch (e) {
+      console.log("getMeetups error: ", e)
      dispatch(actionLog(actions.SET_ERROR))
    }
 };
