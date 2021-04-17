@@ -24,8 +24,9 @@ export const getMeetups = () => async (dispatch) => {
    try {
      const meetups = await fetch("https://meet-in-the-middle-back-end.herokuapp.com/meetups", requestOptions)
      .then(res => res.json())
-     .then(() => dispatch(setMeetups(meetups)))
-     console.log("getMeetups res: ", meetups)
+     .then(data => console.log("getMeetups res: ", data))
+    //  console.log("getMeetups res: ", meetups)
+    //  dispatch(setMeetups(meetups))
      
   } catch (e) {
       console.log("getMeetups error: ", e)
