@@ -30,7 +30,7 @@ export default (state = defaultState, action) => {
     case userActions.GET_PROFILE_START:
         return {...state}
     case userActions.GET_PROFILE_SUCCESS:
-        return {...state, currentUser: action.currentUser, loggedIn: true, token: action.token }
+        return {...state, currentUser: action.currentUser, loggedIn: true, token: localStorage.token }
     case userActions.GET_PROFILE_FAILURE:
         return action.error
 
