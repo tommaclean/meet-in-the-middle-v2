@@ -16,13 +16,16 @@ const setMeetups = (meetups) => ({ type: actions.GET_MEETUPS_SUCCESS, meetups })
 export const getMeetups = () => async (dispatch) => {
    const requestOptions = {
           headers: {
-            "Authorization": localStorage.token
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "Authorization": `Bearer ${localStorage.token}`
           }
    }
    try {
      const meetups = await fetch("https://meet-in-the-middle-back-end.herokuapp.com/meetups", requestOptions)
      .then(res => res.json())
      .then(() => dispatch(setMeetups(meetups)))
+     console.log("getMeetups res: ", meetups)
      
   } catch (e) {
      dispatch(actionLog(actions.SET_ERROR))
@@ -37,7 +40,7 @@ export const getFavMeetups = () => async (dispatch) => {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': localStorage.token
+        "Authorization": `Bearer ${localStorage.token}`
       }
     };
     try {
