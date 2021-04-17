@@ -25,7 +25,7 @@ export const handleLogin = (userInput) => async (dispatch) => {
         body: JSON.stringify({ "username": userInput.username, "password": userInput.password })
         };
         // const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
-        const fetchURL = 'http://localhost:3000/login'
+        const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/login'
 
         try {
             const loggedInData = await fetch(fetchURL, requestOptions).then(res => res.json())
@@ -54,7 +54,7 @@ export const handleSignup = (userInput) => dispatch => {
             username: userInput.username, password: userInput.password})
         };
 
-        return fetch("https://cors-anywhere.herokuapp.com/http://localhost:3000/signup", requestOptions)
+        return fetch("https://cors-anywhere.herokuapp.com/https://meet-in-the-middle-back-end.herokuapp.com/signup", requestOptions)
         .then(response => response.json())
         .then(data => { 
             if (data.token) {
@@ -80,7 +80,7 @@ export const getProfile = () => async (dispatch) => {
             'Authorization': `Bearer ${localStorage.token}` 
         }
     };
-        const fetchURL = 'http://localhost:3000/profile'
+        const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/profile'
         try {
             const userInfo = await fetch(fetchURL, requestOptions).then(res => res.json())
             console.log("userInfo: ", userInfo)
