@@ -80,7 +80,7 @@ const handlePlacesFetch = (coordinates, dispatch) => {
   dispatch({ type: 'GET_SEARCH_RESULTS_START'});
   const corStr = coordinates.toString()
   const apiKey = process.env.REACT_APP_GOOGLE_KEY
-  const googleURL = `https://thingproxy.freeboard.io/fetch/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`
+  const googleURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`
  
 
   return fetch(googleURL)
