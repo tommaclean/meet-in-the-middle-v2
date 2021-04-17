@@ -1,16 +1,21 @@
-export const actions = {
-    USER_LOGIN_SUCCESS: 'USER_LOGIN_SUCCESS'
+export const userActions = {
+    USER_LOGIN_SUCCESS: 'USER_LOGIN_SUCCESS',
+    GET_PROFILE_SUCCESS: 'GET_PROFILE_SUCCESS',
+    SET_ERROR: 'SET_ERROR'
 }
 
+export const actionLog = action => ({
+    type: action
+  })
 
 
-
-
-const setLoggedInUser = () => ({ type: actions.USER_LOGIN_SUCCESS, token: localStorage.token })
+const setLoggedInUser = (loggedInData) => ({ 
+    type: userActions.USER_LOGIN_SUCCESS, currentUser: {username: loggedInData.username, id: loggedInData.user_id }, token: loggedInData.token })
 
 
 
 export const handleLogin = (userInput) => async (dispatch) => {
+        console.log("userInput: ", userInput)
         let requestOptions = {
         method: 'POST',
         headers: { 
@@ -20,20 +25,18 @@ export const handleLogin = (userInput) => async (dispatch) => {
         body: JSON.stringify({ "username": userInput.username, "password": userInput.password })
         };
         // const proxyURL = 'https://thingproxy.freeboard.io/fetch/'
-        const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/login'
+        const fetchURL = 'http://localhost:3000/login'
 
         try {
             const loggedInData = await fetch(fetchURL, requestOptions).then(res => res.json())
-            .then(data => {
-                if (data.token) {
-                    console.log("LoggedIn Data: ", data)
-                    localStorage.token = data.token
-                    dispatch(setLoggedInUser(loggedInData))
-                }
-            })
-            
+            console.log('loggedInData: ', loggedInData)
+            if (loggedInData.token) {
+                localStorage.token = loggedInData.token
+                dispatch(setLoggedInUser(loggedInData))
+                dispatch(getProfile(localStorage.token))
+            }
         } catch (e) {
-            alert("Login failed. Username or password incorrect.")
+            dispatch(actionLog(userActions.SET_ERROR(e)))
         }
      
 };
@@ -51,7 +54,7 @@ export const handleSignup = (userInput) => dispatch => {
             username: userInput.username, password: userInput.password})
         };
 
-        return fetch("https://cors-anywhere.herokuapp.com/https://meet-in-the-middle-back-end.herokuapp.com/signup", requestOptions)
+        return fetch("https://cors-anywhere.herokuapp.com/http://localhost:3000/signup", requestOptions)
         .then(response => response.json())
         .then(data => { 
             if (data.token) {
@@ -66,20 +69,23 @@ export const handleSignup = (userInput) => dispatch => {
      
 };
 
-export const getProfile = () => async (dispatch) => {
+const setProfileInfo = (userInfo) => ({ type: userActions.GET_PROFILE_SUCCESS, currentUser: userInfo.currentUser, token: userInfo.token })
+
+export const getProfile = (token) => async (dispatch) => {
+    console.log("getProfile", localStorage.token)
     let requestOptions = {
         headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json', 
-            'Authorization': localStorage.token 
+            // 'Content-Type': 'application/json',
+            // 'Accept': 'application/json', 
+            'Authorization': `Bearer ${token}` 
         }
     };
-        const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/profile'
+        const fetchURL = 'http://localhost:3000/profile'
         try {
-            const userInfo = await fetch(fetchURL, requestOptions).then(res => res.json())
+            const userInfo = await fetch(fetchURL, requestOptions).then(res => res.json()).then(data => dispatch(setProfileInfo(data)))
             console.log("userInfo: ", userInfo)
         } catch (e) {
-            console.log("getProile error: ", e)
+            alert("Profile fetch failed")
         }
         // fetch(fetchURL, requestOptions).then(response => console.log("getProfile res: ", response))
         // .then(data => {

@@ -43,7 +43,7 @@ export const getMeetups = () => async (dispatch) => {
    }
 };
 
-// ********************LUIS CODE ABOVE HERE****************************** //
+
 
 // export const getFavMeetups = () => dispatch => {
 //   const requestOptions = {
