@@ -11,14 +11,14 @@ export const actionLog = action => ({
   type: action
 })
 
-const setMeetups = (meetups) => ({ type: actions.GET_MEETUPS_SUCCESS, meetups })
+const setMeetups = (meetups) => ({ type: actions.GET_MEETUPS_SUCCESS, meetups: meetups })
 
 export const getMeetups = () => async (dispatch) => {
    const requestOptions = {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            "Authorization": `Bearer ${localStorage.token}`
+            'Authorization': `Bearer ${localStorage.token}`
           }
    }
    try {
