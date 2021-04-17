@@ -62,9 +62,9 @@ const Map = (props) => {
 
   return (
     <div className="mainMap">
-    {/* <LoadScript
+    <LoadScript
       googleMapsApiKey={apiKey}
-    > */}
+    >
 
       <GoogleMap
         mapContainerStyle={containerStyle}
@@ -83,7 +83,7 @@ const Map = (props) => {
         </InfoWindow>: null }
         <></>
       </GoogleMap>
-    {/* </LoadScript> */}
+    </LoadScript>
   </div>
   )
 }
