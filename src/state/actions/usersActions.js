@@ -71,13 +71,13 @@ export const handleSignup = (userInput) => dispatch => {
 
 const setProfileInfo = (userInfo) => ({ type: userActions.GET_PROFILE_SUCCESS, currentUser: userInfo.currentUser, token: userInfo.token })
 
-export const getProfile = (token) => async (dispatch) => {
+export const getProfile = () => async (dispatch) => {
     console.log("getProfile", localStorage.token)
     let requestOptions = {
         headers: { 
             // 'Content-Type': 'application/json',
             // 'Accept': 'application/json', 
-            'Authorization': `Bearer ${token}` 
+            'Authorization': `Bearer ${localStorage.token}` 
         }
     };
         const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/profile'
