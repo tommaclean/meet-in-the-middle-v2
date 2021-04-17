@@ -54,7 +54,7 @@ export const handleSignup = (userInput) => dispatch => {
             username: userInput.username, password: userInput.password})
         };
 
-        return fetch("https://cors-anywhere.herokuapp.com/https://meet-in-the-middle-back-end.herokuapp.com/signup", requestOptions)
+        return fetch("https://meet-in-the-middle-back-end.herokuapp.com/signup", requestOptions)
         .then(response => response.json())
         .then(data => { 
             if (data.token) {

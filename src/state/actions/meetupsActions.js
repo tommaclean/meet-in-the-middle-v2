@@ -7,22 +7,6 @@ export const actions = {
   SET_ERROR: 'SET_ERROR'
 }
 
-// export const getMeetups = () => dispatch => {
-//     dispatch({ type: "GET_MEETUPS_START" });
-//     const requestOptions = {
-//       headers: {
-//         "Authorization": localStorage.token
-//       }
-//   };
-//     return fetch("https://meet-in-the-middle-back-end.herokuapp.com/meetups", requestOptions)
-//       .then(res => res.json())
-//       .then(meetups => {
-//         dispatch({ type: "GET_MEETUPS_SUCCESS", meetups: meetups });
-//         })
-//         .catch(error => {
-//         dispatch({ type: "GET_MEETUPS_FAILURE", error: error });
-//       });
-// };
 export const actionLog = action => ({
   type: action
 })
@@ -43,25 +27,6 @@ export const getMeetups = () => async (dispatch) => {
    }
 };
 
-
-
-// export const getFavMeetups = () => dispatch => {
-//   const requestOptions = {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json',
-//       'Authorization': localStorage.token
-//     }
-//   };
-//   return fetch("https://meet-in-the-middle-back-end.herokuapp.com/fav_meetups", requestOptions)
-//     .then(res => res.json())
-//     .then(favMeetups => {
-//       dispatch({ type: "GET_FAV_MEETUPS_SUCCESS", favMeetups: favMeetups });
-//       })
-//       .catch(error => {
-//       dispatch({ type: "GET_FAV_MEETUPS_FAILURE", error: error });
-//     });
-// };
 
 const setFavMeetups = (favMeetups) => ({ type: actions.GET_FAV_MEETUPS_SUCCESS, favMeetups})
 
@@ -90,6 +55,7 @@ export const setShowFavMeetups = () => dispatch => {
 };
 
 export const confirmSelection = (locationInfo) => async (dispatch) => {
+      console.log("locationInfo: ", locationInfo)
       const requestOptions = {
         method: 'POST',
         headers: { 
@@ -101,7 +67,7 @@ export const confirmSelection = (locationInfo) => async (dispatch) => {
     };
    
     try {
-      await fetch('https://meet-in-the-middle-back-end.herokuapp.com/meetups/', requestOptions).then(response => response.json())
+      await fetch('https://meet-in-the-middle-back-end.herokuapp.com/meetups/', requestOptions).then(response => response.json()).then(dispatch(getMeetups()))
       dispatch({ type: 'CONFIRM_SELECTED_LOCATION_SUCCESS'})
     } catch (e) {
       dispatch(actionLog(actions.SET_ERROR))
