@@ -20,8 +20,10 @@ export const getMeetups = () => async (dispatch) => {
           }
    }
    try {
-     const meetups = await fetch("https://meet-in-the-middle-back-end.herokuapp.com/meetups", requestOptions).then(res => res.json())
-     dispatch(setMeetups(meetups))
+     const meetups = await fetch("https://meet-in-the-middle-back-end.herokuapp.com/meetups", requestOptions)
+     .then(res => res.json())
+     .then(() => dispatch(setMeetups(meetups)))
+     
   } catch (e) {
      dispatch(actionLog(actions.SET_ERROR))
    }
