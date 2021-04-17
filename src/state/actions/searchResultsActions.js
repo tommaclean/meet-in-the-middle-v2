@@ -1,9 +1,9 @@
 import Geocode from 'react-geocode';
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY)
 
-  
+
 export const handleAddressSubmit = ({address1, address2, address3}) => dispatch => {
   // Empty latitude and longitude arrays to later find the average (midpoint)
+  Geocode.setApiKey(process.env.REACT_APP_GOOGLE_KEY)
   let lats = []
   let lngs = []
   
