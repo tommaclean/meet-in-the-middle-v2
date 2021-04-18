@@ -9,7 +9,7 @@ const PastMeetups = (props) => {
   
     const dispatch = useDispatch();
     const pastMeetups = useSelector(state => state.meetups.meetups)
-    const markers = useSelector(state => state.meetups.pastMeetups)
+    // const markers = useSelector(state => state.meetups.pastMeetups)
     // const midpoint = useSelector(state => state.searchResults.midpoint)
     // pastMeetups: state.meetups.meetups,
     // markers: state.meetups.pastMeetups,
@@ -20,7 +20,7 @@ const PastMeetups = (props) => {
         // dispatch(props.getMeetups())
         dispatch(getMeetups())
         
-    }, [])
+    }, [dispatch])
 
     let mappedMeetups
   

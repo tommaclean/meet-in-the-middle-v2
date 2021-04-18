@@ -27,10 +27,10 @@ const Map = (props) => {
         // handleLocationSet(result)
       }
 
-      const handleLocationSet = (result) => {
-        setLocationToShow(result)
-        setCoorToShow(result.geometry.location)
-      }
+      // const handleLocationSet = (result) => {
+      //   setLocationToShow(result)
+      //   setCoorToShow(result.geometry.location)
+      // }
 
       const handleToggleClose = () => {
         setshowMarker(false)
@@ -50,7 +50,7 @@ const Map = (props) => {
       return (
         <div className="map">
           <Marker 
-            key={result.id} 
+            key={index} 
             position={markerCoordinates} 
             animation={"BOUNCE"}
             onClick={() => infoWindowHandler(result)}

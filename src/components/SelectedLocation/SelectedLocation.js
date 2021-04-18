@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../SelectedLocation/SelectedLocation.css'
 import Button from '../UI/Button/Button'
-import { connect, useSelector, useDispatch } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { confirmSelection, getMeetups } from '../../state/actions/meetupsActions'
 import { closeSelectedLocation } from '../../state/actions/searchResultsActions'
 import Modal from '../UI/Modal/Modal'

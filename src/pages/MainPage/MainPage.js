@@ -18,7 +18,7 @@ const MainPage = (props) => {
             } else {
               history.push('/login')
             }
-          }, [localStorage.token])
+          }, [history])
         
 
         return (

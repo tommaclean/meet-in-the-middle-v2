@@ -31,7 +31,7 @@ const SearchPane = (props) => {
           })
         } 
   
-        }, [props.showSelectedLocation])
+        }, [props.showSelectedLocation, props.showFormInput, showFormInput])
 
         const handleFormInputTransition = () => {
           toggleFormInput()
