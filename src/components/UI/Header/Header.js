@@ -4,7 +4,7 @@ import './Header.css'
 import Button from '../Button/Button'
 import { Link, useHistory } from 'react-router-dom';
 import { handleLogOut } from '../../../state/actions/usersActions'
-import { closeSelectedLocation, showSearchResults } from '../../../state/actions/searchResultsActions'
+import { closeSelectedLocation } from '../../../state/actions/searchResultsActions'
 
 const Header = (props) => { 
     const history = useHistory()

@@ -35,7 +35,7 @@ const FormInput = (props) => {
         >
      
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div className="addressInput" className="addressInput">
+          <div className="addressInput" >
             <p>Address 1</p>
             
 

@@ -5,7 +5,7 @@ import FormInput from '../../components/UI/FormInput/FormInput';
 import SearchResults from '../SearchResults/SearchResults'
 import SelectedLocation from '../../components/SelectedLocation/SelectedLocation'
 import { handleAddressSubmit, clearSearchResults } from '../../state/actions/searchResultsActions'
-import { TweenLite, Power3 } from 'gsap'
+import { TweenLite } from 'gsap'
 import './SearchPane.css'
 
 

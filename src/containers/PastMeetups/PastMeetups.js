@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import './PastMeetups.css'
 import { useDispatch, useSelector } from 'react-redux'
 import Map from '../../components/Map/Map'
-import Button from '../../components/UI/Button/Button'
-import { favoriteMeetup, deleteMeetup, getFavMeetups, getMeetups, actionLog } from '../../state/actions/meetupsActions'
+import { deleteMeetup, getMeetups } from '../../state/actions/meetupsActions'
 
 
 const PastMeetups = (props) => {
@@ -57,12 +56,5 @@ const PastMeetups = (props) => {
     )
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         pastMeetups: state.meetups.meetups,
-//         markers: state.meetups.pastMeetups,
-//         midpoint: state.searchResults.midpoint
-//       }
-// }
 
 export default PastMeetups

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import './Map.css'
-// import useToggle from '../../snippets/useToggle'
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 
-const apiKey = process.env.REACT_APP_GOOGLE_KEY
+
 
 const containerStyle = {
   width: '765px',
@@ -62,9 +61,7 @@ const Map = (props) => {
 
   return (
     <div className="mainMap">
-    {/* <LoadScript
-      googleMapsApiKey={apiKey}
-    > */}
+
 
       <GoogleMap
         mapContainerStyle={containerStyle}
@@ -83,7 +80,7 @@ const Map = (props) => {
         </InfoWindow>: null }
         <></>
       </GoogleMap>
-    {/* </LoadScript> */}
+  
   </div>
   )
 }
