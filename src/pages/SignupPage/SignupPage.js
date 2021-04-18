@@ -14,7 +14,7 @@ const SignupPage = (props) => {
         if (localStorage.token) {
             history.push('/main')
         }
-    }, [history])
+    }, [history, localStorage.token])
 
     const handleSignupSubmission = (e) => {
         e.preventDefault()
