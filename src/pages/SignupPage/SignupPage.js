@@ -25,23 +25,24 @@ const SignupPage = (props) => {
         setUsername('')
         setPassword('')
     }
+    
 
     return (
-
-        <div>
-            <div className="header">
-                MeetInTheMiddle 
-            </div>
-        <div className="center">
-            <form onSubmit={handleSignupSubmission}>
-                Sign Up:
-                <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <input type="submit" />
+        <div className="main">
+            <h1 className="header">MeetInTheMiddle</h1>
+            <div className="subheader">Find a place to meet up with two other people!</div>
+            <p className="sign" align="center">Sign Up!</p>
+            <form className="form1" onSubmit={handleSignupSubmission}>
+                <input className="un" type="text" align="center" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input className="pass" type="password" align="center" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input type="submit" className="submit" />
+                    
             </form>
-            Log in instead? Click <Link to="/login">here.</Link>
+            <div className="signup-text">
+                Log in instead? Click <Link to="/login">here.</Link>
+            </div>        
         </div>
-        </div>
+    
         )
 }
 
