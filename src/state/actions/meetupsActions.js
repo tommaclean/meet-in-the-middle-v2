@@ -25,11 +25,9 @@ export const getMeetups = () => async (dispatch) => {
      const meetups = await fetch("https://meet-in-the-middle-back-end.herokuapp.com/meetups", requestOptions)
      .then(res => res.json())
      .then(data => dispatch(setMeetups(data)))
-    //  console.log("getMeetups res: ", meetups)
-    //  
-     
+
   } catch (e) {
-      console.log("getMeetups error: ", e)
+      
      dispatch(actionLog(actions.SET_ERROR))
    }
 };
@@ -62,7 +60,7 @@ export const setShowFavMeetups = () => dispatch => {
 };
 
 export const confirmSelection = (locationInfo) => async (dispatch) => {
-      console.log("locationInfo: ", locationInfo)
+     
       const requestOptions = {
         method: 'POST',
         headers: { 

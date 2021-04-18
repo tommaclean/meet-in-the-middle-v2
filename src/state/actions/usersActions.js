@@ -15,7 +15,7 @@ const setLoggedInUser = (loggedInData) => ({
 
 
 export const handleLogin = (userInput) => async (dispatch) => {
-        console.log("userInput: ", userInput)
+      
         let requestOptions = {
         method: 'POST',
         headers: { 
@@ -29,7 +29,7 @@ export const handleLogin = (userInput) => async (dispatch) => {
 
         try {
             const loggedInData = await fetch(fetchURL, requestOptions).then(res => res.json())
-            console.log('loggedInData: ', loggedInData)
+            
             if (loggedInData.token) {
                 localStorage.token = loggedInData.token
                 getProfile()
@@ -72,7 +72,7 @@ export const handleSignup = (userInput) => dispatch => {
 const setProfileInfo = (userInfo) => ({ type: userActions.GET_PROFILE_SUCCESS, currentUser: {username: userInfo.username, id: userInfo.id }, token: localStorage.token })
 
 export const getProfile = () => async (dispatch) => {
-    console.log("getProfile", localStorage.token)
+    
     let requestOptions = {
         headers: { 
             'Content-Type': 'application/json',
@@ -83,17 +83,12 @@ export const getProfile = () => async (dispatch) => {
         const fetchURL = 'https://meet-in-the-middle-back-end.herokuapp.com/profile'
         try {
             const userInfo = await fetch(fetchURL, requestOptions).then(res => res.json())
-            console.log("userInfo: ", userInfo)
+           
             dispatch(setProfileInfo(userInfo))
         } catch (e) {
             alert("Profile fetch failed")
         }
-        // fetch(fetchURL, requestOptions).then(response => console.log("getProfile res: ", response))
-        // .then(data => {
-        //         dispatch({ type: 'GET_PROFILE_SUCCESS', currentUser: {username: data.username, id: data.id }, token: localStorage.token })  
-        //     } 
-        // )
-        // .catch(error => {dispatch({ type: "GET_PROFILE_FAILURE", error: error });});
+        
 }
 
 export const handleLogOut = () => dispatch => {

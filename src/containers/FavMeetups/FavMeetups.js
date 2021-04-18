@@ -16,7 +16,7 @@ const FavMeetups = (props)  => {
         props.getFavMeetups()
     }, [])
     
-    console.log("favMeetups", favMeetups)
+   
 
    
 

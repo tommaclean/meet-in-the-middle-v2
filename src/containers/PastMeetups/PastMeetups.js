@@ -24,7 +24,7 @@ const PastMeetups = (props) => {
     }, [])
 
     let mappedMeetups
-    console.log(pastMeetups)
+  
    
 
     if (pastMeetups.length) {
