@@ -21,7 +21,7 @@ const LoginPage = (props) => {
         if (localStorage.token) {
             history.push('/main')
         }
-    }, [history])
+    }, [history, localStorage.token])
     
 
 
