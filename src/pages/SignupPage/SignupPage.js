@@ -11,22 +11,20 @@ const SignupPage = (props) => {
     const [password, setPassword] = useState('')
 
     useEffect(() => {
-        if (localStorage.token) {
+        if (localStorage.token || props.loggedIn) {
             history.push('/main')
         }
-    }, [localStorage.token])
+    }, [history, props.loggedIn])
 
     const handleSignupSubmission = (e) => {
         e.preventDefault()
         props.handleSignup({
             "username": username,
             "password": password
-        })
+        }).then(history.push('/main'))
         setUsername('')
         setPassword('')
-        if (localStorage.token) {
-            history.push('/main')
-        }
+        
     }
     
 

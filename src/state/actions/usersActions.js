@@ -1,3 +1,5 @@
+
+
 export const userActions = {
     USER_LOGIN_SUCCESS: 'USER_LOGIN_SUCCESS',
     GET_PROFILE_SUCCESS: 'GET_PROFILE_SUCCESS',
@@ -59,7 +61,8 @@ export const handleSignup = (userInput) => dispatch => {
         .then(data => { 
             if (data.token) {
                 localStorage.token = data.token
-                dispatch({ type: 'USER_SIGNUP_SUCCESS', currentUser: {username: userInput.username} })
+                dispatch({ type: 'USER_SIGNUP_SUCCESS', currentUser: {username: userInput.username}, loggeIn: true })
+                
             }
         })
         .catch(error => {

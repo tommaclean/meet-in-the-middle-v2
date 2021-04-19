@@ -16,6 +16,9 @@ const App = () => {
                 <Route path="/login">
                     <LoginPage />
                 </Route>
+                <Route path="/signup">
+                    <SignupPage />
+                </Route>
                 <Route path="/main">
                     <Header />
                     <MainPage />
@@ -23,9 +26,6 @@ const App = () => {
                 <Route path="/profile">
                     <Header />
                     <ProfilePage />
-                </Route>
-                <Route path="/signup">
-                    <SignupPage />
                 </Route>
                 <Route path="/search">
                     <Header />
