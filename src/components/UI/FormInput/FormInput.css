@@ -53,6 +53,7 @@
 
   .suggestions {
     background: #4d57c1;
+    z-index: -2;
   }
 
 .hidden { opacity: 0; }
