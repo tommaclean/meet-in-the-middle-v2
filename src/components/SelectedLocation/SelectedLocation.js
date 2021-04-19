@@ -48,7 +48,7 @@ const SelectedLocation = (props) => {
             </div>
           </Modal>
           : null }
-        <div className="closeButton" onClick={() => dispatch(closeSelectedLocation())}>X</div>
+        {/* <div className="closeButton" onClick={() => dispatch(closeSelectedLocation())}>X</div> */}
       </div>
       
     )
