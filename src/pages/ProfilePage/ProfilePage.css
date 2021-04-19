@@ -66,6 +66,10 @@ body {
 
 button {
   border: none;
+  padding: 10px;
+  background: #4d57c1;
+  color: #fff;
+  font-family: 'Poppins';
   
 }
 .content-tabs {

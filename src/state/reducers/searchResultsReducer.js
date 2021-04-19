@@ -35,7 +35,7 @@ export default (state = defaultState, action) => {
         return action.error
 
     case 'CLOSE_SELECTED_LOCATION_SUCCESS':
-        return {...state, showSelectedLocation: false, showFormInput: true, showSearchResults: false }
+        return {...state, showSelectedLocation: false, showFormInput: true, showSearchResults: false, searchResults: {} }
     
     case 'SHOW_SEARCH_RESULTS_START':
         return {...state}
