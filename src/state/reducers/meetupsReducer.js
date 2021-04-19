@@ -16,6 +16,8 @@ export default (state = defaultState, action) => {
         return {...state, favMeetups: action.favMeetups}
     case actions.SET_SHOW_PAST_MEETUPS_SUCCESS:
         return {...state, showPastMeetups: !state.showPastMeetups}
+    case actions.CLEAR_PAST_MEETUP_MARKERS_SUCCESS:
+        return {...state, meetups: [] }
     case actions.SET_SHOW_FAV_MEETUPS_SUCCESS:
         return {...state, showFavMeetups: !state.showFavMeetups}
     case actions.FAVORITE_MEETUP_SUCCESS:

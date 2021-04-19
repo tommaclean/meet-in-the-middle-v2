@@ -5,6 +5,7 @@ import Button from '../Button/Button'
 import { Link, useHistory } from 'react-router-dom';
 import { handleLogOut } from '../../../state/actions/usersActions'
 import { closeSelectedLocation } from '../../../state/actions/searchResultsActions'
+import { clearPastMeetupMarkers } from '../../../state/actions/meetupsActions'
 
 const Header = (props) => { 
     const history = useHistory()
@@ -19,6 +20,12 @@ const Header = (props) => {
       props.handleLogOut()
       history.push('/login')
     }
+
+    const homeButtonHandler = () => {
+      dispatch(closeSelectedLocation())
+      dispatch(clearPastMeetupMarkers())
+    }
+
     return (
       <header className="header-main">
           <div className="title">
@@ -35,7 +42,7 @@ const Header = (props) => {
           <div className="divider"></div>
           <div className="buttons">
             
-            <Link to="/" onClick={() => dispatch(closeSelectedLocation())}>
+            <Link to="/" onClick={() => homeButtonHandler()}>
               <Button>
                 Home
               </Button>

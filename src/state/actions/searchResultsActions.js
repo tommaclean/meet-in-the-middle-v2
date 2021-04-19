@@ -1,4 +1,5 @@
 import Geocode from 'react-geocode';
+import { clearPastMeetupMarkers } from '../actions/meetupsActions'
 
 
 export const handleAddressSubmit = ({address1, address2, address3}) => dispatch => {
@@ -107,6 +108,7 @@ export const handleLocationSelection = (searchResult) => dispatch => {
 export const closeSelectedLocation = () => dispatch => {
     try{
       dispatch({ type: 'CLOSE_SELECTED_LOCATION_SUCCESS' })
+      dispatch(clearPastMeetupMarkers())
     } catch (error) {
       dispatch({ type: 'CLOSE_SELECTED_LOCATION_FAILURE', error: error })
   }

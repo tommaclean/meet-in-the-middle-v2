@@ -23,21 +23,22 @@ const Map = (props) => {
 
       
       const infoWindowHandler = (result) => {
-        // setshowMarker(true)
-        // handleLocationSet(result)
+        console.log(result)
+        setshowMarker(true)
+        handleLocationSet(result)
       }
 
-      // const handleLocationSet = (result) => {
-      //   setLocationToShow(result)
-      //   setCoorToShow(result.geometry.location)
-      // }
+      const handleLocationSet = (result) => {
+        setLocationToShow(result)
+        setCoorToShow(result.place_coor)
+      }
 
       const handleToggleClose = () => {
         setshowMarker(false)
         setLocationToShow(null)
 
       }
-
+      console.log("props.markers", props.markers)
   if (props.markers.length) {
       resultsMarkers = props.markers.map((result, index) => {
         if (result.place_coor) {
@@ -64,6 +65,7 @@ const Map = (props) => {
 
 
       <GoogleMap
+        key={"mainMap"}
         mapContainerStyle={containerStyle}
         center={midpoint}
         zoom={13}
@@ -73,8 +75,8 @@ const Map = (props) => {
         {showMarker ? 
         <InfoWindow position={coorToShow} onCloseClick={() => handleToggleClose()}>
           {locationToShow ? 
-            <div key={locationToShow.id}><h4>{locationToShow.name}</h4>
-            <p>{locationToShow.vicinity}</p>
+            <div className="locationToShow" key={locationToShow.id}><h4>{locationToShow.name}</h4>
+            <p>{locationToShow.address}</p>
             </div> : 
             null }
         </InfoWindow>: null }

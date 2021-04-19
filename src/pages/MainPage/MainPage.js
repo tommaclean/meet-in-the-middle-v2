@@ -18,7 +18,7 @@ const MainPage = (props) => {
             } else {
               history.push('/login')
             }
-          }, [history])
+          }, [history, props.searchResults])
         
 
         return (

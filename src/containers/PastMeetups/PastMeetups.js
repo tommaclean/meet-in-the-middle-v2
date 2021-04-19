@@ -33,13 +33,9 @@ const PastMeetups = (props) => {
                 <div key={meetup.id} className="PastMeetup">
                 <li className="meetupName">{meetup.name}</li>
                 <li className="meetupAddress">{meetup.address}
-                        <div className="divider"></div>
+                        <div className="divider" key={"divider"}></div>
                         <button className="resultButton" onClick={() => dispatch(deleteMeetup(meetup.id)).then(() => dispatch(getMeetups()))}>Delete</button>
-                
                 </li>
-                    <div className="pastMeetupButtons">
-                        
-                    </div>
                 </div>
             </div>
         )})}

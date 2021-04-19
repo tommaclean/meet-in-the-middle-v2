@@ -4,6 +4,7 @@ export const actions = {
   SET_SHOW_PAST_MEETUPS_SUCCESS: 'SET_SHOW_PAST_MEETUPS_SUCCESS',
   CONFIRM_SELECTED_LOCATION_SUCCESS: 'CONFIRM_SELECTED_LOCATION_SUCCESS',
   CONFIRM_FAV_MEETUP_SUCCESS: 'CONFIRM_FAV_MEETUP_SUCCESS',
+  CLEAR_PAST_MEETUP_MARKERS_SUCCESS: 'CLEAR_PAST_MEETUP_MARKERS_SUCCESS',
   SET_ERROR: 'SET_ERROR'
 }
 
@@ -31,7 +32,6 @@ export const getMeetups = () => async (dispatch) => {
      dispatch(actionLog(actions.SET_ERROR))
    }
 };
-
 
 const setFavMeetups = (favMeetups) => ({ type: actions.GET_FAV_MEETUPS_SUCCESS, favMeetups})
 
@@ -131,7 +131,8 @@ export const deleteFavorite = (favMeetupID) => async (dispatch) => {
   }
   
 }
-  
+
+export const clearPastMeetupMarkers = () => ({ type: actions.CLEAR_PAST_MEETUP_MARKERS_SUCCESS, meetups: null })
 
         
 
