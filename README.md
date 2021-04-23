@@ -1,5 +1,4 @@
-<img src="https://i.imgur.com/BqXmkN4.png" />
-<img src="https://i.imgur.com/3FGnwzo.gif" />
+<img src="https://tom-maclean.weebly.com/uploads/1/3/3/1/133170708/published/screen-shot-2021-04-23-at-4-31-30-pm.png?1619209942" />
 
 # Welcome
 
