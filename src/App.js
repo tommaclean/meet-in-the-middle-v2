@@ -27,10 +27,6 @@ const App = () => {
                     <Header />
                     <ProfilePage />
                 </Route>
-                <Route path="/search">
-                    <Header />
-                    <MainPage />
-                </Route>
                 <Route path="/" >
                     <Header />
                     <MainPage />

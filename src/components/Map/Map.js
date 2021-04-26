@@ -47,7 +47,7 @@ const Map = (props) => {
         } else if (result.geometry) {
           markerCoordinates = ({ lat: result.geometry.location.lat, 
             lng: result.geometry.location.lng })
-        }
+        } 
       return (
         <div className="map">
           <Marker 
@@ -70,7 +70,7 @@ const Map = (props) => {
         center={midpoint}
         zoom={13}
         >
-        {resultsMarkers}
+        {props.markers ? resultsMarkers : null }
         <Marker key={"midpoint"} icon={"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"} position={midpoint} label={"Midpoint"} animation={"bounce"} zIndex={0}/>
         {showMarker ? 
         <InfoWindow position={coorToShow} onCloseClick={() => handleToggleClose()}>

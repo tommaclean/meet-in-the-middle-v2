@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import useToggle from '../../snippets/useToggle'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
+
 import FormInput from '../../components/UI/FormInput/FormInput';
 import SearchResults from '../SearchResults/SearchResults'
 import { handleAddressSubmit, clearSearchResults } from '../../state/actions/searchResultsActions'
@@ -11,6 +12,7 @@ import './SearchPane.css'
 const SearchPane = (props) => {
   let searchResultsDiv = useRef(null)
   let formInputDiv = useRef(null)
+  
   
   
   
@@ -73,6 +75,7 @@ const SearchPane = (props) => {
         
         return (
           <div className="searchResultsMain">
+            
             <div className="formInputDiv" ref={el => (formInputDiv = el)}>
               {props.showFormInput ? 
               <FormInput handleAddressSubmit={props.handleAddressSubmit} handleFormInputTransition={() => handleFormInputTransition()}/> : null }

@@ -16,7 +16,7 @@ export default (state = defaultState, action) => {
     case 'GET_SEARCH_RESULTS_START':
         return {...state, loading: true}
     case 'GET_SEARCH_RESULTS_SUCCESS':
-        return {...state, searchResults: action.searchResults, showSearchResults: true }
+        return {...state, searchResults: action.searchResults, showSearchResults: true, loading: false }
     case 'GET_SEARCH_RESULTS_FAILURE':
         return action.error
 

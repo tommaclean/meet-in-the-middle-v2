@@ -42,8 +42,8 @@ const LoginPage = (props) => {
                 <div className="subheader">Find a place to meet up with two other people!</div>
                 <p className="sign" align="center">Log in</p>
                 <form className="form1" onSubmit={handleLoginSubmission}>
-                    <input className="un" type="text" align="center" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    <input className="pass" type="password" align="center" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input className="un" autoComplete="username" type="text" align="center" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input className="pass" autoComplete="current-password" type="password" align="center" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <input type="submit" className="submit" />
                         
                 </form>

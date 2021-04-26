@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { connect, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import Map from '../../components/Map/Map'
 import SearchPane from '../../containers/SearchPane/SearchPane'
+import Spinner from '../../components/UI/Spinner/Spinner'
 import SelectedLocation from '../../components/SelectedLocation/SelectedLocation'
 import { handleLogOut, getProfile } from '../../state/actions/usersActions'
 import { handleAddressSubmit } from '../../state/actions/searchResultsActions'
@@ -15,6 +16,8 @@ const MainPage = (props) => {
         const showSelectedLocation = useSelector(state => state.searchResults.showSelectedLocation)
         const searchResults = useSelector(state => state.searchResults.searchResults)
         const midpoint = useSelector(state => state.searchResults.midpoint)
+        const loading = useSelector(state => state.searchResults.loading)
+       
 
         useEffect(() => {
             if (localStorage.token) {
@@ -27,6 +30,12 @@ const MainPage = (props) => {
 
         return (
           <div>
+            
+             { loading ? 
+              <div className="Spinner-container">
+                <Spinner /> 
+              </div>
+             : null }
             <div className="MainPage-container">
                   <div className="Search-pane">
                   <div className="selectedLocationDiv">
