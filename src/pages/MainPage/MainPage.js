@@ -1,34 +1,41 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import Map from '../../components/Map/Map'
 import SearchPane from '../../containers/SearchPane/SearchPane'
+import SelectedLocation from '../../components/SelectedLocation/SelectedLocation'
 import { handleLogOut, getProfile } from '../../state/actions/usersActions'
 import { handleAddressSubmit } from '../../state/actions/searchResultsActions'
 import './MainPage.css'
 
 
 const MainPage = (props) => {
+        const dispatch = useDispatch();
         const history = useHistory();
-      
+        const showSelectedLocation = useSelector(state => state.searchResults.showSelectedLocation)
+        const searchResults = useSelector(state => state.searchResults.searchResults)
+        const midpoint = useSelector(state => state.searchResults.midpoint)
 
         useEffect(() => {
             if (localStorage.token) {
-              props.getProfile()
+              dispatch(getProfile())
             } else {
               history.push('/login')
             }
-          }, [history, props.searchResults])
+          }, [history, searchResults])
         
 
         return (
           <div>
             <div className="MainPage-container">
                   <div className="Search-pane">
+                  <div className="selectedLocationDiv">
+                    {showSelectedLocation ? <SelectedLocation /> : null }
+                  </div>
                     <SearchPane />
                   </div>
                   <div className="Map">
-                    <Map markers={props.searchResults} midpoint={props.midpoint} />
+                    <Map markers={searchResults} midpoint={midpoint} />
                   </div>
               </div>
                
@@ -37,14 +44,6 @@ const MainPage = (props) => {
         )
 }
 
-const mapStateToProps = state => {
-  return {
-      loggedIn: state.users.loggedIn,
-      searchResults: state.searchResults.searchResults,
-      midpoint: state.searchResults.midpoint,
-      showFormInput: state.searchResults.showFormInput
-  }
-}
 
 const mapDispatchToProps = {
   handleLogOut: handleLogOut,
@@ -53,4 +52,4 @@ const mapDispatchToProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+export default MainPage;

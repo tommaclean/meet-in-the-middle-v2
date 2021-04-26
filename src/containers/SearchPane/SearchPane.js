@@ -3,7 +3,6 @@ import useToggle from '../../snippets/useToggle'
 import { connect } from 'react-redux'
 import FormInput from '../../components/UI/FormInput/FormInput';
 import SearchResults from '../SearchResults/SearchResults'
-import SelectedLocation from '../../components/SelectedLocation/SelectedLocation'
 import { handleAddressSubmit, clearSearchResults } from '../../state/actions/searchResultsActions'
 import { TweenLite } from 'gsap'
 import './SearchPane.css'
@@ -12,26 +11,23 @@ import './SearchPane.css'
 const SearchPane = (props) => {
   let searchResultsDiv = useRef(null)
   let formInputDiv = useRef(null)
-  let selectedLocationDiv = useRef(null)
+  
   
   
   const [showFormInput, toggleFormInput] = useToggle(true)
   
     useEffect(() => {
-        if (!props.showFormInput || !showFormInput || props.showSelectedLocation) {
-          TweenLite.to(selectedLocationDiv, {
-            autoAlpha: 1
+        if (!props.showFormInput || !showFormInput) {
+          TweenLite.to(formInputDiv, {
+            autoAlpha: 0, display: "block"
           })
         } else {
-          TweenLite.to(selectedLocationDiv, {
-            autoAlpha: 0
-          })
           TweenLite.to(formInputDiv, {
             autoAlpha: 1, display: "block"
           })
         } 
   
-        }, [props.showSelectedLocation, props.showFormInput, showFormInput])
+        }, [props.showFormInput, showFormInput])
 
         const handleFormInputTransition = () => {
           toggleFormInput()
@@ -43,11 +39,6 @@ const SearchPane = (props) => {
           TweenLite.to(searchResultsDiv, 1.2, {
             autoAlpha: 1, display: 'block'
           })
-          if (selectedLocationDiv) {
-            TweenLite.to(searchResultsDiv, 1, {
-              autoAlpha: 0
-            })
-          }
         }
 
         const handleBackToAddresses = () => {
@@ -61,11 +52,6 @@ const SearchPane = (props) => {
           TweenLite.to(searchResultsDiv, 1, {
             autoAlpha: 0
           })
-          if (selectedLocationDiv) {
-            TweenLite.to(selectedLocationDiv, 1, {
-              autoAlpha: 0
-            })
-          }
         }
 
         const slideInputLeft = () => {
@@ -91,9 +77,6 @@ const SearchPane = (props) => {
               {props.showFormInput ? 
               <FormInput handleAddressSubmit={props.handleAddressSubmit} handleFormInputTransition={() => handleFormInputTransition()}/> : null }
               
-            </div>
-            <div className="selectedLocationDiv" ref={el => (selectedLocationDiv = el)}>
-              {props.showSelectedLocation ? <SelectedLocation /> : null }
             </div>
             <div className="searchResultsDiv" ref={el => (searchResultsDiv = el)}>
               {props.showSearchResults ? <SearchResults handleBackToAddresses={() => handleBackToAddresses()}/> : null }

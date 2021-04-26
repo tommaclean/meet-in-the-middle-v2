@@ -1,6 +1,11 @@
 .selectedLocationBody {
     border: 10px solid white;
+    background-color: #6B6B6B;
     border-radius: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin-bottom: 20px;
 }
 
 .selectedLocationDetail {
@@ -13,7 +18,7 @@
 }
 
 .name {
-    font-weight: bolder;
+    font-size: 28px;
 }
 
 .vicinity {

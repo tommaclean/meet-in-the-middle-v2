@@ -9,15 +9,8 @@ const PastMeetups = (props) => {
   
     const dispatch = useDispatch();
     const pastMeetups = useSelector(state => state.meetups.meetups)
-    // const markers = useSelector(state => state.meetups.pastMeetups)
-    // const midpoint = useSelector(state => state.searchResults.midpoint)
-    // pastMeetups: state.meetups.meetups,
-    // markers: state.meetups.pastMeetups,
-    // midpoint: state.searchResults.midpoint
 
     useEffect(() => {
-        // dispatch(actionLog('GET_MEETUPS_START'))
-        // dispatch(props.getMeetups())
         dispatch(getMeetups())
         
     }, [dispatch])
