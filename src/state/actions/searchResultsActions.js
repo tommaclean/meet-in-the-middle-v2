@@ -1,6 +1,21 @@
 import Geocode from 'react-geocode';
 import { clearPastMeetupMarkers } from '../actions/meetupsActions'
 
+export const actions = {
+  SET_MIDPOINT_SUCCESS: 'SET_MIDPOINT_SUCCESS',
+  GET_SEARCH_RESULTS_START: 'GET_SEARCH_RESULTS_START',
+  GET_SEARCH_RESULTS_SUCCESS: 'GET_SEARCH_RESULTS_SUCCESS',
+  SET_SELECTED_LOCATION_SUCCESS: 'SET_SELECTED_LOCATION_SUCCESS',
+  CLOSE_SELECTED_LOCATION_SUCCESS: 'CLOSE_SELECTED_LOCATION_SUCCESS',
+  CLEAR_SEARCH_RESULTS_SUCCESS: 'CLEAR_SEARCH_RESULTS_SUCCESS',
+  SHOW_SEARCH_RESULTS_SUCCESS: 'SHOW_SEARCH_RESULTS_SUCCESS',
+  SET_ERROR: 'SET_ERROR'
+
+}
+
+export const actionLog = action => ({
+  type: action
+})
 
 export const handleAddressSubmit = ({address1, address2, address3}) => dispatch => {
   // Empty latitude and longitude arrays to later find the average (midpoint)
@@ -67,68 +82,66 @@ const handleMidpointCalculation = (lats, lngs, dispatch) => {
   let coordinates = [latAvg, lngAvg]
 
   // Send the average latitude and longitude to the Google Maps API
-  handlePlacesFetch(coordinates, dispatch)
-  dispatch({ type: 'SET_MIDPOINT_START' })
+  dispatch(handlePlacesFetch(coordinates, dispatch))
     try{
-      dispatch({ type: 'SET_MIDPOINT_SUCCESS', midpoint: { lat: coordinates[0], lng: coordinates[1] }})
+      dispatch({ type: actions.SET_MIDPOINT_SUCCESS, midpoint: { lat: coordinates[0], lng: coordinates[1] }})
     } catch (error) {
       dispatch({ type: 'SET_MIDPOINT_FAILURE', error: error })
   }
     
 }
 
-const handlePlacesFetch = (coordinates, dispatch) => {
-  dispatch({ type: 'GET_SEARCH_RESULTS_START'});
+const setSearchResults = (searchResults) => ({ type: actions.GET_SEARCH_RESULTS_SUCCESS, searchResults: searchResults.results })
+
+
+const handlePlacesFetch = (coordinates) => async (dispatch) => {
+  console.log("handlePlacesFetch")
+  dispatch({ type: actions.GET_SEARCH_RESULTS_START })
   const corStr = coordinates.toString()
   const apiKey = process.env.REACT_APP_GOOGLE_KEY
   const googleURL = `https://secret-bayou-02815.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${corStr}&radius=1500&types=bar&key=${apiKey}`
  
-
-  return fetch(googleURL)
-      .then(res => res.json())
-      .then(searchResults => {  
-        dispatch({ type: 'GET_SEARCH_RESULTS_SUCCESS', searchResults: searchResults.results, showSearchResults: true });
+  try {
+    await fetch(googleURL).then(res => res.json()).then(searchResults => {  
+        dispatch(setSearchResults(searchResults))
       })
-      .catch(error => {
-        console.log("handlePlacesFetch error", error)
-        //dispatch({ type: 'GET_SEARCH_RESULTS_FAILURE', error: error });
-      });
-    
+  } catch (e) {
+    dispatch(actionLog(actions.SET_ERROR))
+  }
+
 };
 
+
 export const handleLocationSelection = (searchResult) => dispatch => {
-  dispatch({ type: 'SET_SELECTED_LOCATION_START' })
     try{
-      dispatch({ type: 'SET_SELECTED_LOCATION_SUCCESS', selectedResult: searchResult, showSelectedLocation: true })
-    } catch (error) {
-      dispatch({ type: 'SET_SELECTED_LOCATION_FAILURE', error: error })
+      dispatch({ type: actions.SET_SELECTED_LOCATION_SUCCESS, selectedResult: searchResult })
+    } catch (e) {
+      dispatch(actionLog(actions.SET_ERROR))
   }
 }
 
 export const closeSelectedLocation = () => dispatch => {
     try{
-      dispatch({ type: 'CLOSE_SELECTED_LOCATION_SUCCESS' })
+      dispatch({ type: actions.CLOSE_SELECTED_LOCATION_SUCCESS })
       dispatch(clearPastMeetupMarkers())
-    } catch (error) {
-      dispatch({ type: 'CLOSE_SELECTED_LOCATION_FAILURE', error: error })
+    } catch (e) {
+      dispatch(actionLog(actions.SET_ERROR))
   }
 }
 
 export const clearSearchResults = () => dispatch => {
-
-  dispatch({ type: 'CLEAR_SEARCH_RESULTS_START' })
     try{
-      dispatch({ type: 'CLEAR_SEARCH_RESULTS_SUCCESS', searchResults: {}, selectedResult: {}, showSearchResults: false, showSelectedLocation: false, midpoint: null })
+      dispatch({ type: actions.CLEAR_SEARCH_RESULTS_SUCCESS })
     } catch (error) {
-      dispatch({ type: 'CLEAR_SEARCH_RESULTS_FAILURE', error: error })
+      dispatch(actionLog(actions.SET_ERROR))
   }
 }
 
 export const showSearchResults = () => dispatch => {
     try{
-      dispatch({ type: 'SHOW_SEARCH_RESULTS_SUCCESS'})
+      dispatch({ type: actions.SHOW_SEARCH_RESULTS_SUCCESS })
     } catch (error) {
-      dispatch({ type: 'SHOW_SEARCH_RESULTS_FAILURE', error: error })
+      dispatch(actionLog(actions.SET_ERROR))
   }
 }
 

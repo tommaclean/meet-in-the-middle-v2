@@ -28,7 +28,6 @@ export const getMeetups = () => async (dispatch) => {
      .then(data => dispatch(setMeetups(data)))
 
   } catch (e) {
-      
      dispatch(actionLog(actions.SET_ERROR))
    }
 };

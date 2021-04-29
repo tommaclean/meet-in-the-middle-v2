@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import './Map.css'
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 
@@ -12,6 +13,7 @@ const containerStyle = {
 let resultsMarkers
 
 const Map = (props) => {
+      const dispatch = useDispatch();
       let markerCoordinates
       let midpoint = props.midpoint || {lat:40.7019763, lng:-73.9972181}
       const [coorToShow, setCoorToShow] = useState(midpoint)
@@ -20,6 +22,9 @@ const Map = (props) => {
    
       const [showMarker, setshowMarker] = useState(false)
 
+      useEffect(() => {
+        console.log("hey from the map!")
+      }, [dispatch, props.markers])
 
       
       const infoWindowHandler = (result) => {

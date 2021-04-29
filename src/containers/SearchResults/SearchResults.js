@@ -14,12 +14,12 @@ const SearchResults = (props) => {
     if (props.searchResults.length > 0) {
         mappedResults = props.searchResults.map((result, index) => {
         return (
-            <div key={index} className="individualResult">
+            <div key={index} className="individualResult" onClick={() => props.handleLocationSelection(result)}>
                 <div key={result.id} className="SearchResult">
                     <li className="resultName">{result.name}</li>
                     <li className="resultAddress">{result.vicinity}</li>
                     <li className="resultStatus">Status: {result.business_status}</li>
-                    <div onClick={() => props.handleLocationSelection(result)}>
+                    <div>
                     <Button className="resultButton">Select Location</Button>
                     </div>
                 </div>

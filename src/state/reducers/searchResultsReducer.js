@@ -1,4 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
+import { actions } from '../actions/searchResultsActions'
+
 const defaultState = {
     searchResults: {},
     showSearchResults: false,
@@ -13,49 +15,39 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case 'GET_SEARCH_RESULTS_START':
-        return {...state, loading: true}
-    case 'GET_SEARCH_RESULTS_SUCCESS':
+    case actions.GET_SEARCH_RESULTS_START:
+        return {...state, loading: true }
+    case actions.GET_SEARCH_RESULTS_SUCCESS:
         return {...state, searchResults: action.searchResults, showSearchResults: true, loading: false }
-    case 'GET_SEARCH_RESULTS_FAILURE':
+    case actions.GET_SEARCH_RESULTS_FAILURE:
         return action.error
 
-    case 'SHOW_FORM_INPUT_START':
-        return {...state}
-    case 'SHOW_FORM_INPUT_SUCCESS':
+    case actions.SHOW_FORM_INPUT_SUCCESS:
         return {...state, showFormInput: false }
-    case 'SHOW_FORM_INPUT_FAILURE':
+    case actions.SHOW_FORM_INPUT_FAILURE:
         return action.error
 
-    case 'SET_SELECTED_LOCATION_START':
-        return {...state}
-    case 'SET_SELECTED_LOCATION_SUCCESS':
+    case actions.SET_SELECTED_LOCATION_SUCCESS:
         return {...state, selectedResult: action.selectedResult, showSelectedLocation: true }
-    case 'SET_SELECTED_LOCATION_FAILURE':
+    case actions.SET_SELECTED_LOCATION_FAILURE:
         return action.error
 
-    case 'CLOSE_SELECTED_LOCATION_SUCCESS':
+    case actions.CLOSE_SELECTED_LOCATION_SUCCESS:
         return {...state, showSelectedLocation: false, showFormInput: true, showSearchResults: false, searchResults: {} }
     
-    case 'SHOW_SEARCH_RESULTS_START':
-        return {...state}
-    case 'SHOW_SEARCH_RESULTS_SUCCESS':
+    case actions.SHOW_SEARCH_RESULTS_SUCCESS:
         return {...state, showSearchResults: true, showSelectedLocation: true, showFormInput: false  }
-    case 'SHOW_SEARCH_RESULTS_FAILURE':
+    case actions.SHOW_SEARCH_RESULTS_FAILURE:
         return action.error
 
-    case 'SET_MIDPOINT_START':
-        return {...state}
-    case 'SET_MIDPOINT_SUCCESS':
+    case actions.SET_MIDPOINT_SUCCESS:
         return {...state, midpoint: action.midpoint }
-    case 'SET_MIDPOINT_FAILURE':
+    case actions.SET_MIDPOINT_FAILURE:
         return action.error
 
-    case 'CLEAR_SEARCH_RESULTS_START':
-        return {...state}
-    case 'CLEAR_SEARCH_RESULTS_SUCCESS':
+    case actions.CLEAR_SEARCH_RESULTS_SUCCESS:
         return {...state, searchResults: {}, selectedResult: {}, showSearchResults: false, showSelectedLocation: false, midpoint: null }
-    case 'CLEAR_SEARCH_RESULTS_FAILURE':
+    case actions.CLEAR_SEARCH_RESULTS_FAILURE:
             return action.error
 
     default:

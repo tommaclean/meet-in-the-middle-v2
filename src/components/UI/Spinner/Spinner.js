@@ -3,7 +3,7 @@ import Loader from "react-loader-spinner";
 
 const Spinner = () => {
     return ( 
-            <Loader type="Rings" color="#00BFFF" height={250} width={250} />
+            <Loader type="BallTriangle" color="#4d57c1" height={250} width={250} />
     );
 }
 

@@ -51,10 +51,10 @@
   }
 
   #root > div > div > div.Spinner-container > div {
-    left: 50%;
-    top: 50%;
+    left: 40%;
+    top: 30%;
     position: absolute;
-  }
+}
 
 
 

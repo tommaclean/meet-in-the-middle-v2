@@ -5,12 +5,11 @@ import Map from '../../components/Map/Map'
 import SearchPane from '../../containers/SearchPane/SearchPane'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import SelectedLocation from '../../components/SelectedLocation/SelectedLocation'
-import { handleLogOut, getProfile } from '../../state/actions/usersActions'
-import { handleAddressSubmit } from '../../state/actions/searchResultsActions'
+import { getProfile } from '../../state/actions/usersActions'
 import './MainPage.css'
 
 
-const MainPage = (props) => {
+const MainPage = () => {
         const dispatch = useDispatch();
         const history = useHistory();
         const showSelectedLocation = useSelector(state => state.searchResults.showSelectedLocation)
@@ -25,12 +24,15 @@ const MainPage = (props) => {
             } else {
               history.push('/login')
             }
-          }, [history, searchResults])
+          }, [dispatch, history, searchResults])
         
 
         return (
           <div>
-            
+            <div className="Spinner-container">
+
+            <Spinner /> 
+            </div>
              { loading ? 
               <div className="Spinner-container">
                 <Spinner /> 
@@ -54,11 +56,7 @@ const MainPage = (props) => {
 }
 
 
-const mapDispatchToProps = {
-  handleLogOut: handleLogOut,
-  getProfile: getProfile,
-  handleAddressSubmit: handleAddressSubmit
-}
+
 
 
 export default MainPage;
