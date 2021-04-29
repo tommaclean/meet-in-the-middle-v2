@@ -29,10 +29,6 @@ const MainPage = () => {
 
         return (
           <div>
-            <div className="Spinner-container">
-
-            <Spinner /> 
-            </div>
              { loading ? 
               <div className="Spinner-container">
                 <Spinner /> 
