@@ -34,7 +34,7 @@ export const handleAddressSubmit = ({address1, address2, address3}) => dispatch 
       lngs = [...lngs, lng1]
     },
     error => {
-      console.error(error, "Error with Address 1");
+      alert(error, "Error with Address 1");
     }
     );
   
@@ -48,7 +48,7 @@ export const handleAddressSubmit = ({address1, address2, address3}) => dispatch 
       lngs = [...lngs, lng2]
     },
     error => {
-      console.error(error, "Error with Address 2");
+      alert(error, "Error with Address 2");
     }
     );
   
@@ -62,7 +62,7 @@ export const handleAddressSubmit = ({address1, address2, address3}) => dispatch 
       lngs = [...lngs, lng3]
     },
     error => {
-      console.error(error, "Error with Address 3");
+      alert(error, "Error with Address 3");
     }
     );
         
@@ -95,7 +95,7 @@ const setSearchResults = (searchResults) => ({ type: actions.GET_SEARCH_RESULTS_
 
 
 const handlePlacesFetch = (coordinates) => async (dispatch) => {
-  console.log("handlePlacesFetch")
+  
   dispatch({ type: actions.GET_SEARCH_RESULTS_START })
   const corStr = coordinates.toString()
   const apiKey = process.env.REACT_APP_GOOGLE_KEY

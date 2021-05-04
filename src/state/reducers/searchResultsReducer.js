@@ -2,7 +2,7 @@
 import { actions } from '../actions/searchResultsActions'
 
 const defaultState = {
-    searchResults: {},
+    searchResults: [],
     showSearchResults: false,
     midpoint: { lat: 40.7019763,
                 lng: -73.9972181},
@@ -44,7 +44,8 @@ export default (state = defaultState, action) => {
         return {...state, midpoint: action.midpoint }
     case actions.SET_MIDPOINT_FAILURE:
         return action.error
-
+    // case actions.CLEAR_PAST_MEETUP_MARKERS_SUCCESS:
+    //     return {...state, searchResults: [] }
     case actions.CLEAR_SEARCH_RESULTS_SUCCESS:
         return {...state, searchResults: {}, selectedResult: {}, showSearchResults: false, showSelectedLocation: false, midpoint: null }
     case actions.CLEAR_SEARCH_RESULTS_FAILURE:

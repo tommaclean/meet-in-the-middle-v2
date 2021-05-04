@@ -131,7 +131,7 @@ export const deleteFavorite = (favMeetupID) => async (dispatch) => {
   
 }
 
-export const clearPastMeetupMarkers = () => ({ type: actions.CLEAR_PAST_MEETUP_MARKERS_SUCCESS, meetups: null })
+export const clearPastMeetupMarkers = () => ({ type: actions.CLEAR_PAST_MEETUP_MARKERS_SUCCESS, meetups: [] })
 
         
 

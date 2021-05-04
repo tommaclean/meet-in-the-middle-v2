@@ -44,7 +44,15 @@ const Map = (props) => {
 
       }
       console.log("props.markers", props.markers)
+
+      const onUnmount = React.useCallback(function callback(map) {
+        setMap(null)
+      }, [])
+
+      const [map, setMap] = React.useState(null)
+
   if (props.markers.length) {
+    // alert('i fired')
       resultsMarkers = props.markers.map((result, index) => {
         if (result.place_coor) {
           markerCoordinates = ({ lat: result.place_coor.lat, 
@@ -53,6 +61,8 @@ const Map = (props) => {
           markerCoordinates = ({ lat: result.geometry.location.lat, 
             lng: result.geometry.location.lng })
         } 
+
+      
       return (
         <div className="map">
           <Marker 
@@ -74,6 +84,7 @@ const Map = (props) => {
         mapContainerStyle={containerStyle}
         center={midpoint}
         zoom={13}
+        onUnmount={onUnmount}
         >
         {props.markers ? resultsMarkers : null }
         <Marker key={"midpoint"} icon={"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"} position={midpoint} label={"Midpoint"} animation={"bounce"} zIndex={0}/>

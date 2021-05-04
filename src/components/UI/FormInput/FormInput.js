@@ -7,6 +7,11 @@ const FormInput = (props) => {
     const [address2, setAddress2] = useState('')
     const [address3, setAddress3] = useState('')
     
+    // const selectAddress1 = (address) => {
+      
+    //   setAddress1(address)
+    // }
+
     const handleSubmit = (e) => {
       e.preventDefault()
       props.handleAddressSubmit({
@@ -21,7 +26,7 @@ const FormInput = (props) => {
       props.handleFormInputTransition()
       
   }
-
+  console.log(address1)
   return (
 
     <div>

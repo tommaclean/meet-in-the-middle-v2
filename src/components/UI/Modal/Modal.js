@@ -16,8 +16,8 @@ const Modal = (props) => {
     </div>
       }
       isOpen={props.showModal}
-      closeButton="close"
-      closeButtonPosition="bottom"
+      // closeButton="close"
+      // closeButtonPosition="bottom"
       // onClose={() => {
       //   props.setShowModal(false);
       //   return true;
