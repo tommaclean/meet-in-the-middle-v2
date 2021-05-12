@@ -10,7 +10,7 @@ const containerStyle = {
   height: '700px'
 };
 
-let resultsMarkers
+let resultsMarkers //[{}, {}, {}]
 
 const Map = (props) => {
       const dispatch = useDispatch();
@@ -51,8 +51,9 @@ const Map = (props) => {
 
       const [map, setMap] = React.useState(null)
 
-  if (props.markers.length) {
-    // alert('i fired')
+
+      console.log('markers here', props.markers) //[]
+  if (props.markers.length) { //false
       resultsMarkers = props.markers.map((result, index) => {
         if (result.place_coor) {
           markerCoordinates = ({ lat: result.place_coor.lat, 
@@ -73,7 +74,9 @@ const Map = (props) => {
             />
         </div>
 
-      )})} 
+      )})} else {
+        resultsMarkers = [];
+      }
 
   return (
     <div className="mainMap">

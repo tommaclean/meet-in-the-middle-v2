@@ -33,7 +33,7 @@ export default (state = defaultState, action) => {
         return action.error
 
     case actions.CLOSE_SELECTED_LOCATION_SUCCESS:
-        return {...state, showSelectedLocation: false, showFormInput: true, showSearchResults: false, searchResults: {} }
+        return {...state, showSelectedLocation: false, showFormInput: true, showSearchResults: false, searchResults: [] }
     
     case actions.SHOW_SEARCH_RESULTS_SUCCESS:
         return {...state, showSearchResults: true, showSelectedLocation: true, showFormInput: false  }
@@ -47,7 +47,7 @@ export default (state = defaultState, action) => {
     // case actions.CLEAR_PAST_MEETUP_MARKERS_SUCCESS:
     //     return {...state, searchResults: [] }
     case actions.CLEAR_SEARCH_RESULTS_SUCCESS:
-        return {...state, searchResults: {}, selectedResult: {}, showSearchResults: false, showSelectedLocation: false, midpoint: null }
+        return {...state, searchResults: [], selectedResult: {}, showSearchResults: false, showSelectedLocation: false, midpoint: null }
     case actions.CLEAR_SEARCH_RESULTS_FAILURE:
             return action.error
 
